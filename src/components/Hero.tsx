@@ -12,7 +12,7 @@ export default function Hero() {
         background:
           "linear-gradient(135deg, #3a6fbf 0%, #2F5E9E 50%, #1a3d6e 100%)",
       }}
-      className="relative min-h-screen pt-16 overflow-hidden"
+      className="relative min-h-screen pt-24 overflow-hidden flex items-center"
     >
       {/* Background decorative circles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -20,8 +20,8 @@ export default function Hero() {
         <div className="absolute bottom-0 -left-16 w-72 h-72 rounded-full bg-white opacity-5" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-16 lg:py-24">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto pl-24 pr-8 md:px-12 py-0 w-full">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Text */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -29,21 +29,21 @@ export default function Hero() {
             transition={{ duration: 0.7 }}
             className="text-white"
           >
-            <p className="italic text-2xl md:text-3xl font-light mb-2 opacity-90">
+            <p className="italic text-3xl md:text-4xl font-light mb-3 opacity-90">
               A Decade of Support
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-8">
               Building value
               <br />
               for living fully
             </h1>
-            <p className="text-white/80 text-base md:text-lg mb-10 max-w-md leading-relaxed">
+            <p className="text-white/80 text-lg md:text-xl mb-12 max-w-lg leading-relaxed">
               The trusted choice of over 20,000 Vietnamese families across 50
               U.S. States
             </p>
             <button
               onClick={() => setShowVideo(true)}
-              className="flex items-center gap-3 bg-white text-[#2F5E9E] font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all duration-300 text-sm tracking-wider shadow-lg"
+              className="flex items-center gap-3 bg-white text-[#2F5E9E] font-bold px-10 py-4 rounded-full hover:bg-white/90 transition-all duration-300 text-base tracking-wider shadow-lg"
             >
               PLAY VIDEO
               <Play size={18} fill="currentColor" />
@@ -58,7 +58,7 @@ export default function Hero() {
             className="relative flex justify-center items-center"
           >
             {/* Main photo card */}
-            <div className="relative w-full max-w-md">
+            <div className="relative w-full max-w-xl">
               <div className="rounded-2xl overflow-hidden shadow-2xl aspect-4/3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -69,29 +69,27 @@ export default function Hero() {
               </div>
 
               {/* Floating tag: 20,000+ families */}
-              <div className="absolute -left-4 bottom-8 bg-white rounded-xl shadow-xl px-4 py-3">
-                <p className="text-[#2F5E9E] font-extrabold text-xl leading-none">
+              <div className="absolute -left-6 bottom-10 bg-white rounded-2xl shadow-xl px-5 py-4">
+                <p className="text-[#2F5E9E] font-extrabold text-2xl leading-none">
                   20,000+
                 </p>
-                <p className="text-gray-500 text-xs mt-0.5">
-                  Families Protected
-                </p>
+                <p className="text-gray-500 text-sm mt-1">Families Protected</p>
               </div>
 
               {/* Floating tag: 50 States */}
-              <div className="absolute -right-4 top-8 bg-white rounded-xl shadow-xl px-4 py-3">
-                <p className="text-[#2F5E9E] font-extrabold text-xl leading-none">
+              <div className="absolute -right-6 top-10 bg-white rounded-2xl shadow-xl px-5 py-4">
+                <p className="text-[#2F5E9E] font-extrabold text-2xl leading-none">
                   50
                 </p>
-                <p className="text-gray-500 text-xs mt-0.5">U.S. States</p>
+                <p className="text-gray-500 text-sm mt-1">U.S. States</p>
               </div>
 
               {/* Floating tag: 10+ Years */}
-              <div className="absolute left-1/2 -translate-x-1/2 -bottom-5 bg-white rounded-xl shadow-xl px-4 py-3">
-                <p className="text-[#2F5E9E] font-extrabold text-xl leading-none">
+              <div className="absolute left-1/2 -translate-x-1/2 -bottom-6 bg-white rounded-2xl shadow-xl px-5 py-4">
+                <p className="text-[#2F5E9E] font-extrabold text-2xl leading-none">
                   10+
                 </p>
-                <p className="text-gray-500 text-xs mt-0.5">Years Trusted</p>
+                <p className="text-gray-500 text-sm mt-1">Years Trusted</p>
               </div>
             </div>
           </motion.div>

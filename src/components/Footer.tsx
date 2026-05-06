@@ -9,7 +9,7 @@ export default function Footer() {
     <>
       {/* Footer */}
       <footer className="bg-gray-100 pt-16 pb-8">
-        <div className="max-w-5xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           {/* Logo in footer */}
           <div className="mb-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -198,25 +198,61 @@ export default function Footer() {
       {/* Fixed bottom mobile contact bar */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 flex sm:hidden">
         {[
-          { label: "Hotline", icon: "📞", href: "tel:+16788253737" },
+          {
+            label: "Hotline",
+            href: "tel:+16788253737",
+            bg: "linear-gradient(145deg, #f44336, #c62828)",
+            icon: (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z" />
+              </svg>
+            ),
+          },
           {
             label: "Messenger",
-            icon: "💬",
-            href: "https://m.me/thinksmartinsurance",
+            href: "https://m.me/vietpointinsurance",
+            bg: "linear-gradient(145deg, #c026d3, #7c3aed, #2563eb)",
+            icon: (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.815 1.3 5.331 3.35 7.043V21l3.044-1.678A11.2 11.2 0 0 0 12 19.516c5.523 0 10-4.145 10-9.257S17.523 2 12 2zm1.05 12.472-2.55-2.72-4.98 2.72 5.48-5.82 2.61 2.72 4.92-2.72-5.48 5.82z" />
+              </svg>
+            ),
           },
           {
             label: "Email",
-            icon: "✉️",
-            href: "mailto:info@thinksmartinsurance.com",
+            href: "mailto:info@vietpointinsurance.com",
+            bg: "#ffffff",
+            icon: (
+              <svg width="22" height="17" viewBox="0 0 52 39" fill="none">
+                <path d="M2 35V4.5L12 12v23H2z" fill="#4285F4" />
+                <path d="M50 35V4.5L40 12v23h10z" fill="#34A853" />
+                <path d="M12 12L2 4.5 26 22 12 12z" fill="#EA4335" />
+                <path d="M40 12L50 4.5 26 22 40 12z" fill="#FBBC05" />
+                <path
+                  d="M12 12v23l14-9.5L40 35V12L26 22 12 12z"
+                  fill="#EA4335"
+                />
+              </svg>
+            ),
           },
         ].map((item) => (
           <a
             key={item.label}
             href={item.href}
-            className="flex-1 flex flex-col items-center justify-center py-3 gap-1 hover:bg-gray-50 transition-colors"
+            target={item.href.startsWith("http") ? "_blank" : undefined}
+            rel="noopener noreferrer"
+            className="flex-1 flex flex-col items-center justify-center py-3 gap-1.5 hover:bg-gray-50 transition-colors"
           >
-            <span className="text-xl">{item.icon}</span>
-            <span className="text-xs text-gray-500 font-medium">
+            <div
+              className="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm"
+              style={{
+                background: item.bg,
+                border: item.bg === "#ffffff" ? "1px solid #e5e7eb" : "none",
+              }}
+            >
+              {item.icon}
+            </div>
+            <span className="text-xs text-gray-600 font-semibold">
               {item.label}
             </span>
           </a>

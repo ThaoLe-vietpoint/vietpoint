@@ -1,0 +1,126 @@
+"use client";
+
+const wiggleKeyframes = `
+@keyframes wiggle {
+  0%   { transform: rotate(0deg); }
+  10%  { transform: rotate(-16deg); }
+  20%  { transform: rotate(16deg); }
+  30%  { transform: rotate(-12deg); }
+  40%  { transform: rotate(12deg); }
+  50%  { transform: rotate(-6deg); }
+  60%  { transform: rotate(6deg); }
+  70%  { transform: rotate(-2deg); }
+  80%  { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+`;
+
+const contacts = [
+  {
+    label: "Hotline",
+    href: "tel:+16788253737",
+    delay: "0s",
+    icon: (
+      <div
+        className="w-10 h-10 rounded-xl flex items-center justify-center shadow-md"
+        style={{ background: "linear-gradient(145deg, #f44336, #c62828)" }}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z" />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    label: "Messenger",
+    href: "https://m.me/vietpointinsurance",
+    delay: "1.2s",
+    icon: (
+      <div
+        className="w-10 h-10 rounded-xl flex items-center justify-center shadow-md"
+        style={{
+          background:
+            "linear-gradient(145deg, #c026d3, #7c3aed, #2563eb, #06b6d4)",
+        }}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.815 1.3 5.331 3.35 7.043V21l3.044-1.678A11.2 11.2 0 0 0 12 19.516c5.523 0 10-4.145 10-9.257S17.523 2 12 2zm1.05 12.472-2.55-2.72-4.98 2.72 5.48-5.82 2.61 2.72 4.92-2.72-5.48 5.82z" />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    label: "Email",
+    href: "mailto:info@vietpointinsurance.com",
+    delay: "2.4s",
+    icon: (
+      <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-md bg-white border border-gray-100">
+        {/* Gmail M logo */}
+        <svg width="24" height="18" viewBox="0 0 52 39" fill="none">
+          <path
+            d="M4 0h44a4 4 0 0 1 4 4v31a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"
+            fill="white"
+          />
+          <path
+            d="M2 4.5 26 22 50 4.5"
+            stroke="#FBBC05"
+            strokeWidth="3"
+            fill="none"
+          />
+          <path
+            d="M2 4.5V35h10V16.5L26 28l14-11.5V35h10V4.5L50 4.5 26 22 2 4.5z"
+            fill="none"
+          />
+          <path d="M2 35V4.5L12 12v23H2z" fill="#4285F4" />
+          <path d="M50 35V4.5L40 12v23h10z" fill="#34A853" />
+          <path d="M12 12L2 4.5 26 22 12 12z" fill="#EA4335" />
+          <path d="M40 12L50 4.5 26 22 40 12z" fill="#FBBC05" />
+          <path d="M12 12v23l14-9.5L40 35V12L26 22 12 12z" fill="#EA4335" />
+        </svg>
+      </div>
+    ),
+  },
+];
+
+export default function ContactFloat() {
+  return (
+    <>
+      <style>{wiggleKeyframes}</style>
+      <div className="fixed left-3 bottom-24 sm:bottom-16 z-50 hidden sm:flex flex-col items-center gap-4">
+        <div
+          className="bg-white rounded-2xl shadow-xl px-2 py-3 flex flex-col items-center gap-3"
+          style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
+        >
+          {contacts.map((c) => (
+            <a
+              key={c.label}
+              href={c.href}
+              target={c.href.startsWith("http") ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-1 group"
+              title={c.label}
+            >
+              <div
+                style={{
+                  animationName: "wiggle",
+                  animationDuration: "2.8s",
+                  animationTimingFunction: "ease-in-out",
+                  animationIterationCount: "infinite",
+                  animationDelay: c.delay,
+                  transformOrigin: "center center",
+                  display: "inline-block",
+                }}
+                className="group-hover:[animation-play-state:paused] transition-transform"
+              >
+                {c.icon}
+              </div>
+              <span className="text-[11px] font-semibold text-gray-600 leading-none">
+                {c.label}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
