@@ -9,7 +9,7 @@ const stories = [
     name: "Ha Nguyen",
     title: "Leaving a Stable Job to Reinvent Herself in the Insurance Industry",
     excerpt: "Have you ever felt stuck in a stable yet monotonous job? Do you yearn for a change, an opportunity to grow and make a real difference?",
-    bgColor: "#C41E3A",
+    bgColor: "#2F5E9E",
     earnings: "$8,500/month",
   },
   {
@@ -75,12 +75,12 @@ export default function CustomerStories() {
                 </div>
               </div>
               <div className="p-5">
-                <p className="text-[#C41E3A] text-xs font-semibold mb-1">{story.name}</p>
+                <p className="text-[#2F5E9E] text-xs font-semibold mb-1">{story.name}</p>
                 <h3 className="font-bold text-gray-900 text-sm mb-2 line-clamp-2">{story.title}</h3>
                 <p className="text-gray-500 text-xs line-clamp-2 mb-4">{story.excerpt}</p>
                 <a
                   href="#"
-                  className="flex items-center gap-1 text-[#C41E3A] text-sm font-medium hover:gap-2 transition-all"
+                  className="flex items-center gap-1 text-[#2F5E9E] text-sm font-medium hover:gap-2 transition-all"
                 >
                   View more <ArrowRight size={14} />
                 </a>
@@ -110,10 +110,10 @@ export default function CustomerStories() {
               </div>
             </div>
             <div className="p-5 bg-white">
-              <p className="text-[#C41E3A] text-xs font-semibold mb-1">{stories[active].name}</p>
+              <p className="text-[#2F5E9E] text-xs font-semibold mb-1">{stories[active].name}</p>
               <h3 className="font-bold text-gray-900 mb-2">{stories[active].title}</h3>
               <p className="text-gray-500 text-sm mb-4">{stories[active].excerpt}</p>
-              <a href="#" className="flex items-center gap-1 text-[#C41E3A] text-sm font-medium">
+              <a href="#" className="flex items-center gap-1 text-[#2F5E9E] text-sm font-medium">
                 View more <ArrowRight size={14} />
               </a>
             </div>
@@ -122,7 +122,7 @@ export default function CustomerStories() {
           <div className="flex items-center justify-center gap-4 mt-6">
             <button
               onClick={prev}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#C41E3A] hover:text-[#C41E3A] transition-colors"
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#2F5E9E] hover:text-[#2F5E9E] transition-colors"
             >
               <ChevronLeft size={18} />
             </button>
@@ -131,13 +131,13 @@ export default function CustomerStories() {
                 <button
                   key={i}
                   onClick={() => setActive(i)}
-                  className={`w-2 h-2 rounded-full transition-all ${i === active ? "bg-[#C41E3A] w-5" : "bg-gray-300"}`}
+                  className={`w-2 h-2 rounded-full transition-all ${i === active ? "bg-[#2F5E9E] w-5" : "bg-gray-300"}`}
                 />
               ))}
             </div>
             <button
               onClick={next}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#C41E3A] hover:text-[#C41E3A] transition-colors"
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#2F5E9E] hover:text-[#2F5E9E] transition-colors"
             >
               <ChevronRight size={18} />
             </button>

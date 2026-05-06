@@ -23,7 +23,7 @@ const posts = [
       "If you're researching life insurance in the United States — particularly IUL (Indexed Universal Life) — you've likely come across National Life Group.",
     date: "Apr 16, 2026",
     category: "Featured post",
-    categoryColor: "#C41E3A",
+    categoryColor: "#2F5E9E",
     image: `${IMG}/2026/04/National-Life-Group-Co-Uy-Tin-Khong-768x460.png`,
   },
   {
@@ -41,7 +41,7 @@ const posts = [
     id: 3,
     title: "NOTICE OF ADJUSTED DRAWING DATE",
     excerpt:
-      'Program: "Win a Round-Trip U.S.–Vietnam Ticket for Lunar New Year 2027". Organizer: Thinksmart Insurance LLC. Please read carefully for updated drawing date information.',
+      'Program: "Win a Round-Trip U.S.–Vietnam Ticket for Lunar New Year 2027". Organizer: VietPoint Insurance & Tax LLC. Please read carefully for updated drawing date information.',
     date: "Oct 13, 2025",
     category: "Event",
     categoryColor: "#d97706",
@@ -60,7 +60,7 @@ const posts = [
   {
     id: 5,
     title:
-      "Review Thinksmart Insurance: Case Study Life Insurance Payout $323,195",
+      "Review VietPoint Insurance & Tax: Case Study Life Insurance Payout $323,195",
     excerpt:
       "From Karaoke Shortness of Breath to a Cancer Diagnosis — Life insurance bồi thường and how IUL living benefits changed one family's life.",
     date: "Oct 13, 2025",
@@ -75,7 +75,7 @@ const posts = [
       "Indexed Universal Life (IUL) insurance is increasingly attracting the interest of the Vietnamese community. Understanding the payment policy is crucial.",
     date: "May 1, 2025",
     category: "Featured post",
-    categoryColor: "#C41E3A",
+    categoryColor: "#2F5E9E",
     image: `${IMG}/2025/05/chinh-sach-dong-phi-bao-hiem-iul-national-life-group-iul-premium-payment-policy-thumbnails-768x512.jpg`,
   },
   {
@@ -86,7 +86,7 @@ const posts = [
       "For the Vietnamese community in the US, understanding life insurance is not just about protecting your loved ones — it's about securing your future.",
     date: "Apr 20, 2025",
     category: "Featured post",
-    categoryColor: "#C41E3A",
+    categoryColor: "#2F5E9E",
     image: `${IMG}/2025/05/bao-hiem-nhan-tho-bao-nhieu-tien-tai-my-how-much-does-life-insurance-cost-in-the-us-thumbnail-768x512.jpg`,
   },
   {
@@ -148,7 +148,7 @@ const posts = [
       "As a global financial powerhouse, Allianz boasts a strong brand and long history. But is Allianz reputable for Vietnamese-American policyholders?",
     date: "Apr 10, 2025",
     category: "Featured post",
-    categoryColor: "#C41E3A",
+    categoryColor: "#2F5E9E",
     image: `${IMG}/2025/05/cong-ty-bao-hiem-allianz-co-uy-tin-khong-is-allianz-reputable-thumbnail-1-768x512.jpg`,
   },
   {
@@ -207,7 +207,7 @@ const posts = [
     title:
       "HOT: Win a Round-Trip Ticket from the U.S. to Vietnam — Lunar New Year 2027!",
     excerpt:
-      "To express our gratitude for your trust and support, Thinksmart Insurance is delighted to introduce the Round-Trip Ticket Giveaway Program for Lunar New Year 2027.",
+      "To express our gratitude for your trust and support, VietPoint Insurance & Tax is delighted to introduce the Round-Trip Ticket Giveaway Program for Lunar New Year 2027.",
     date: "Mar 10, 2025",
     category: "Event",
     categoryColor: "#d97706",
@@ -218,7 +218,7 @@ const posts = [
     title:
       "Announcement of Results: Free Round-Trip Ticket Program USA - Vietnam 2025",
     excerpt:
-      "Thinksmart Insurance sincerely thanks our valued customers for their interest in the Free Round-Trip Ticket Program USA - Vietnam 2025.",
+      "VietPoint Insurance & Tax sincerely thanks our valued customers for their interest in the Free Round-Trip Ticket Program USA - Vietnam 2025.",
     date: "Jan 7, 2025",
     category: "Event",
     categoryColor: "#d97706",
@@ -227,7 +227,7 @@ const posts = [
   {
     id: 21,
     title:
-      "Program: Free Round-Trip Tickets USA - Vietnam for Customers of Thinksmart Insurance",
+      "Program: Free Round-Trip Tickets USA - Vietnam for Customers of VietPoint Insurance & Tax",
     excerpt:
       "To serve the travel needs of Vietnamese people in the U.S. returning to Vietnam to visit family and celebrate the Lunar New Year.",
     date: "Aug 1, 2024",
@@ -251,7 +251,7 @@ export default function BlogPage() {
       <section
         className="py-16 px-6 text-white text-center"
         style={{
-          background: "linear-gradient(135deg, #d94f3b 0%, #a82e1e 100%)",
+          background: "linear-gradient(135deg, #3a6fbf 0%, #1a3d6e 100%)",
         }}
       >
         <h1 className="text-4xl md:text-5xl font-extrabold mb-3">Blog</h1>
@@ -274,7 +274,7 @@ export default function BlogPage() {
               }`}
               style={
                 activeCategory === cat
-                  ? { background: "#C41E3A", borderColor: "#C41E3A" }
+                  ? { background: "#2F5E9E", borderColor: "#2F5E9E" }
                   : {}
               }
             >
@@ -313,7 +313,7 @@ export default function BlogPage() {
               {/* Content */}
               <div className="mt-5">
                 <p className="text-sm text-gray-400 mb-2">{post.date}</p>
-                <h2 className="font-extrabold text-gray-900 text-[1.35rem] leading-snug mb-3 group-hover:text-[#C41E3A] transition-colors">
+                <h2 className="font-extrabold text-gray-900 text-[1.35rem] leading-snug mb-3 group-hover:text-[#2F5E9E] transition-colors">
                   <Link href={`/blog/${post.id}`}>{post.title}</Link>
                 </h2>
                 <p className="text-gray-500 text-[15px] leading-relaxed line-clamp-2 mb-5">
@@ -321,8 +321,8 @@ export default function BlogPage() {
                 </p>
                 <Link
                   href={`/blog/${post.id}`}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border-2 text-sm font-bold transition-all hover:bg-[#C41E3A] hover:text-white"
-                  style={{ borderColor: "#C41E3A", color: "#C41E3A" }}
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border-2 text-sm font-bold transition-all hover:bg-[#2F5E9E] hover:text-white"
+                  style={{ borderColor: "#2F5E9E", color: "#2F5E9E" }}
                 >
                   Read more
                   <svg
@@ -352,7 +352,7 @@ export default function BlogPage() {
         <div
           className="mt-4 rounded-2xl p-8 text-center"
           style={{
-            background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+            background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
           }}
         >
           <h3 className="text-xl font-extrabold text-white mb-2">
@@ -365,7 +365,7 @@ export default function BlogPage() {
           <Link
             href="/contact"
             className="inline-block bg-white font-bold px-8 py-3 rounded-full text-sm hover:bg-gray-100 transition-colors"
-            style={{ color: "#C41E3A" }}
+            style={{ color: "#2F5E9E" }}
           >
             REGISTER NOW
           </Link>

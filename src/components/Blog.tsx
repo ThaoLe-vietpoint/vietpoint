@@ -89,14 +89,14 @@ export default function Blog() {
           </h2>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="text-[#C41E3A] font-bold text-lg">
+              <span className="text-[#2F5E9E] font-bold text-lg">
                 Latest News
               </span>
-              <div className="w-10 h-0.5 bg-[#C41E3A]" />
+              <div className="w-10 h-0.5 bg-[#2F5E9E]" />
             </div>
             <a
               href="#"
-              className="flex items-center gap-1 text-[#C41E3A] font-medium text-sm hover:gap-2 transition-all"
+              className="flex items-center gap-1 text-[#2F5E9E] font-medium text-sm hover:gap-2 transition-all"
             >
               View more <ArrowRight size={16} />
             </a>
@@ -122,12 +122,12 @@ export default function Blog() {
                   alt={post.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <span className="absolute bottom-2 left-2 text-xs font-bold text-white bg-[#C41E3A]/90 px-2 py-1 rounded">
+                <span className="absolute bottom-2 left-2 text-xs font-bold text-white bg-[#2F5E9E]/90 px-2 py-1 rounded">
                   {post.category}
                 </span>
               </div>
               <div className="p-4">
-                <h3 className="font-bold text-gray-900 text-sm mb-2 line-clamp-2 group-hover:text-[#C41E3A] transition-colors">
+                <h3 className="font-bold text-gray-900 text-sm mb-2 line-clamp-2 group-hover:text-[#2F5E9E] transition-colors">
                   {post.title}
                 </h3>
                 <p className="text-gray-500 text-xs line-clamp-2 mb-3">
@@ -155,7 +155,7 @@ export default function Blog() {
                   alt={blogPosts[index].title}
                   className="w-full h-full object-cover"
                 />
-                <span className="absolute bottom-2 left-2 text-xs font-bold text-white bg-[#C41E3A]/90 px-2 py-1 rounded">
+                <span className="absolute bottom-2 left-2 text-xs font-bold text-white bg-[#2F5E9E]/90 px-2 py-1 rounded">
                   {blogPosts[index].category}
                 </span>
               </div>
@@ -176,7 +176,7 @@ export default function Blog() {
             <button
               onClick={prev}
               disabled={index === 0}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#C41E3A] hover:text-[#C41E3A] transition-colors"
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#2F5E9E] hover:text-[#2F5E9E] transition-colors"
             >
               <ChevronLeft size={18} />
             </button>
@@ -186,7 +186,7 @@ export default function Blog() {
             <button
               onClick={next}
               disabled={index === blogPosts.length - 1}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#C41E3A] hover:text-[#C41E3A] transition-colors"
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#2F5E9E] hover:text-[#2F5E9E] transition-colors"
             >
               <ChevronRight size={18} />
             </button>

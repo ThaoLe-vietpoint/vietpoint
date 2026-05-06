@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Careers - Thinksmart Insurance" };
+export const metadata: Metadata = { title: "Careers - VietPoint Insurance & Tax" };
 
 const positions = [
   {
@@ -39,12 +39,12 @@ export default function RecruitmentPage() {
       <section
         className="pt-16 min-h-[360px] flex items-center"
         style={{
-          background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+          background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
         }}
       >
         <div className="max-w-4xl mx-auto px-6 py-16 text-white text-center">
           <p className="text-sm font-bold tracking-widest uppercase opacity-80 mb-2">
-            About Thinksmart
+            About VietPoint
           </p>
           <h1 className="text-4xl font-extrabold mb-3">Join Our Team</h1>
           <p className="text-white/85 text-lg max-w-2xl mx-auto">
@@ -57,7 +57,7 @@ export default function RecruitmentPage() {
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">
-            Why Join Thinksmart?
+            Why Join VietPoint?
           </h2>
           <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {benefits.map((b) => (
@@ -67,7 +67,7 @@ export default function RecruitmentPage() {
               >
                 <span
                   className="w-2 h-2 rounded-full shrink-0"
-                  style={{ background: "#C41E3A" }}
+                  style={{ background: "#2F5E9E" }}
                 />
                 <span className="text-sm text-gray-700">{b}</span>
               </div>
@@ -92,7 +92,7 @@ export default function RecruitmentPage() {
                   <Link
                     href="/contact"
                     className="shrink-0 text-white text-xs font-bold px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
-                    style={{ background: "#C41E3A" }}
+                    style={{ background: "#2F5E9E" }}
                   >
                     Apply
                   </Link>
@@ -113,7 +113,7 @@ export default function RecruitmentPage() {
       <section
         className="py-12 px-6 text-center"
         style={{
-          background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+          background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
         }}
       >
         <h2 className="text-2xl font-bold text-white mb-4">
@@ -125,9 +125,9 @@ export default function RecruitmentPage() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="mailto:support@Thinksmartinsurance.com"
+            href="mailto:support@VietPointinsurance.com"
             className="inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:bg-gray-50 transition-colors"
-            style={{ color: "#C41E3A" }}
+            style={{ color: "#2F5E9E" }}
           >
             ✉️ Send Resume
           </a>

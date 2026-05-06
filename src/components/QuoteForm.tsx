@@ -22,7 +22,7 @@ export default function QuoteForm() {
 
   return (
     <section
-      style={{ background: "linear-gradient(135deg, #a01828 0%, #8b1020 100%)" }}
+      style={{ background: "linear-gradient(135deg, #1a3d6e 0%, #0d2a52 100%)" }}
       className="py-12"
     >
       <div className="max-w-xl mx-auto px-4">
@@ -65,7 +65,7 @@ export default function QuoteForm() {
                   value="Male"
                   checked={form.gender === "Male"}
                   onChange={(e) => setForm({ ...form, gender: e.target.value })}
-                  className="accent-[#C41E3A]"
+                  className="accent-[#2F5E9E]"
                 />
                 Male
               </label>
@@ -76,7 +76,7 @@ export default function QuoteForm() {
                   value="Female"
                   checked={form.gender === "Female"}
                   onChange={(e) => setForm({ ...form, gender: e.target.value })}
-                  className="accent-[#C41E3A]"
+                  className="accent-[#2F5E9E]"
                 />
                 Female
               </label>

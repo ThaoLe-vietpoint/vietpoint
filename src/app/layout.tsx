@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Thinksmart Insurance | Life, IUL & Retirement Planning",
+  title: "VietPoint Insurance & Tax | Life, IUL & Retirement Planning",
   description:
     "The trusted choice of over 20,000 Vietnamese families across 50 U.S. States. Specializing in IUL, Term Life, and Retirement Planning.",
 };

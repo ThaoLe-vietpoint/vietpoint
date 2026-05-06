@@ -75,7 +75,7 @@ export default function MaxFundedIULPage() {
           <a
             href="#contact-form"
             className="inline-block font-bold px-8 py-3.5 rounded-full text-white text-sm hover:opacity-90 transition-opacity"
-            style={{ background: "#C41E3A" }}
+            style={{ background: "#2F5E9E" }}
           >
             REGISTER NOW
           </a>
@@ -285,7 +285,7 @@ export default function MaxFundedIULPage() {
           <a
             href="tel:+16787223447"
             className="inline-block font-bold px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
-            style={{ background: "#C41E3A", color: "white" }}
+            style={{ background: "#2F5E9E", color: "white" }}
           >
             📞 (678) 722-3447
           </a>

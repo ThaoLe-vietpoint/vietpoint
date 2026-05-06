@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Priority Program - Thinksmart Insurance",
+  title: "Priority Program - VietPoint Insurance & Tax",
 };
 
 const perks = [
@@ -29,7 +29,7 @@ const perks = [
   {
     icon: "🏆",
     label: "Referral Rewards",
-    desc: "Earn rewards when you refer friends and family to Thinksmart Insurance programs.",
+    desc: "Earn rewards when you refer friends and family to VietPoint Insurance & Tax programs.",
   },
   {
     icon: "💬",
@@ -44,7 +44,7 @@ export default function PriorityProgramPage() {
       <section
         className="pt-16 min-h-[360px] flex items-center"
         style={{
-          background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+          background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
         }}
       >
         <div className="max-w-4xl mx-auto px-6 py-16 text-white text-center">
@@ -53,7 +53,7 @@ export default function PriorityProgramPage() {
           </p>
           <h1 className="text-4xl font-extrabold mb-3">Priority Program</h1>
           <p className="text-white/85 text-lg max-w-2xl mx-auto">
-            Exclusive benefits and dedicated support for Thinksmart Priority
+            Exclusive benefits and dedicated support for VietPoint Priority
             Members. Because you deserve the best.
           </p>
         </div>
@@ -87,7 +87,7 @@ export default function PriorityProgramPage() {
             How to Qualify
           </h2>
           <p className="text-gray-500 mb-8">
-            Priority membership is available to all active Thinksmart
+            Priority membership is available to all active VietPoint
             policyholders. Contact your agent to learn how to enroll or ask
             about exclusive upgrade options.
           </p>
@@ -95,7 +95,7 @@ export default function PriorityProgramPage() {
             <a
               href="tel:+16788253737"
               className="inline-block text-white font-bold px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
-              style={{ background: "#C41E3A" }}
+              style={{ background: "#2F5E9E" }}
             >
               📞 (678) 825-3737
             </a>

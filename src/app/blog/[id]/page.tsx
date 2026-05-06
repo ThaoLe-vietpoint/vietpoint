@@ -21,7 +21,7 @@ const posts: Record<
     title: "Is National Life Group Legit? An Honest Review for 2026",
     date: "April 16, 2026",
     category: "Featured post",
-    categoryColor: "#C41E3A",
+    categoryColor: "#2F5E9E",
     image: `${IMG}/2026/04/National-Life-Group-Co-Uy-Tin-Khong-768x460.png`,
     relatedIds: [6, 13, 2],
     content: `
@@ -64,14 +64,14 @@ NLG's most popular product for the Vietnamese community is the **Indexed Univers
 
 **Yes, absolutely.** National Life Group is a legitimate, financially strong, and highly rated insurance company with a 176-year history. Their IUL products offer genuine value for families seeking both life protection and tax-advantaged retirement savings.
 
-However, like any financial product, the right policy depends on your individual needs. Always work with a licensed, verified insurance agent — like those at **Thinksmart Insurance** — who can help you compare options and structure the policy correctly.
+However, like any financial product, the right policy depends on your individual needs. Always work with a licensed, verified insurance agent — like those at **VietPoint Insurance & Tax** — who can help you compare options and structure the policy correctly.
 
-## Contact Thinksmart Insurance
+## Contact VietPoint Insurance & Tax
 
 Ready to explore National Life Group's IUL? Our licensed agents specialize in helping Vietnamese families find the right coverage.
 
 📞 **Hotline: (678) 825-3737**
-📧 **support@Thinksmartinsurance.com**
+📧 **support@VietPointinsurance.com**
 📍 1424 N Brown Rd #450, Lawrenceville, GA 30043
     `,
   },
@@ -90,11 +90,11 @@ When searching for a life insurance agency for the Vietnamese community in the U
 
 This guide ranks the top 5 agencies based on these criteria.
 
-## #1 — Thinksmart Insurance (Lawrenceville, GA)
+## #1 — VietPoint Insurance & Tax (Lawrenceville, GA)
 
 **Rating: ⭐⭐⭐⭐⭐**
 
-Thinksmart Insurance was founded by Vietnamese-Americans specifically to serve the Vietnamese community in the U.S. Their agents are fluent in Vietnamese, deeply understand the cultural context, and specialize in IUL and Max-Funded IUL policies.
+VietPoint Insurance & Tax was founded by Vietnamese-Americans specifically to serve the Vietnamese community in the U.S. Their agents are fluent in Vietnamese, deeply understand the cultural context, and specialize in IUL and Max-Funded IUL policies.
 
 **Why #1:**
 - 100% Vietnamese-speaking agents
@@ -103,7 +103,7 @@ Thinksmart Insurance was founded by Vietnamese-Americans specifically to serve t
 - Strong community reputation
 - Based in Georgia with clients nationwide
 
-📞 (678) 825-3737 | support@Thinksmartinsurance.com
+📞 (678) 825-3737 | support@VietPointinsurance.com
 
 ## #2 — National Life Group Agents
 
@@ -145,7 +145,7 @@ Always verify your agent at our [Official Consultant Verification](/about/verify
 
 **Program:** "Win a Round-Trip U.S.–Vietnam Ticket for Lunar New Year 2027"
 
-**Organizer:** Thinksmart Insurance LLC
+**Organizer:** VietPoint Insurance & Tax LLC
 
 ---
 
@@ -166,7 +166,7 @@ Due to an unexpectedly high number of participants and our commitment to ensurin
 ### How the Drawing Will Be Conducted
 
 - All valid entries received before **November 10, 2025** will be included
-- The drawing will be conducted live on our Facebook page: [facebook.com/Thinksmartinsuranceus](https://www.facebook.com/Thinksmartinsuranceus/)
+- The drawing will be conducted live on our Facebook page: [facebook.com/VietPointinsuranceus](https://www.facebook.com/VietPointinsuranceus/)
 - Winners will be notified via phone and email within 48 hours of the drawing
 
 ### Prize Details
@@ -176,9 +176,9 @@ Due to an unexpectedly high number of participants and our commitment to ensurin
 
 We sincerely apologize for any inconvenience this adjustment may cause, and we thank you for your continued trust and participation.
 
-**Thinksmart Insurance LLC**
+**VietPoint Insurance & Tax LLC**
 📞 (678) 825-3737
-📧 support@Thinksmartinsurance.com
+📧 support@VietPointinsurance.com
     `,
   },
   4: {
@@ -191,7 +191,7 @@ We sincerely apologize for any inconvenience this adjustment may cause, and we t
     content: `
 ## How the Life Insurance Claim Process Worked — IUL vs Term Life
 
-This is a real case study from a Thinksmart Insurance client who received a **$54,000 cancer payout** through their IUL living benefits.
+This is a real case study from a VietPoint Insurance & Tax client who received a **$54,000 cancer payout** through their IUL living benefits.
 
 *Names have been changed to protect privacy.*
 
@@ -206,7 +206,7 @@ This is a real case study from a Thinksmart Insurance client who received a **$5
 ## The Claim Process
 
 ### Step 1: Notification (Day 1)
-Mrs. T.N. called her Thinksmart agent immediately after diagnosis. Her agent gathered the required documentation:
+Mrs. T.N. called her VietPoint agent immediately after diagnosis. Her agent gathered the required documentation:
 - Oncologist's diagnosis letter
 - Hospital records confirming the cancer stage
 - Policy number and personal identification
@@ -228,7 +228,7 @@ This is the critical difference between IUL with living benefits and traditional
 
 ## Mrs. T.N.'s Words
 
-> "I never imagined insurance could pay out while I was still alive. That $54,000 covered my entire chemotherapy treatment without touching my savings. My Thinksmart agent handled everything — I just focused on getting better."
+> "I never imagined insurance could pay out while I was still alive. That $54,000 covered my entire chemotherapy treatment without touching my savings. My VietPoint agent handled everything — I just focused on getting better."
 
 ## Key Takeaway
 
@@ -245,7 +245,7 @@ If you have IUL with living benefits:
   },
   5: {
     title:
-      "Review Thinksmart Insurance: Case Study Life Insurance Payout $323,195",
+      "Review VietPoint Insurance & Tax: Case Study Life Insurance Payout $323,195",
     date: "October 13, 2025",
     category: "Customer stories",
     categoryColor: "#16a34a",
@@ -254,7 +254,7 @@ If you have IUL with living benefits:
     content: `
 ## From Karaoke Shortness of Breath to a Cancer Diagnosis
 
-This is the story of Mr. M.N. — a Thinksmart Insurance client whose IUL living benefits paid out **$323,195** after a cancer diagnosis.
+This is the story of Mr. M.N. — a VietPoint Insurance & Tax client whose IUL living benefits paid out **$323,195** after a cancer diagnosis.
 
 ---
 
@@ -266,7 +266,7 @@ His wife insisted he see a doctor. Two weeks later, the results came back: **Sta
 
 ## The Policy
 
-Mr. M.N. had enrolled in a **Max-Funded IUL** policy with Thinksmart Insurance 9 years prior. At the time, his primary goal was retirement savings — the living benefits clause felt like a formality he'd never need.
+Mr. M.N. had enrolled in a **Max-Funded IUL** policy with VietPoint Insurance & Tax 9 years prior. At the time, his primary goal was retirement savings — the living benefits clause felt like a formality he'd never need.
 
 **Policy details:**
 - Death benefit: $500,000
@@ -275,7 +275,7 @@ Mr. M.N. had enrolled in a **Max-Funded IUL** policy with Thinksmart Insurance 9
 
 ## The Claim
 
-His Thinksmart agent submitted the living benefits claim within 48 hours of diagnosis. Within 11 business days, the insurance company processed and approved the claim.
+His VietPoint agent submitted the living benefits claim within 48 hours of diagnosis. Within 11 business days, the insurance company processed and approved the claim.
 
 **Total payout: $323,195**
 
@@ -293,13 +293,13 @@ Today, Mr. M.N. is cancer-free. His IUL policy continues to grow.
 
 ## His Message
 
-> "I spent 9 years paying into this policy, sometimes wondering if it was worth it. When I needed it most, Thinksmart Insurance delivered. The money arrived in 11 days. No fighting, no arguments — just compassionate, professional support."
+> "I spent 9 years paying into this policy, sometimes wondering if it was worth it. When I needed it most, VietPoint Insurance & Tax delivered. The money arrived in 11 days. No fighting, no arguments — just compassionate, professional support."
 
 ## Lesson for the Vietnamese Community
 
 Many Vietnamese families purchase the cheapest Term Life policy to "check the box." But Term Life pays only at death. **IUL with living benefits** pays when you're diagnosed with cancer, heart attack, stroke, and 16+ other conditions — when you need the money most, while you're alive to use it.
 
-**Contact Thinksmart Insurance today.**
+**Contact VietPoint Insurance & Tax today.**
 📞 (678) 825-3737
     `,
   },
@@ -307,7 +307,7 @@ Many Vietnamese families purchase the cheapest Term Life policy to "check the bo
     title: "National Life Group's IUL Premium Payment Policy",
     date: "May 1, 2025",
     category: "Featured post",
-    categoryColor: "#C41E3A",
+    categoryColor: "#2F5E9E",
     image: `${IMG}/2025/05/chinh-sach-dong-phi-bao-hiem-iul-national-life-group-iul-premium-payment-policy-thumbnails-768x512.jpg`,
     relatedIds: [1, 8, 7],
     content: `
@@ -336,7 +336,7 @@ NLG requires a minimum premium payment to keep your policy active. This minimum 
 
 IRS rules limit how much you can contribute to an IUL without it becoming a **Modified Endowment Contract (MEC)**. A MEC loses some of the tax advantages of life insurance.
 
-Thinksmart agents will help you stay below the MEC threshold while maximizing your contributions.
+VietPoint agents will help you stay below the MEC threshold while maximizing your contributions.
 
 ## What Happens if You Miss a Payment?
 
@@ -345,7 +345,7 @@ NLG has a **61-day grace period**. If you miss a payment:
 2. The missing premium is deducted from your cash value (if available)
 3. If cash value is insufficient, your policy may lapse
 
-**Recommendation:** Contact your Thinksmart agent immediately if you anticipate difficulty making payments. There are options to reduce premiums or use a policy loan.
+**Recommendation:** Contact your VietPoint agent immediately if you anticipate difficulty making payments. There are options to reduce premiums or use a policy loan.
 
 ## Payment Methods
 
@@ -359,7 +359,7 @@ NLG has a **61-day grace period**. If you miss a payment:
 Questions about your NLG IUL policy payments? Our agents are here to help.
 
 📞 (678) 825-3737
-📧 support@Thinksmartinsurance.com
+📧 support@VietPointinsurance.com
     `,
   },
   7: {
@@ -367,7 +367,7 @@ Questions about your NLG IUL policy payments? Our agents are here to help.
       "How much does life insurance cost in the US? A 2025 guide for Vietnamese families",
     date: "April 20, 2025",
     category: "Featured post",
-    categoryColor: "#C41E3A",
+    categoryColor: "#2F5E9E",
     image: `${IMG}/2025/05/bao-hiem-nhan-tho-bao-nhieu-tien-tai-my-how-much-does-life-insurance-cost-in-the-us-thumbnail-768x512.jpg`,
     relatedIds: [14, 2, 6],
     content: `
@@ -693,7 +693,7 @@ The best long-term tax strategy is investing in **tax-free vehicles** like IUL i
     title: "Allianz Insurance Company: Is It Truly Trustworthy?",
     date: "April 10, 2025",
     category: "Featured post",
-    categoryColor: "#C41E3A",
+    categoryColor: "#2F5E9E",
     image: `${IMG}/2025/05/cong-ty-bao-hiem-allianz-co-uy-tin-khong-is-allianz-reputable-thumbnail-1-768x512.jpg`,
     relatedIds: [1, 2, 8],
     content: `
@@ -732,7 +732,7 @@ Allianz has an **A+ (Superior)** AM Best rating — the second-highest possible 
 
 ## Is Allianz Right for You?
 
-Allianz products are excellent but can be complex. Thinksmart Insurance agents are trained and licensed to sell Allianz products and can help you navigate the features and find the right policy.
+Allianz products are excellent but can be complex. VietPoint Insurance & Tax agents are trained and licensed to sell Allianz products and can help you navigate the features and find the right policy.
 
 📞 (678) 825-3737
     `,
@@ -950,7 +950,7 @@ Historically, people living with HIV could not obtain life insurance. Today, wit
 
 Contact our agents for confidential guidance on life insurance options for people living with HIV.
 
-📞 (678) 825-3737 | support@Thinksmartinsurance.com
+📞 (678) 825-3737 | support@VietPointinsurance.com
     `,
   },
   18: {
@@ -1003,7 +1003,7 @@ Once you establish US residency, building a strong financial foundation is criti
 - Start contributing to retirement accounts (401k, IRA)
 - Consider life insurance to protect your family — especially important as a new immigrant without established savings
 
-**Thinksmart Insurance helps Vietnamese immigrants navigate life insurance in the US.**
+**VietPoint Insurance & Tax helps Vietnamese immigrants navigate life insurance in the US.**
 📞 (678) 825-3737
     `,
   },
@@ -1018,7 +1018,7 @@ Once you establish US residency, building a strong financial foundation is criti
     content: `
 ## WIN A ROUND-TRIP TICKET USA ↔ VIETNAM!
 
-To express our gratitude for your trust and support, **Thinksmart Insurance** is delighted to introduce the **Round-Trip Ticket Giveaway Program** for Lunar New Year 2027!
+To express our gratitude for your trust and support, **VietPoint Insurance & Tax** is delighted to introduce the **Round-Trip Ticket Giveaway Program** for Lunar New Year 2027!
 
 ---
 
@@ -1032,16 +1032,16 @@ To express our gratitude for your trust and support, **Thinksmart Insurance** is
 
 ## How to Enter
 
-**Eligibility:** All current and new Thinksmart Insurance clients
+**Eligibility:** All current and new VietPoint Insurance & Tax clients
 
 **To qualify, you must:**
-1. Be an active policyholder with Thinksmart Insurance **OR** purchase a new policy during the promotion period
+1. Be an active policyholder with VietPoint Insurance & Tax **OR** purchase a new policy during the promotion period
 2. Refer at least **1 friend or family member** who schedules a consultation
 3. Complete your entry form (available at our office or via the contact form)
 
 **Bonus entries:**
 - +1 entry for each successful referral who purchases a policy
-- +1 entry for attending a Thinksmart financial education event
+- +1 entry for attending a VietPoint financial education event
 
 ---
 
@@ -1067,7 +1067,7 @@ To express our gratitude for your trust and support, **Thinksmart Insurance** is
 Contact us today to confirm your entry or learn more.
 
 📞 **(678) 825-3737**
-📧 **support@Thinksmartinsurance.com**
+📧 **support@VietPointinsurance.com**
 📍 1424 N Brown Rd #450, Lawrenceville, GA 30043
 
 *Follow us on Facebook for live drawing announcement!*
@@ -1090,7 +1090,7 @@ Contact us today to confirm your entry or learn more.
 
 Dear valued clients and participants,
 
-Thinksmart Insurance sincerely thanks our valued customers for their enthusiastic participation in the **Free Round-Trip Ticket Program USA - Vietnam 2025**.
+VietPoint Insurance & Tax sincerely thanks our valued customers for their enthusiastic participation in the **Free Round-Trip Ticket Program USA - Vietnam 2025**.
 
 We are thrilled to announce the official results of the drawing held on **January 5, 2025**.
 
@@ -1102,7 +1102,7 @@ We are thrilled to announce the official results of the drawing held on **Januar
 
 The winning entry was drawn in a live video broadcast on our official Facebook page. The winner has been contacted privately via phone and email.
 
-We congratulate our winner and thank every participant for their trust in Thinksmart Insurance.
+We congratulate our winner and thank every participant for their trust in VietPoint Insurance & Tax.
 
 ---
 
@@ -1120,7 +1120,7 @@ We congratulate our winner and thank every participant for their trust in Thinks
 
 ## Thank You
 
-This program was our way of saying **thank you** to the Vietnamese community in the US for your trust and support of Thinksmart Insurance throughout 2024.
+This program was our way of saying **thank you** to the Vietnamese community in the US for your trust and support of VietPoint Insurance & Tax throughout 2024.
 
 Your referrals, loyalty, and kind words mean the world to our team. We look forward to serving you and your families in 2025 and beyond.
 
@@ -1131,12 +1131,12 @@ Your referrals, loyalty, and kind words mean the world to our team. We look forw
 Stay tuned for our **Lunar New Year 2027 Round-Trip Ticket Giveaway**. More details coming soon!
 
 📞 (678) 825-3737
-📧 support@Thinksmartinsurance.com
+📧 support@VietPointinsurance.com
     `,
   },
   21: {
     title:
-      "Program: Free Round-Trip Tickets USA - Vietnam for Customers of Thinksmart Insurance",
+      "Program: Free Round-Trip Tickets USA - Vietnam for Customers of VietPoint Insurance & Tax",
     date: "August 1, 2024",
     category: "Event",
     categoryColor: "#d97706",
@@ -1145,13 +1145,13 @@ Stay tuned for our **Lunar New Year 2027 Round-Trip Ticket Giveaway**. More deta
     content: `
 ## FREE ROUND-TRIP TICKETS USA - VIETNAM
 
-To serve the travel needs of Vietnamese people in the U.S. returning to Vietnam to visit family and celebrate the **Lunar New Year**, Thinksmart Insurance is proud to launch the **Free Round-Trip Ticket Giveaway Program 2025**.
+To serve the travel needs of Vietnamese people in the U.S. returning to Vietnam to visit family and celebrate the **Lunar New Year**, VietPoint Insurance & Tax is proud to launch the **Free Round-Trip Ticket Giveaway Program 2025**.
 
 ---
 
 ## About the Program
 
-This program is our heartfelt thank-you gift to the Vietnamese-American community that has trusted Thinksmart Insurance with their family's financial protection.
+This program is our heartfelt thank-you gift to the Vietnamese-American community that has trusted VietPoint Insurance & Tax with their family's financial protection.
 
 **Prize:** 1 Round-Trip Economy Ticket — USA ↔ Vietnam (any major Vietnamese airport)
 **Program period:** August 1, 2024 – December 31, 2024
@@ -1164,10 +1164,10 @@ This program is our heartfelt thank-you gift to the Vietnamese-American communit
 To participate, you must meet ONE of the following:
 
 ✅ **Option A — Existing Client**
-You are an active Thinksmart Insurance policyholder as of August 1, 2024.
+You are an active VietPoint Insurance & Tax policyholder as of August 1, 2024.
 
 ✅ **Option B — New Client**
-You purchase a new Thinksmart Insurance policy between August 1 and December 31, 2024.
+You purchase a new VietPoint Insurance & Tax policy between August 1 and December 31, 2024.
 
 ✅ **Option C — Referral**
 You successfully refer a friend or family member who schedules a consultation with our agents.
@@ -1197,7 +1197,7 @@ A: Flexible — winner can choose any date during Lunar New Year season (Jan–F
 ---
 
 📞 **(678) 825-3737**
-📧 **support@Thinksmartinsurance.com**
+📧 **support@VietPointinsurance.com**
 📍 1424 N Brown Rd #450, Lawrenceville, GA 30043
     `,
   },
@@ -1271,7 +1271,7 @@ function renderMarkdown(content: string, featuredImage?: string) {
         <h2
           key={i}
           className="text-3xl md:text-4xl font-extrabold mt-10 mb-4 leading-tight"
-          style={{ color: "#C41E3A" }}
+          style={{ color: "#2F5E9E" }}
         >
           {line.slice(3)}
         </h2>,
@@ -1344,7 +1344,7 @@ function renderMarkdown(content: string, featuredImage?: string) {
         <blockquote
           key={i}
           className="border-l-4 pl-4 py-2 my-4 italic text-gray-600 bg-gray-50 rounded-r-lg"
-          style={{ borderColor: "#C41E3A" }}
+          style={{ borderColor: "#2F5E9E" }}
         >
           {line.slice(2)}
         </blockquote>,
@@ -1473,7 +1473,7 @@ export default function BlogPostPage() {
           <button
             onClick={handleCopy}
             className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold transition-opacity hover:opacity-80"
-            style={{ background: "#C41E3A" }}
+            style={{ background: "#2F5E9E" }}
             title="Copy link"
           >
             {copied ? (
@@ -1547,7 +1547,7 @@ export default function BlogPostPage() {
               <ul className="px-5 pb-4 space-y-2 border-t border-gray-200 pt-3">
                 {tocHeadings.map((h, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="mt-1 text-[#C41E3A]">
+                    <span className="mt-1 text-[#2F5E9E]">
                       <svg
                         width="10"
                         height="10"
@@ -1600,7 +1600,7 @@ export default function BlogPostPage() {
                         >
                           {r.category}
                         </span>
-                        <p className="text-sm font-semibold text-gray-800 mt-1 line-clamp-2 group-hover:text-[#C41E3A] transition-colors">
+                        <p className="text-sm font-semibold text-gray-800 mt-1 line-clamp-2 group-hover:text-[#2F5E9E] transition-colors">
                           {r.title}
                         </p>
                         <p className="text-xs text-gray-400 mt-1">{r.date}</p>
@@ -1616,19 +1616,19 @@ export default function BlogPostPage() {
         <div
           className="mt-10 rounded-2xl p-7 text-center"
           style={{
-            background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+            background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
           }}
         >
           <p className="text-white/80 text-sm mb-1">
             Need guidance on life insurance?
           </p>
           <h3 className="font-extrabold text-white text-lg mb-3">
-            Talk to a Thinksmart Insurance expert — free consultation.
+            Talk to a VietPoint Insurance & Tax expert — free consultation.
           </h3>
           <a
             href="tel:+16788253737"
             className="inline-block bg-white font-bold px-7 py-2.5 rounded-full text-sm hover:bg-gray-100 transition-colors"
-            style={{ color: "#C41E3A" }}
+            style={{ color: "#2F5E9E" }}
           >
             📞 (678) 825-3737
           </a>
@@ -1638,7 +1638,7 @@ export default function BlogPostPage() {
           <Link
             href="/blog"
             className="text-sm font-semibold hover:underline"
-            style={{ color: "#C41E3A" }}
+            style={{ color: "#2F5E9E" }}
           >
             ← Back to Blog
           </Link>

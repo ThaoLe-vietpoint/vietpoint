@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Us - Thinksmart Insurance",
+  title: "About Us - VietPoint Insurance & Tax",
   description:
-    "Thinksmart Insurance was founded in 2013 with a clear mission: to become the most trusted Financial Doctor for every Vietnamese family in the US.",
+    "VietPoint Insurance & Tax was founded in 2013 with a clear mission: to become the most trusted Financial Doctor for every Vietnamese family in the US.",
 };
 
 const coreValues = [
@@ -69,7 +69,7 @@ const products = [
     title: "IUL Secrets",
     desc: "Compensation for more than 16 types of diseases. Accumulate TAX-FREE retirement funds with high interest rates of 6–12%/year.",
     href: "/insurance/iul",
-    color: "#C41E3A",
+    color: "#2F5E9E",
   },
   {
     title: "Term Life",
@@ -87,7 +87,7 @@ export default function AboutPage() {
         className="pt-16 min-h-[420px] flex items-center"
         style={{
           background:
-            "linear-gradient(135deg, #d94f3b 0%, #c23b29 50%, #a82e1e 100%)",
+            "linear-gradient(135deg, #3a6fbf 0%, #2F5E9E 50%, #1a3d6e 100%)",
         }}
       >
         <div className="max-w-4xl mx-auto px-6 py-20 text-white text-center">
@@ -95,7 +95,7 @@ export default function AboutPage() {
             Welcome to
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-widest mb-4">
-            THINKSMART INSURANCE
+            VIETPOINT INSURANCE
           </h1>
           <p className="text-xl md:text-2xl italic font-light opacity-90">
             Smart Planning, Secure Living!
@@ -107,10 +107,10 @@ export default function AboutPage() {
       <section className="py-16 px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            About Thinksmart Insurance
+            About VietPoint Insurance & Tax
           </h2>
           <p className="text-gray-600 leading-relaxed mb-6">
-            Welcome to Thinksmart Insurance, a trusted financial partner
+            Welcome to VietPoint Insurance & Tax, a trusted financial partner
             dedicated to serving the Vietnamese community in the United States.
             We are a reputable financial services company, operating as an
             independent agency, working closely with leading insurance
@@ -124,7 +124,7 @@ export default function AboutPage() {
             Brand Story
           </h3>
           <p className="text-gray-600 leading-relaxed">
-            Thinksmart Insurance was founded in 2013 with a clear mission: to
+            VietPoint Insurance & Tax was founded in 2013 with a clear mission: to
             become the most trusted &quot;Financial Doctor&quot; for every
             Vietnamese family in the US. We believe that everyone deserves a
             solid financial plan to protect, save and invest for the future.
@@ -148,7 +148,7 @@ export default function AboutPage() {
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
               <div
                 className="w-12 h-12 rounded-full flex items-center justify-center mb-4"
-                style={{ background: "#C41E3A" }}
+                style={{ background: "#2F5E9E" }}
               >
                 <span className="text-white font-bold text-lg">M</span>
               </div>
@@ -192,7 +192,7 @@ export default function AboutPage() {
               >
                 <div
                   className="w-10 h-10 rounded-full mx-auto mb-3 flex items-center justify-center"
-                  style={{ background: "#C41E3A" }}
+                  style={{ background: "#2F5E9E" }}
                 >
                   <span className="text-white font-bold text-sm">
                     {v.title[0]}
@@ -217,7 +217,7 @@ export default function AboutPage() {
             What We Do?
           </h2>
           <p className="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
-            Thinksmart Insurance provides diverse life insurance programs
+            VietPoint Insurance & Tax provides diverse life insurance programs
             designed to meet all your needs. We focus on three main benefits:
           </p>
           <div className="grid md:grid-cols-3 gap-6">
@@ -295,7 +295,7 @@ export default function AboutPage() {
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">
-            Why Choose Thinksmart Insurance?
+            Why Choose VietPoint Insurance & Tax?
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {whyUs.map((item, i) => (
@@ -305,7 +305,7 @@ export default function AboutPage() {
               >
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center mb-4 text-white font-bold text-sm"
-                  style={{ background: "#C41E3A" }}
+                  style={{ background: "#2F5E9E" }}
                 >
                   {i + 1}
                 </div>
@@ -323,7 +323,7 @@ export default function AboutPage() {
       <section
         className="py-16 px-6"
         style={{
-          background: "linear-gradient(135deg, #a01020 0%, #8b1020 100%)",
+          background: "linear-gradient(135deg, #2F5E9E 0%, #0d2a52 100%)",
         }}
       >
         <div className="max-w-3xl mx-auto">
@@ -362,7 +362,7 @@ export default function AboutPage() {
               <div key={name} className="text-center">
                 <div
                   className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center text-white font-bold text-lg"
-                  style={{ background: "#C41E3A" }}
+                  style={{ background: "#2F5E9E" }}
                 >
                   {name[0]}
                 </div>
@@ -405,7 +405,7 @@ export default function AboutPage() {
         <Link
           href="/contact"
           className="inline-block text-white font-bold px-10 py-4 rounded-full text-sm hover:opacity-90 transition-opacity"
-          style={{ background: "#C41E3A" }}
+          style={{ background: "#2F5E9E" }}
         >
           Contact Us Now
         </Link>

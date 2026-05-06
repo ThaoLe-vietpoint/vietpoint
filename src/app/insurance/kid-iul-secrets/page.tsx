@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "IUL For Kids (EBTP) - Thinksmart Insurance",
+  title: "IUL For Kids (EBTP) - VietPoint Insurance & Tax",
   description:
     "Protect your children and build a financial fund for them to enter university. IUL For Kids (EBTP) gives your children wings to fly far at the age of 18.",
 };
@@ -52,7 +52,7 @@ export default function KidIULPage() {
       >
         <div className="max-w-4xl mx-auto px-6 py-20 text-white text-center">
           <p className="text-sm font-bold tracking-widest uppercase opacity-80 mb-2">
-            Thinksmart Insurance
+            VietPoint Insurance & Tax
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-3">
             IUL For Kids (EBTP)
@@ -150,7 +150,7 @@ export default function KidIULPage() {
             college. Best financial decision I ever made for her.&quot;
           </blockquote>
           <p className="font-semibold text-gray-900">
-            — Ha Nguyen, Thinksmart Client
+            — Ha Nguyen, VietPoint Client
           </p>
         </div>
       </section>

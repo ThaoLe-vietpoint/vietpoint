@@ -83,7 +83,7 @@ export default function Process() {
         <div className="text-center mt-12">
           <a
             href="#quote"
-            className="inline-block bg-[#C41E3A] text-white font-bold px-10 py-3.5 rounded-full hover:bg-[#a01828] transition-colors"
+            className="inline-block bg-[#2F5E9E] text-white font-bold px-10 py-3.5 rounded-full hover:bg-[#1a3d6e] transition-colors"
           >
             Get Free Quote
           </a>

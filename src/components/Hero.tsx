@@ -10,7 +10,7 @@ export default function Hero() {
     <section
       style={{
         background:
-          "linear-gradient(135deg, #d94f3b 0%, #c23b29 50%, #a82e1e 100%)",
+          "linear-gradient(135deg, #3a6fbf 0%, #2F5E9E 50%, #1a3d6e 100%)",
       }}
       className="relative min-h-screen pt-16 overflow-hidden"
     >
@@ -43,7 +43,7 @@ export default function Hero() {
             </p>
             <button
               onClick={() => setShowVideo(true)}
-              className="flex items-center gap-3 bg-white text-[#C41E3A] font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all duration-300 text-sm tracking-wider shadow-lg"
+              className="flex items-center gap-3 bg-white text-[#2F5E9E] font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all duration-300 text-sm tracking-wider shadow-lg"
             >
               PLAY VIDEO
               <Play size={18} fill="currentColor" />
@@ -70,7 +70,7 @@ export default function Hero() {
 
               {/* Floating tag: 20,000+ families */}
               <div className="absolute -left-4 bottom-8 bg-white rounded-xl shadow-xl px-4 py-3">
-                <p className="text-[#C41E3A] font-extrabold text-xl leading-none">
+                <p className="text-[#2F5E9E] font-extrabold text-xl leading-none">
                   20,000+
                 </p>
                 <p className="text-gray-500 text-xs mt-0.5">
@@ -80,7 +80,7 @@ export default function Hero() {
 
               {/* Floating tag: 50 States */}
               <div className="absolute -right-4 top-8 bg-white rounded-xl shadow-xl px-4 py-3">
-                <p className="text-[#C41E3A] font-extrabold text-xl leading-none">
+                <p className="text-[#2F5E9E] font-extrabold text-xl leading-none">
                   50
                 </p>
                 <p className="text-gray-500 text-xs mt-0.5">U.S. States</p>
@@ -88,7 +88,7 @@ export default function Hero() {
 
               {/* Floating tag: 10+ Years */}
               <div className="absolute left-1/2 -translate-x-1/2 -bottom-5 bg-white rounded-xl shadow-xl px-4 py-3">
-                <p className="text-[#C41E3A] font-extrabold text-xl leading-none">
+                <p className="text-[#2F5E9E] font-extrabold text-xl leading-none">
                   10+
                 </p>
                 <p className="text-gray-500 text-xs mt-0.5">Years Trusted</p>

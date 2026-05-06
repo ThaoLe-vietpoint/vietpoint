@@ -71,10 +71,10 @@ export default function Testimonials() {
               transition={{ delay: i * 0.1 }}
               className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
             >
-              <Quote size={28} className="text-[#C41E3A] mb-4 opacity-60" />
+              <Quote size={28} className="text-[#2F5E9E] mb-4 opacity-60" />
               <p className="text-gray-700 text-sm leading-relaxed mb-6 italic">&quot;{t.quote}&quot;</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#C41E3A] text-white flex items-center justify-center font-bold text-sm">
+                <div className="w-10 h-10 rounded-full bg-[#2F5E9E] text-white flex items-center justify-center font-bold text-sm">
                   {t.name.split(" ").pop()?.charAt(0)}
                 </div>
                 <div>
@@ -94,10 +94,10 @@ export default function Testimonials() {
             animate={{ opacity: 1, x: 0 }}
             className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
           >
-            <Quote size={28} className="text-[#C41E3A] mb-4 opacity-60" />
+            <Quote size={28} className="text-[#2F5E9E] mb-4 opacity-60" />
             <p className="text-gray-700 leading-relaxed mb-6 italic">&quot;{testimonials[page].quote}&quot;</p>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#C41E3A] text-white flex items-center justify-center font-bold">
+              <div className="w-10 h-10 rounded-full bg-[#2F5E9E] text-white flex items-center justify-center font-bold">
                 {testimonials[page].name.split(" ").pop()?.charAt(0)}
               </div>
               <div>
@@ -110,7 +110,7 @@ export default function Testimonials() {
             <button
               onClick={() => setPage((p) => Math.max(0, p - 1))}
               disabled={page === 0}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#C41E3A] hover:text-[#C41E3A] transition-colors"
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#2F5E9E] hover:text-[#2F5E9E] transition-colors"
             >
               <ChevronLeft size={18} />
             </button>
@@ -118,7 +118,7 @@ export default function Testimonials() {
             <button
               onClick={() => setPage((p) => Math.min(testimonials.length - 1, p + 1))}
               disabled={page === testimonials.length - 1}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#C41E3A] hover:text-[#C41E3A] transition-colors"
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#2F5E9E] hover:text-[#2F5E9E] transition-colors"
             >
               <ChevronRight size={18} />
             </button>
@@ -130,7 +130,7 @@ export default function Testimonials() {
           <button
             onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={page === 0}
-            className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#C41E3A] hover:text-[#C41E3A] transition-colors"
+            className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#2F5E9E] hover:text-[#2F5E9E] transition-colors"
           >
             <ChevronLeft size={18} />
           </button>
@@ -139,14 +139,14 @@ export default function Testimonials() {
               <button
                 key={i}
                 onClick={() => setPage(i)}
-                className={`w-2.5 h-2.5 rounded-full transition-all ${i === page ? "bg-[#C41E3A] w-6" : "bg-gray-300"}`}
+                className={`w-2.5 h-2.5 rounded-full transition-all ${i === page ? "bg-[#2F5E9E] w-6" : "bg-gray-300"}`}
               />
             ))}
           </div>
           <button
             onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
             disabled={page === totalPages - 1}
-            className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#C41E3A] hover:text-[#C41E3A] transition-colors"
+            className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#2F5E9E] hover:text-[#2F5E9E] transition-colors"
           >
             <ChevronRight size={18} />
           </button>

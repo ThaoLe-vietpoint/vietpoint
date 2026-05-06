@@ -10,7 +10,7 @@ const navItems = [
     label: "About us",
     href: "/about",
     children: [
-      { label: "About Thinksmart Insurance", href: "/about" },
+      { label: "About VietPoint Insurance & Tax", href: "/about" },
       { label: "Recruitment", href: "/about/recruitment" },
       {
         label: "Official Consultant Verification",
@@ -70,30 +70,12 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
-            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden">
-              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-                <circle cx="18" cy="18" r="18" fill="#C41E3A" />
-                <text
-                  x="50%"
-                  y="54%"
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  fill="white"
-                  fontSize="14"
-                  fontWeight="bold"
-                >
-                  T
-                </text>
-              </svg>
-            </div>
-            <div className="leading-tight">
-              <span className="font-bold text-sm tracking-widest text-gray-900 block">
-                THINKSMART
-              </span>
-              <span className="text-xs text-gray-500 tracking-widest block">
-                INSURANCE
-              </span>
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-vietpoint.png"
+              alt="VietPoint Insurance & Tax"
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -107,7 +89,7 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-1 text-sm font-medium transition-colors py-2 ${pathname.startsWith(item.href) && item.href !== "/" ? "text-[#C41E3A]" : "text-gray-700 hover:text-[#C41E3A]"}`}
+                  className={`flex items-center gap-1 text-sm font-medium transition-colors py-2 ${pathname.startsWith(item.href) && item.href !== "/" ? "text-[#2F5E9E]" : "text-gray-700 hover:text-[#2F5E9E]"}`}
                 >
                   {item.label}
                   {item.children && <ChevronDown size={14} />}
@@ -123,7 +105,7 @@ export default function Header() {
                       <Link
                         key={child.label}
                         href={child.href}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-[#C41E3A] transition-colors"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#2F5E9E] transition-colors"
                       >
                         {child.label}
                       </Link>
@@ -137,14 +119,14 @@ export default function Header() {
           {/* Right side */}
           <div className="flex items-center gap-3">
             {/* VI Language button */}
-            <button className="hidden sm:flex items-center gap-2 border border-gray-300 rounded-full px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-[#C41E3A] transition-colors">
+            <button className="hidden sm:flex items-center gap-2 border border-gray-300 rounded-full px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-[#2F5E9E] transition-colors">
               VI
               <span className="text-base">🇻🇳</span>
             </button>
 
             {/* Mobile hamburger */}
             <button
-              className="lg:hidden p-2 rounded-full bg-[#C41E3A] text-white"
+              className="lg:hidden p-2 rounded-full bg-[#2F5E9E] text-white"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -188,7 +170,7 @@ export default function Header() {
                         <Link
                           key={child.label}
                           href={child.href}
-                          className="block text-sm text-gray-600 hover:text-[#C41E3A] py-1"
+                          className="block text-sm text-gray-600 hover:text-[#2F5E9E] py-1"
                           onClick={() => setMobileOpen(false)}
                         >
                           {child.label}

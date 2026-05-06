@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "User Manual - Thinksmart Insurance",
+  title: "User Manual - VietPoint Insurance & Tax",
 };
 
 const guides = [
@@ -44,7 +44,7 @@ export default function UserManualPage() {
       <section
         className="pt-16 min-h-[300px] flex items-center"
         style={{
-          background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+          background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
         }}
       >
         <div className="max-w-4xl mx-auto px-6 py-16 text-white text-center">
@@ -71,7 +71,7 @@ export default function UserManualPage() {
                     <div className="flex items-center gap-3 mb-2">
                       <span
                         className="text-xs font-bold text-white px-2 py-0.5 rounded"
-                        style={{ background: "#C41E3A" }}
+                        style={{ background: "#2F5E9E" }}
                       >
                         {g.tag}
                       </span>
@@ -85,7 +85,7 @@ export default function UserManualPage() {
                   <Link
                     href="/contact"
                     className="shrink-0 text-sm font-semibold hover:underline mt-1"
-                    style={{ color: "#C41E3A" }}
+                    style={{ color: "#2F5E9E" }}
                   >
                     Read →
                   </Link>
@@ -108,7 +108,7 @@ export default function UserManualPage() {
           <Link
             href="/contact"
             className="inline-block text-white font-bold px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
-            style={{ background: "#C41E3A" }}
+            style={{ background: "#2F5E9E" }}
           >
             SUBSCRIBE NOW
           </Link>

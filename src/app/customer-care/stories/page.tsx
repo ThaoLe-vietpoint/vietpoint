@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "My Story, My Family - Thinksmart Insurance",
+  title: "My Story, My Family - VietPoint Insurance & Tax",
 };
 
 const stories = [
@@ -20,9 +20,9 @@ const stories = [
     location: "California",
     amount: "$10,000/month",
     story:
-      "I started IUL at 32 thinking only about retirement. But when I had a sudden heart attack at 40, my insurance paid out $60,000 immediately — no waiting, no fighting with the insurance company. My Thinksmart agent handled everything. I'm so grateful I had the right coverage.",
+      "I started IUL at 32 thinking only about retirement. But when I had a sudden heart attack at 40, my insurance paid out $60,000 immediately — no waiting, no fighting with the insurance company. My VietPoint agent handled everything. I'm so grateful I had the right coverage.",
     tag: "Critical Illness",
-    tagColor: "#C41E3A",
+    tagColor: "#2F5E9E",
   },
   {
     name: "Ty Trieu",
@@ -50,7 +50,7 @@ export default function StoriesPage() {
       <section
         className="pt-16 min-h-[320px] flex items-center"
         style={{
-          background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+          background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
         }}
       >
         <div className="max-w-4xl mx-auto px-6 py-16 text-white text-center">
@@ -111,7 +111,7 @@ export default function StoriesPage() {
       <section
         className="py-12 px-6 text-center"
         style={{
-          background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+          background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
         }}
       >
         <h2 className="text-2xl font-bold text-white mb-4">
@@ -125,7 +125,7 @@ export default function StoriesPage() {
           <a
             href="tel:+16788253737"
             className="inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:bg-gray-50 transition-colors"
-            style={{ color: "#C41E3A" }}
+            style={{ color: "#2F5E9E" }}
           >
             📞 (678) 825-3737
           </a>

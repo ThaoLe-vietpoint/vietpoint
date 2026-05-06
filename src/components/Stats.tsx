@@ -40,7 +40,7 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 export default function Stats() {
   return (
     <section
-      style={{ background: "linear-gradient(135deg, #a01020 0%, #8b1020 100%)" }}
+      style={{ background: "linear-gradient(135deg, #2F5E9E 0%, #0d2a52 100%)" }}
       className="py-4"
     >
       <div className="max-w-4xl mx-auto px-4">
@@ -50,7 +50,7 @@ export default function Stats() {
           viewport={{ once: true }}
           className="text-2xl md:text-3xl font-bold text-white text-center mb-6"
         >
-          Why choose Thinksmart Insurance?
+          Why choose VietPoint Insurance & Tax?
         </motion.h2>
         <div className="grid grid-cols-2 gap-3">
           {stats.map((s, i) => (

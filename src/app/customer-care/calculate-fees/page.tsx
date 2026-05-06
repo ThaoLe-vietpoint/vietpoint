@@ -70,7 +70,7 @@ export default function CalculateFeesPage() {
       <section
         className="pt-16 min-h-[320px] flex items-center"
         style={{
-          background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+          background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
         }}
       >
         <div className="max-w-4xl mx-auto px-6 py-16 text-white text-center">
@@ -209,7 +209,7 @@ export default function CalculateFeesPage() {
               <Link
                 href="/contact"
                 className="block w-full text-center text-white font-bold py-3.5 rounded-xl text-sm hover:opacity-90 transition-opacity"
-                style={{ background: "#C41E3A" }}
+                style={{ background: "#2F5E9E" }}
               >
                 Get My Free Quote
               </Link>

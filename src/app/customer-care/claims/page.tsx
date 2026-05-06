@@ -2,14 +2,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Resolve Insurance Claims - Thinksmart Insurance",
+  title: "Resolve Insurance Claims - VietPoint Insurance & Tax",
 };
 
 const steps = [
   {
     num: "01",
     title: "Notify Your Agent",
-    desc: "Contact your Thinksmart agent or call our support line as soon as the insured event occurs. Timely notification is critical for a smooth claim process.",
+    desc: "Contact your VietPoint agent or call our support line as soon as the insured event occurs. Timely notification is critical for a smooth claim process.",
   },
   {
     num: "02",
@@ -39,7 +39,7 @@ export default function ClaimsPage() {
       <section
         className="pt-16 min-h-[320px] flex items-center"
         style={{
-          background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+          background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
         }}
       >
         <div className="max-w-4xl mx-auto px-6 py-16 text-white text-center">
@@ -66,7 +66,7 @@ export default function ClaimsPage() {
               <div key={s.num} className="flex gap-5">
                 <div
                   className="shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-white text-sm"
-                  style={{ background: "#C41E3A" }}
+                  style={{ background: "#2F5E9E" }}
                 >
                   {s.num}
                 </div>
@@ -95,7 +95,7 @@ export default function ClaimsPage() {
             <a
               href="tel:+16788253737"
               className="inline-block text-white font-bold px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
-              style={{ background: "#C41E3A" }}
+              style={{ background: "#2F5E9E" }}
             >
               📞 (678) 825-3737
             </a>

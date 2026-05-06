@@ -130,7 +130,7 @@ export default function IULPage() {
           <a
             href="#quote"
             className="inline-block font-bold px-8 py-3.5 rounded-full text-white text-sm hover:opacity-90 transition-opacity"
-            style={{ background: "#C41E3A" }}
+            style={{ background: "#2F5E9E" }}
           >
             DISCOVER MORE
           </a>
@@ -145,7 +145,7 @@ export default function IULPage() {
           </h2>
           <h3
             className="text-2xl font-extrabold text-center mb-10"
-            style={{ color: "#C41E3A" }}
+            style={{ color: "#2F5E9E" }}
           >
             IUL SECRETS
           </h3>
@@ -183,7 +183,7 @@ export default function IULPage() {
               >
                 <span
                   className="w-2 h-2 rounded-full shrink-0"
-                  style={{ background: "#C41E3A" }}
+                  style={{ background: "#2F5E9E" }}
                 />
                 <span className="text-sm text-gray-700">{d}</span>
               </div>
@@ -275,7 +275,7 @@ export default function IULPage() {
             />
             <button
               className="w-full py-3.5 font-bold rounded-xl text-sm text-white hover:opacity-90 transition-opacity"
-              style={{ background: "#C41E3A" }}
+              style={{ background: "#2F5E9E" }}
             >
               Get Quote and Request Direct Consulting Support
             </button>
@@ -300,7 +300,7 @@ export default function IULPage() {
           </h2>
           <h3
             className="text-2xl font-extrabold text-center mb-10"
-            style={{ color: "#C41E3A" }}
+            style={{ color: "#2F5E9E" }}
           >
             IUL SECRETS
           </h3>
@@ -312,7 +312,7 @@ export default function IULPage() {
               >
                 <div
                   className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xs tracking-wide"
-                  style={{ background: "#C41E3A" }}
+                  style={{ background: "#2F5E9E" }}
                 >
                   {s.step}
                 </div>
@@ -363,7 +363,7 @@ export default function IULPage() {
       {/* CTA */}
       <section
         className="py-12 px-6 text-center"
-        style={{ background: "#C41E3A" }}
+        style={{ background: "#2F5E9E" }}
       >
         <h2 className="text-2xl font-bold text-white mb-4">
           Get a Free Consultation Today
@@ -371,7 +371,7 @@ export default function IULPage() {
         <a
           href="tel:+16787223447"
           className="inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
-          style={{ color: "#C41E3A" }}
+          style={{ color: "#2F5E9E" }}
         >
           📞 HOTLINE (678) 722-3447
         </a>

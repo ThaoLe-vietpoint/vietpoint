@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Customer Care - Thinksmart Insurance",
+  title: "Customer Care - VietPoint Insurance & Tax",
 };
 
 const services = [
@@ -33,7 +33,7 @@ const services = [
   {
     icon: "🏆",
     title: "Priority Program",
-    desc: "Exclusive benefits and dedicated support for Thinksmart Priority Members.",
+    desc: "Exclusive benefits and dedicated support for VietPoint Priority Members.",
     href: "/customer-care/priority-program",
   },
 ];
@@ -44,7 +44,7 @@ export default function CustomerCarePage() {
       <section
         className="pt-16 min-h-[320px] flex items-center"
         style={{
-          background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+          background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
         }}
       >
         <div className="max-w-4xl mx-auto px-6 py-16 text-white text-center">
@@ -69,7 +69,7 @@ export default function CustomerCarePage() {
                 className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md hover:border-red-100 transition-all group block"
               >
                 <div className="text-3xl mb-3">{s.icon}</div>
-                <h3 className="font-bold text-gray-900 mb-2 group-hover:text-[#C41E3A] transition-colors">
+                <h3 className="font-bold text-gray-900 mb-2 group-hover:text-[#2F5E9E] transition-colors">
                   {s.title}
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed">
@@ -77,7 +77,7 @@ export default function CustomerCarePage() {
                 </p>
                 <span
                   className="inline-block mt-3 text-xs font-semibold"
-                  style={{ color: "#C41E3A" }}
+                  style={{ color: "#2F5E9E" }}
                 >
                   Learn more →
                 </span>
@@ -95,12 +95,12 @@ export default function CustomerCarePage() {
           <a
             href="tel:+16788253737"
             className="inline-block text-white font-bold px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
-            style={{ background: "#C41E3A" }}
+            style={{ background: "#2F5E9E" }}
           >
             📞 (678) 825-3737
           </a>
           <a
-            href="mailto:support@Thinksmartinsurance.com"
+            href="mailto:support@VietPointinsurance.com"
             className="inline-block border-2 border-gray-300 text-gray-700 font-bold px-8 py-3.5 rounded-full text-sm hover:border-gray-400 transition-colors"
           >
             ✉️ Email Us

@@ -31,9 +31,9 @@ export default function HealthSurvey() {
 
           {submitted ? (
             <div className="text-center py-4">
-              <div className="w-14 h-14 rounded-full bg-[#C41E3A]/10 flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 rounded-full bg-[#2F5E9E]/10 flex items-center justify-center mx-auto mb-4">
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M5 14l6 6L23 8" stroke="#C41E3A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M5 14l6 6L23 8" stroke="#2F5E9E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">Thank you!</h3>
@@ -50,7 +50,7 @@ export default function HealthSurvey() {
                         key={opt}
                         className={`flex-1 flex items-center justify-center gap-2 py-3 border-2 rounded-xl cursor-pointer text-sm font-medium transition-all ${
                           answers[q.id] === opt
-                            ? "border-[#C41E3A] bg-[#C41E3A]/5 text-[#C41E3A]"
+                            ? "border-[#2F5E9E] bg-[#2F5E9E]/5 text-[#2F5E9E]"
                             : "border-gray-200 text-gray-600 hover:border-gray-300"
                         }`}
                       >
@@ -69,7 +69,7 @@ export default function HealthSurvey() {
               ))}
               <button
                 type="submit"
-                className="w-full py-3.5 bg-[#C41E3A] text-white font-bold rounded-xl hover:bg-[#a01828] transition-colors text-sm"
+                className="w-full py-3.5 bg-[#2F5E9E] text-white font-bold rounded-xl hover:bg-[#1a3d6e] transition-colors text-sm"
               >
                 Get Free Health Checkup Information!
               </button>

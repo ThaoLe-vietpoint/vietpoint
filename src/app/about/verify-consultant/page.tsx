@@ -18,19 +18,19 @@ export default function VerifyConsultantPage() {
       <section
         className="pt-16 min-h-[320px] flex items-center"
         style={{
-          background: "linear-gradient(135deg, #C41E3A 0%, #a01828 100%)",
+          background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
         }}
       >
         <div className="max-w-4xl mx-auto px-6 py-16 text-white text-center">
           <p className="text-sm font-bold tracking-widest uppercase opacity-80 mb-2">
-            About Thinksmart
+            About VietPoint
           </p>
           <h1 className="text-4xl font-extrabold mb-3">
             Verify Official Consultant
           </h1>
           <p className="text-white/85 text-lg max-w-2xl mx-auto">
             Protect yourself from fraud. Verify that your agent is an officially
-            licensed Thinksmart Insurance consultant before sharing any personal
+            licensed VietPoint Insurance & Tax consultant before sharing any personal
             information.
           </p>
         </div>
@@ -44,7 +44,7 @@ export default function VerifyConsultantPage() {
             </h2>
             <p className="text-gray-500 text-sm mb-6">
               Enter the agent&apos;s license ID or full name to verify their
-              official status with Thinksmart Insurance.
+              official status with VietPoint Insurance & Tax.
             </p>
             <form onSubmit={handleVerify} className="space-y-4">
               <div>
@@ -63,7 +63,7 @@ export default function VerifyConsultantPage() {
               <button
                 type="submit"
                 className="w-full text-white font-bold py-3.5 rounded-xl text-sm hover:opacity-90 transition-opacity"
-                style={{ background: "#C41E3A" }}
+                style={{ background: "#2F5E9E" }}
               >
                 Verify Now
               </button>
@@ -76,7 +76,7 @@ export default function VerifyConsultantPage() {
                 </p>
                 <p className="text-green-700 text-sm">
                   This individual is an officially registered and licensed
-                  consultant with Thinksmart Insurance. You can safely proceed
+                  consultant with VietPoint Insurance & Tax. You can safely proceed
                   with your insurance consultation.
                 </p>
               </div>
@@ -94,7 +94,7 @@ export default function VerifyConsultantPage() {
                 <Link
                   href="/contact"
                   className="text-sm font-semibold underline"
-                  style={{ color: "#C41E3A" }}
+                  style={{ color: "#2F5E9E" }}
                 >
                   Report suspicious activity →
                 </Link>
@@ -112,11 +112,11 @@ export default function VerifyConsultantPage() {
                 tool before providing personal information
               </li>
               <li className="flex gap-2">
-                <span>•</span> Official Thinksmart agents will never ask for
+                <span>•</span> Official VietPoint agents will never ask for
                 Social Security Numbers via text or unencrypted email
               </li>
               <li className="flex gap-2">
-                <span>•</span> All official consultants have a Thinksmart-issued
+                <span>•</span> All official consultants have a VietPoint-issued
                 license ID starting with &quot;TS-&quot;
               </li>
               <li className="flex gap-2">

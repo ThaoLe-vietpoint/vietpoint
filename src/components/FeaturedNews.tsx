@@ -7,7 +7,7 @@ const featuredPosts = [
   {
     id: 1,
     category: "Featured post",
-    categoryColor: "#C41E3A",
+    categoryColor: "#2F5E9E",
     title: "National Life Group's IUL Premium Payment Policy",
     excerpt:
       "Indexed Universal Life (IUL) insurance is increasingly attracting the interest of the Vietnamese community in the US due to its unique combination of financial protection and attractive cash value growth.",
@@ -41,7 +41,7 @@ const featuredPosts = [
   {
     id: 4,
     category: "Featured post",
-    categoryColor: "#C41E3A",
+    categoryColor: "#2F5E9E",
     title:
       "How much does life insurance cost in the US? A 2025 cost guide for Vietnamese families",
     excerpt:
@@ -64,7 +64,7 @@ const featuredPosts = [
   {
     id: 6,
     category: "Featured post",
-    categoryColor: "#C41E3A",
+    categoryColor: "#2F5E9E",
     title: "Is National Life Group Legit? An Honest Review for 2026",
     excerpt:
       "If you're researching life insurance in the United States — particularly IUL products — the name National Life Group (NLG) has likely already appeared on your radar.",
@@ -89,7 +89,7 @@ export default function FeaturedNews() {
           </h2>
           <Link
             href="/blog"
-            className="flex items-center gap-1 border border-[#C41E3A] text-[#C41E3A] px-4 py-2 rounded-full text-sm font-medium hover:bg-[#C41E3A] hover:text-white transition-all"
+            className="flex items-center gap-1 border border-[#2F5E9E] text-[#2F5E9E] px-4 py-2 rounded-full text-sm font-medium hover:bg-[#2F5E9E] hover:text-white transition-all"
           >
             View all <ArrowRight size={14} />
           </Link>
@@ -120,7 +120,7 @@ export default function FeaturedNews() {
                   </span>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-bold text-gray-900 text-sm mb-2 line-clamp-2 group-hover:text-[#C41E3A] transition-colors">
+                  <h3 className="font-bold text-gray-900 text-sm mb-2 line-clamp-2 group-hover:text-[#2F5E9E] transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-gray-500 text-xs line-clamp-2 mb-3">

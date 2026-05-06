@@ -40,7 +40,7 @@ const products = [
     id: 3,
     title: "IUL Secrets",
     tag: "Premium IUL",
-    tagColor: "#C41E3A",
+    tagColor: "#2F5E9E",
     image:
       "https://thinksmartinsurance.com/wp-content/uploads/2025/04/IUL-1024x683.webp",
     description:
@@ -88,7 +88,7 @@ export default function Products() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <p className="text-[#C41E3A] text-sm font-semibold tracking-widest uppercase mb-2">
+          <p className="text-[#2F5E9E] text-sm font-semibold tracking-widest uppercase mb-2">
             We provide insurance services
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -136,7 +136,7 @@ export default function Products() {
             </p>
             <a
               href="#"
-              style={{ background: "#C41E3A" }}
+              style={{ background: "#2F5E9E" }}
               className="inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
             >
               Get a free quote <ArrowRight size={16} />
@@ -149,7 +149,7 @@ export default function Products() {
               <button
                 key={i}
                 onClick={() => setActive(i)}
-                className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-[#C41E3A]" : "w-2 bg-gray-300"}`}
+                className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-[#2F5E9E]" : "w-2 bg-gray-300"}`}
               />
             ))}
           </div>

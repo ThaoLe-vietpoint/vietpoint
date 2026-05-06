@@ -84,11 +84,11 @@ export default function ContactPage() {
       <section
         className="py-14 px-6 text-white text-center"
         style={{
-          background: "linear-gradient(135deg, #d94f3b 0%, #a82e1e 100%)",
+          background: "linear-gradient(135deg, #3a6fbf 0%, #1a3d6e 100%)",
         }}
       >
         <h1 className="text-3xl md:text-4xl font-extrabold mb-3">
-          Contact Thinksmart Insurance
+          Contact VietPoint Insurance & Tax
         </h1>
         <p className="text-white/85 text-lg max-w-xl mx-auto">
           Please leave your full information in the form below, we will contact
@@ -103,7 +103,7 @@ export default function ContactPage() {
             <div className="text-center py-16">
               <div
                 className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                style={{ background: "#C41E3A" }}
+                style={{ background: "#2F5E9E" }}
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -131,7 +131,7 @@ export default function ContactPage() {
               {/* Join status */}
               <div>
                 <p className="font-semibold text-gray-800 mb-3">
-                  Have you joined Thinksmart Insurance yet?
+                  Have you joined VietPoint Insurance & Tax yet?
                 </p>
                 <div className="flex gap-3">
                   {(["yes", "no"] as const).map((val) => (
@@ -139,7 +139,7 @@ export default function ContactPage() {
                       key={val}
                       type="button"
                       onClick={() => setJoined(val)}
-                      className={`px-6 py-2.5 rounded-lg border font-medium text-sm transition-all ${joined === val ? "border-[#C41E3A] text-[#C41E3A] bg-red-50" : "border-gray-200 text-gray-600 hover:border-gray-300"}`}
+                      className={`px-6 py-2.5 rounded-lg border font-medium text-sm transition-all ${joined === val ? "border-[#2F5E9E] text-[#2F5E9E] bg-red-50" : "border-gray-200 text-gray-600 hover:border-gray-300"}`}
                     >
                       {val === "yes" ? "Yes" : "No"}
                     </button>
@@ -161,7 +161,7 @@ export default function ContactPage() {
                     type="text"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#C41E3A]"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
                   />
                 </div>
                 <div>
@@ -174,7 +174,7 @@ export default function ContactPage() {
                     onChange={(e) =>
                       setForm({ ...form, policy: e.target.value })
                     }
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#C41E3A]"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
                   />
                 </div>
                 <div>
@@ -188,7 +188,7 @@ export default function ContactPage() {
                     onChange={(e) =>
                       setForm({ ...form, phone: e.target.value })
                     }
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#C41E3A]"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
                   />
                 </div>
                 <div>
@@ -199,7 +199,7 @@ export default function ContactPage() {
                     type="date"
                     value={form.dob}
                     onChange={(e) => setForm({ ...form, dob: e.target.value })}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#C41E3A]"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
                   />
                 </div>
                 <div>
@@ -212,7 +212,7 @@ export default function ContactPage() {
                     onChange={(e) =>
                       setForm({ ...form, email: e.target.value })
                     }
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#C41E3A]"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
                   />
                 </div>
                 <div>
@@ -223,7 +223,7 @@ export default function ContactPage() {
                     {["Male", "Female"].map((g) => (
                       <label
                         key={g}
-                        className={`flex-1 flex items-center justify-center gap-2 border rounded-lg py-2.5 cursor-pointer text-sm transition-all ${form.gender === g ? "border-[#C41E3A] text-[#C41E3A] bg-red-50" : "border-gray-200 text-gray-600"}`}
+                        className={`flex-1 flex items-center justify-center gap-2 border rounded-lg py-2.5 cursor-pointer text-sm transition-all ${form.gender === g ? "border-[#2F5E9E] text-[#2F5E9E] bg-red-50" : "border-gray-200 text-gray-600"}`}
                       >
                         <input
                           type="radio"
@@ -247,7 +247,7 @@ export default function ContactPage() {
                     onChange={(e) =>
                       setForm({ ...form, greenCard: e.target.value })
                     }
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#C41E3A]"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
                   />
                 </div>
                 <div>
@@ -260,7 +260,7 @@ export default function ContactPage() {
                     onChange={(e) =>
                       setForm({ ...form, state: e.target.value })
                     }
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#C41E3A]"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
                   >
                     <option value="">Select state</option>
                     {states.map((s) => (
@@ -282,7 +282,7 @@ export default function ContactPage() {
                   onChange={(e) =>
                     setForm({ ...form, request: e.target.value })
                   }
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#C41E3A]"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
                 >
                   <option value="">Select your request</option>
                   {[
@@ -308,7 +308,7 @@ export default function ContactPage() {
                   onChange={(e) =>
                     setForm({ ...form, question: e.target.value })
                   }
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#C41E3A] resize-none"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E] resize-none"
                 />
               </div>
 
@@ -319,11 +319,11 @@ export default function ContactPage() {
                   onChange={(e) =>
                     setForm({ ...form, agree: e.target.checked })
                   }
-                  className="mt-1 accent-[#C41E3A]"
+                  className="mt-1 accent-[#2F5E9E]"
                   required
                 />
                 <span className="text-sm text-gray-600">
-                  I confirm that I have read and agree to Thinksmart
+                  I confirm that I have read and agree to VietPoint
                   Insurance&apos;s Terms of Use, Privacy Commitment, and
                   Personal Data Protection Policy.
                 </span>
@@ -332,7 +332,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 className="w-full py-3.5 text-white font-bold rounded-xl text-sm hover:opacity-90 transition-opacity"
-                style={{ background: "#C41E3A" }}
+                style={{ background: "#2F5E9E" }}
               >
                 Submit
               </button>
@@ -349,7 +349,7 @@ export default function ContactPage() {
             <div className="space-y-4">
               <a
                 href="tel:+16788253737"
-                className="flex items-center gap-3 text-gray-700 hover:text-[#C41E3A] transition-colors"
+                className="flex items-center gap-3 text-gray-700 hover:text-[#2F5E9E] transition-colors"
               >
                 <span className="text-xl">📞</span>
                 <div>
@@ -358,14 +358,14 @@ export default function ContactPage() {
                 </div>
               </a>
               <a
-                href="mailto:support@Thinksmartinsurance.com"
-                className="flex items-center gap-3 text-gray-700 hover:text-[#C41E3A] transition-colors"
+                href="mailto:support@VietPointinsurance.com"
+                className="flex items-center gap-3 text-gray-700 hover:text-[#2F5E9E] transition-colors"
               >
                 <span className="text-xl">✉️</span>
                 <div>
                   <p className="text-xs text-gray-400">Email</p>
                   <p className="font-semibold text-sm">
-                    support@Thinksmartinsurance.com
+                    support@VietPointinsurance.com
                   </p>
                 </div>
               </a>
@@ -407,7 +407,7 @@ export default function ContactPage() {
             <a
               href="tel:+16788253737"
               className="mt-4 flex items-center justify-center gap-2 w-full py-3 text-white font-bold rounded-xl text-sm hover:opacity-90 transition-opacity"
-              style={{ background: "#C41E3A" }}
+              style={{ background: "#2F5E9E" }}
             >
               📞 Call Now
             </a>

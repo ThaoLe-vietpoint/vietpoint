@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Term Life Insurance - Thinksmart Insurance",
+  title: "Term Life Insurance - VietPoint Insurance & Tax",
   description:
     "Affordable term life insurance with compensation for over 16 types of diseases, disabilities and death. Contract term up to 30 years.",
 };
@@ -52,7 +52,7 @@ export default function TermLifePage() {
       >
         <div className="max-w-4xl mx-auto px-6 py-20 text-white text-center">
           <p className="text-sm font-bold tracking-widest uppercase opacity-80 mb-2">
-            Thinksmart Insurance
+            VietPoint Insurance & Tax
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
             TERM LIFE INSURANCE
@@ -115,7 +115,7 @@ export default function TermLifePage() {
                   </th>
                   <th
                     className="p-4 bg-red-50 font-semibold border border-gray-200 rounded-tr-lg"
-                    style={{ color: "#C41E3A" }}
+                    style={{ color: "#2F5E9E" }}
                   >
                     IUL Secrets
                   </th>
