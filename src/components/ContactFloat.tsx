@@ -50,9 +50,69 @@ const contacts = [
     ),
   },
   {
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61589138322277",
+    delay: "2.4s",
+    icon: (
+      <div
+        className="w-10 h-10 rounded-xl flex items-center justify-center shadow-md"
+        style={{ background: "linear-gradient(145deg, #1877f2, #0d5bbf)" }}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/vietpointinsurance",
+    delay: "3.6s",
+    icon: (
+      <div
+        className="w-10 h-10 rounded-xl flex items-center justify-center shadow-md"
+        style={{
+          background:
+            "linear-gradient(145deg, #f58529, #dd2a7b, #8134af, #515bd4)",
+        }}
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none" />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    label: "Google Maps",
+    href: "https://maps.google.com/?q=1805+W+Colonial+Dr+Suite+B2+Orlando+FL+32804",
+    delay: "4.8s",
+    icon: (
+      <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-md bg-white border border-gray-100">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+            fill="#EA4335"
+          />
+          <circle cx="12" cy="9" r="2.5" fill="white" />
+        </svg>
+      </div>
+    ),
+  },
+  {
     label: "Email",
     href: "mailto:info@vietpointinsurance.com",
-    delay: "2.4s",
+    delay: "6.0s",
     icon: (
       <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-md bg-white border border-gray-100">
         {/* Gmail M logo */}
