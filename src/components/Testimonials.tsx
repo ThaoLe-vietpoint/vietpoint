@@ -3,46 +3,62 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
-const testimonials = [
+type Testimonial = {
+  id: string | number;
+  name: string;
+  avatar?: string;
+  quote: string;
+  rating?: number;
+};
+
+const DEFAULT_TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
     name: "Mrs. Nhung",
-    location: "Chicago",
-    quote: "If I get sick and can't work anymore, the company will compensate me. This makes me feel more secure because I am responsible for my two children.",
+    quote:
+      "If I get sick and can't work anymore, the company will compensate me. This makes me feel more secure because I am responsible for my two children.",
   },
   {
     id: 2,
     name: "Pastor. Joseph",
-    location: "Texas",
-    quote: "If you want to have a comfortable retirement, start saving today. The money you save will not be lost but is an investment in your future.",
+    quote:
+      "If you want to have a comfortable retirement, start saving today. The money you save will not be lost but is an investment in your future.",
   },
   {
     id: 3,
     name: "Mrs. Tuyet",
-    location: "Hawaii",
-    quote: "I feel secure knowing that I have prepared enough for the future without bothering my children. That is the gift I want to give to my family.",
+    quote:
+      "I feel secure knowing that I have prepared enough for the future without bothering my children. That is the gift I want to give to my family.",
   },
   {
     id: 4,
     name: "Mrs. Michelle",
-    location: "Georgia",
-    quote: "I decided to cancel my two old insurance contracts and switch to IUL Secrets for my family because the previous programs only provided benefits upon death.",
+    quote:
+      "I decided to cancel my two old insurance contracts and switch to IUL Secrets for my family because the previous programs only provided benefits upon death.",
   },
   {
     id: 5,
     name: "Mrs. Thao",
-    location: "Virginia",
-    quote: "Working nails in the U.S, I cannot leave a large fortune, but at least I can ensure my children have some money when I am no longer here.",
+    quote:
+      "Working nails in the U.S, I cannot leave a large fortune, but at least I can ensure my children have some money when I am no longer here.",
   },
   {
     id: 6,
     name: "Mr. Chau",
-    location: "Virginia",
-    quote: "I don't know how long or short my life will be, I don't want to be a burden to my children when I am old. It's great to prepare now.",
+    quote:
+      "I don't know how long or short my life will be, I don't want to be a burden to my children when I am old. It's great to prepare now.",
   },
 ];
 
-export default function Testimonials() {
+type TestimonialsProps = {
+  title?: string;
+  testimonials?: Testimonial[];
+};
+
+export default function Testimonials({
+  title = "What our clients say about us",
+  testimonials = DEFAULT_TESTIMONIALS,
+}: TestimonialsProps) {
   const [page, setPage] = useState(0);
   const perPage = 3;
   const totalPages = Math.ceil(testimonials.length / perPage);
@@ -58,7 +74,7 @@ export default function Testimonials() {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12"
         >
-          What our clients say about us
+          {title}
         </motion.h2>
 
         {/* Desktop: 3-column */}
@@ -72,14 +88,35 @@ export default function Testimonials() {
               className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
             >
               <Quote size={28} className="text-[#2F5E9E] mb-4 opacity-60" />
-              <p className="text-gray-700 text-sm leading-relaxed mb-6 italic">&quot;{t.quote}&quot;</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#2F5E9E] text-white flex items-center justify-center font-bold text-sm">
-                  {t.name.split(" ").pop()?.charAt(0)}
+              <p className="text-gray-700 text-sm leading-relaxed mb-6 italic">
+                &quot;{t.quote}&quot;
+              </p>
+              {t.rating && (
+                <div className="flex gap-0.5 mb-3">
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <span key={i} className="text-yellow-400 text-sm">
+                      ★
+                    </span>
+                  ))}
                 </div>
+              )}
+              <div className="flex items-center gap-3">
+                {t.avatar ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-[#2F5E9E] text-white flex items-center justify-center font-bold text-sm">
+                    {t.name.split(" ").pop()?.charAt(0)}
+                  </div>
+                )}
                 <div>
-                  <p className="font-semibold text-gray-900 text-sm">{t.name}</p>
-                  <p className="text-gray-400 text-xs">{t.location}</p>
+                  <p className="font-semibold text-gray-900 text-sm">
+                    {t.name}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -95,14 +132,37 @@ export default function Testimonials() {
             className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
           >
             <Quote size={28} className="text-[#2F5E9E] mb-4 opacity-60" />
-            <p className="text-gray-700 leading-relaxed mb-6 italic">&quot;{testimonials[page].quote}&quot;</p>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#2F5E9E] text-white flex items-center justify-center font-bold">
-                {testimonials[page].name.split(" ").pop()?.charAt(0)}
+            <p className="text-gray-700 leading-relaxed mb-6 italic">
+              &quot;{testimonials[page].quote}&quot;
+            </p>
+            {testimonials[page].rating && (
+              <div className="flex gap-0.5 mb-3">
+                {Array.from({ length: testimonials[page].rating! }).map(
+                  (_, i) => (
+                    <span key={i} className="text-yellow-400">
+                      ★
+                    </span>
+                  ),
+                )}
               </div>
+            )}
+            <div className="flex items-center gap-3">
+              {testimonials[page].avatar ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={testimonials[page].avatar}
+                  alt={testimonials[page].name}
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+              ) : (
+                <div className="w-10 h-10 rounded-full bg-[#2F5E9E] text-white flex items-center justify-center font-bold">
+                  {testimonials[page].name.split(" ").pop()?.charAt(0)}
+                </div>
+              )}
               <div>
-                <p className="font-semibold text-gray-900 text-sm">{testimonials[page].name}</p>
-                <p className="text-gray-400 text-xs">{testimonials[page].location}</p>
+                <p className="font-semibold text-gray-900 text-sm">
+                  {testimonials[page].name}
+                </p>
               </div>
             </div>
           </motion.div>
@@ -114,9 +174,13 @@ export default function Testimonials() {
             >
               <ChevronLeft size={18} />
             </button>
-            <span className="text-sm text-gray-500">{page + 1} / {testimonials.length}</span>
+            <span className="text-sm text-gray-500">
+              {page + 1} / {testimonials.length}
+            </span>
             <button
-              onClick={() => setPage((p) => Math.min(testimonials.length - 1, p + 1))}
+              onClick={() =>
+                setPage((p) => Math.min(testimonials.length - 1, p + 1))
+              }
               disabled={page === testimonials.length - 1}
               className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center disabled:opacity-30 hover:border-[#2F5E9E] hover:text-[#2F5E9E] transition-colors"
             >

@@ -34,7 +34,7 @@ export default function ChatWidget() {
           setOpen(true);
           setSubmitted(false);
         }}
-        className="fixed bottom-24 sm:bottom-6 right-4 sm:right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-xl active:scale-95"
+        className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-xl active:scale-95"
         style={{ background: "linear-gradient(145deg, #3a6fbf, #1a3d6e)" }}
         aria-label="Contact us"
       >

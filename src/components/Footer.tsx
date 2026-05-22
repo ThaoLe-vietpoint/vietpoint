@@ -1,14 +1,90 @@
 "use client";
 import { useState } from "react";
 
-export default function Footer() {
+type FooterProps = {
+  phone?: string;
+  fax?: string;
+  address?: string;
+  hoursWeekdays?: string;
+  hoursWeekend?: string;
+  facebook?: string;
+  instagram?: string;
+  twitter?: string;
+  youtube?: string;
+  lang?: "en" | "vi";
+};
+
+const T = {
+  en: {
+    about: "About",
+    products: "Products",
+    contact: "Contact",
+    phone: "Phone",
+    fax: "Fax",
+    address: "Address",
+    hours: "Office Hours (ET – GA)",
+    emailPlaceholder: "Email",
+    submit: "Submit",
+    thankYou: "Thank you for subscribing!",
+    copyright:
+      "Copyright © 2026 VietPoint Insurance & Tax LLC. All rights reserved.",
+    terms: "Terms of Use",
+    privacy: "Privacy Policy",
+    cookie: "Cookie Policy",
+    disclaimer: "Disclaimer",
+    aboutLink: "About VietPoint Insurance & Tax",
+    careers: "Careers",
+    iul: "IUL Secrets",
+    maxIul: "Max Funded IUL",
+    termLife: "Term Life",
+    kidIul: "IUL For Kids (EBTP)",
+  },
+  vi: {
+    about: "Về chúng tôi",
+    products: "Sản phẩm",
+    contact: "Liên hệ",
+    phone: "Điện thoại",
+    fax: "Fax",
+    address: "Địa chỉ",
+    hours: "Giờ làm việc (ET – GA)",
+    emailPlaceholder: "Email của bạn",
+    submit: "Gửi",
+    thankYou: "Cảm ơn bạn đã đăng ký!",
+    copyright:
+      "Bản quyền © 2026 VietPoint Insurance & Tax LLC. Bảo lưu mọi quyền.",
+    terms: "Điều khoản sử dụng",
+    privacy: "Chính sách bảo mật",
+    cookie: "Chính sách Cookie",
+    disclaimer: "Tuyên bố miễn trách",
+    aboutLink: "Về VietPoint Insurance & Tax",
+    careers: "Tuyển dụng",
+    iul: "IUL Secrets",
+    maxIul: "Max Funded IUL",
+    termLife: "Term Life",
+    kidIul: "IUL Cho Trẻ Em",
+  },
+};
+
+export default function Footer({
+  phone = "(678) 825 3737",
+  fax = "(678) 825 3737",
+  address = "1424 N Brown Rd #450,\nLawrenceville, GA 30043",
+  hoursWeekdays = "Sunday \u2013 Thursday: 9 AM \u2013 7 PM",
+  hoursWeekend = "Friday & Saturday: Closed",
+  facebook = "#",
+  instagram = "#",
+  twitter = "#",
+  youtube = "#",
+  lang = "en",
+}: FooterProps) {
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
+  const t = T[lang];
 
   return (
     <>
       {/* Footer */}
-      <footer className="bg-gray-100 pt-16 pb-8">
+      <footer className="bg-gray-100 pt-16 pb-8 notranslate" translate="no">
         <div className="max-w-7xl mx-auto px-4">
           {/* Logo in footer */}
           <div className="mb-10">
@@ -22,22 +98,24 @@ export default function Footer() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* About */}
             <div>
-              <h4 className="font-bold text-[#2F5E9E] text-base mb-4">About</h4>
+              <h4 className="font-bold text-[#2F5E9E] text-base mb-4">
+                {t.about}
+              </h4>
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="#"
+                    href="/about"
                     className="text-gray-600 text-sm hover:text-[#2F5E9E] transition-colors"
                   >
-                    About VietPoint Insurance &amp; Tax
+                    {t.aboutLink}
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/about/recruitment"
                     className="text-gray-600 text-sm hover:text-[#2F5E9E] transition-colors"
                   >
-                    Careers
+                    {t.careers}
                   </a>
                 </li>
               </ul>
@@ -46,39 +124,39 @@ export default function Footer() {
             {/* Products */}
             <div>
               <h4 className="font-bold text-[#2F5E9E] text-base mb-4">
-                Products
+                {t.products}
               </h4>
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="#"
+                    href="/insurance/iul"
                     className="text-gray-600 text-sm hover:text-[#2F5E9E] transition-colors"
                   >
-                    IUL Secrets
+                    {t.iul}
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/insurance/max-funded-iul"
                     className="text-gray-600 text-sm hover:text-[#2F5E9E] transition-colors"
                   >
-                    Max Funded IUL
+                    {t.maxIul}
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/insurance/termlife"
                     className="text-gray-600 text-sm hover:text-[#2F5E9E] transition-colors"
                   >
-                    Term Life
+                    {t.termLife}
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/insurance/kid-iul-secrets"
                     className="text-gray-600 text-sm hover:text-[#2F5E9E] transition-colors"
                   >
-                    IUL For Kids (EBTP)
+                    {t.kidIul}
                   </a>
                 </li>
               </ul>
@@ -87,21 +165,24 @@ export default function Footer() {
             {/* Contact */}
             <div>
               <h4 className="font-bold text-[#2F5E9E] text-base mb-4">
-                Contact
+                {t.contact}
               </h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
-                  <span className="font-medium">Phone:</span> (678) 825 3737
+                  <span className="font-medium">{t.phone}:</span> {phone}
                 </li>
                 <li>
-                  <span className="font-medium">Fax:</span> (678) 825 3737
+                  <span className="font-medium">{t.fax}:</span> {fax}
                 </li>
                 <li className="leading-relaxed">
-                  <span className="font-medium">Address:</span>
+                  <span className="font-medium">{t.address}:</span>
                   <br />
-                  1424 N Brown Rd #450,
-                  <br />
-                  Lawrenceville, GA 30043
+                  {address.split("\n").map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      {i < address.split("\n").length - 1 && <br />}
+                    </span>
+                  ))}
                 </li>
               </ul>
             </div>
@@ -109,19 +190,15 @@ export default function Footer() {
             {/* Hours + Email */}
             <div>
               <h4 className="font-bold text-[#2F5E9E] text-base mb-4">
-                Office Hours (ET – GA)
+                {t.hours}
               </h4>
-              <p className="text-sm text-gray-600 mb-1">
-                Sunday – Thursday: 9 AM – 7 PM
-              </p>
-              <p className="text-sm text-gray-600 mb-6">
-                Friday & Saturday: Closed
-              </p>
+              <p className="text-sm text-gray-600 mb-1">{hoursWeekdays}</p>
+              <p className="text-sm text-gray-600 mb-6">{hoursWeekend}</p>
 
               {/* Email subscribe */}
               {emailSent ? (
                 <p className="text-sm text-green-600 font-medium">
-                  Thank you for subscribing!
+                  {t.thankYou}
                 </p>
               ) : (
                 <form
@@ -133,7 +210,7 @@ export default function Footer() {
                 >
                   <input
                     type="email"
-                    placeholder="Email"
+                    placeholder={t.emailPlaceholder}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -143,7 +220,7 @@ export default function Footer() {
                     type="submit"
                     className="px-4 py-2 bg-[#2F5E9E] text-white text-sm font-semibold rounded-lg hover:bg-[#1a3d6e] transition-colors"
                   >
-                    Submit
+                    {t.submit}
                   </button>
                 </form>
               )}
@@ -151,10 +228,10 @@ export default function Footer() {
               {/* Social icons */}
               <div className="flex gap-3 mt-6">
                 {[
-                  { label: "f", href: "#", title: "Facebook" },
-                  { label: "in", href: "#", title: "Instagram" },
-                  { label: "X", href: "#", title: "Twitter/X" },
-                  { label: "▶", href: "#", title: "YouTube" },
+                  { label: "f", href: facebook, title: "Facebook" },
+                  { label: "in", href: instagram, title: "Instagram" },
+                  { label: "X", href: twitter, title: "Twitter/X" },
+                  { label: "▶", href: youtube, title: "YouTube" },
                 ].map((s) => (
                   <a
                     key={s.title}
@@ -171,17 +248,9 @@ export default function Footer() {
 
           {/* Bottom bar */}
           <div className="border-t border-gray-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-gray-500 text-xs">
-              Copyright © 2024 VietPoint Insurance &amp; Tax LLC. All rights
-              reserved.
-            </p>
+            <p className="text-gray-500 text-xs">{t.copyright}</p>
             <div className="flex gap-4">
-              {[
-                "Terms of Use",
-                "Privacy Policy",
-                "Cookie Policy",
-                "Disclaimer",
-              ].map((link) => (
+              {[t.terms, t.privacy, t.cookie, t.disclaimer].map((link) => (
                 <a
                   key={link}
                   href="#"
@@ -200,7 +269,7 @@ export default function Footer() {
         {[
           {
             label: "Hotline",
-            href: "tel:+16788253737",
+            href: `tel:+1${phone.replace(/\D/g, "")}`,
             bg: "linear-gradient(145deg, #f44336, #c62828)",
             icon: (
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white">

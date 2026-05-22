@@ -16,7 +16,11 @@ html {
 body {
   background: #ffffff;
   color: #111111;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -41,4 +45,71 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ── Article body typography ─────────────────────────────────────────────── */
+.article-content {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #374151;
+}
+.article-content h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #2f5e9e;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.article-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.article-content p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.article-content ul,
+.article-content ol {
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+.article-content ul {
+  list-style-type: disc;
+}
+.article-content ol {
+  list-style-type: decimal;
+}
+.article-content li {
+  margin-bottom: 0.25rem;
+}
+.article-content strong {
+  font-weight: 700;
+  color: #111827;
+}
+.article-content a {
+  color: #2f5e9e;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.article-content a:hover {
+  opacity: 0.8;
+}
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  object-fit: cover;
+}
+.article-content blockquote {
+  border-left: 4px solid #2f5e9e;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: #6b7280;
+  font-style: italic;
 }

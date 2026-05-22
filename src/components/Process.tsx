@@ -1,12 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 
-const steps = [
-  {
-    step: "STEP 1",
-    text: "Sign up, leave your information",
-    icon: "👤",
-  },
+type Step = { step: string; icon: string; text: string };
+
+const DEFAULT_STEPS: Step[] = [
+  { step: "STEP 1", text: "Sign up, leave your information", icon: "👤" },
   {
     step: "STEP 2",
     text: "Agent will contact you for consultation and free quote within 24 hours.",
@@ -39,7 +37,17 @@ const steps = [
   },
 ];
 
-export default function Process() {
+type ProcessProps = {
+  title?: string;
+  steps?: Step[];
+  ctaText?: string;
+};
+
+export default function Process({
+  title = "Insurance participation process",
+  steps = DEFAULT_STEPS,
+  ctaText = "Get Free Quote",
+}: ProcessProps) {
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4">
@@ -49,7 +57,7 @@ export default function Process() {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12"
         >
-          Insurance participation process
+          {title}
         </motion.h2>
 
         {/* Steps horizontal scroll on mobile, grid on desktop */}
@@ -73,7 +81,9 @@ export default function Process() {
                   <div className="hidden lg:block absolute top-8 left-full w-4 h-0.5 bg-[#4CAF50] z-10" />
                 )}
                 <div className="text-3xl mb-3">{s.icon}</div>
-                <p className="text-sm text-gray-700 leading-relaxed">{s.text}</p>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  {s.text}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -82,10 +92,10 @@ export default function Process() {
         {/* CTA */}
         <div className="text-center mt-12">
           <a
-            href="#quote"
+            href="/contact?product=general"
             className="inline-block bg-[#2F5E9E] text-white font-bold px-10 py-3.5 rounded-full hover:bg-[#1a3d6e] transition-colors"
           >
-            Get Free Quote
+            {ctaText}
           </a>
         </div>
       </div>

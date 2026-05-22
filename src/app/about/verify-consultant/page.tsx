@@ -1,134 +1,83 @@
-"use client";
-import { useState } from "react";
-import Link from "next/link";
+import { createClient } from "@/utils/supabase/server";
+import { getLang } from "@/utils/getLang";
+import VerifyConsultantClient from "./VerifyConsultantClient";
 
-export default function VerifyConsultantPage() {
-  const [licenseId, setLicenseId] = useState("");
-  const [result, setResult] = useState<null | "found" | "not-found">(null);
+const DEFAULT_TIPS_EN = [
+  "Always verify your agent through this official tool before providing personal information",
+  "Official VietPoint agents will never ask for Social Security Numbers via text or unencrypted email",
+  'All official consultants have a VietPoint-issued license ID starting with "TS-"',
+  "If in doubt, call our office directly: (678) 825-3737",
+];
 
-  const handleVerify = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!licenseId.trim()) return;
-    // For demo purposes, simulate a lookup
-    setResult(licenseId.toLowerCase().includes("ts") ? "found" : "not-found");
+const DEFAULT_TIPS_VI = [
+  "Luôn xác minh đại lý của bạn qua công cụ chính thức này trước khi cung cấp thông tin cá nhân",
+  "Đại lý VietPoint chính thức sẽ không bao giờ yêu cầu số An Sinh Xã Hội qua tin nhắn hoặc email không mã hóa",
+  'Tất cả tư vấn viên chính thức đều có mã giấy phép do VietPoint cấp bắt đầu bằng "TS-"',
+  "Nếu nghi ngờ, hãy gọi trực tiếp văn phòng chúng tôi: (678) 825-3737",
+];
+
+export default async function VerifyConsultantPage() {
+  const supabase = await createClient();
+  const lang = await getLang();
+  const { data } = await supabase
+    .from("page_content")
+    .select("section, field, value_en, value_vi")
+    .eq("page", "verify_consultant");
+  const rows = data ?? [];
+
+  const g = (
+    section: string,
+    field: string,
+    fallbackEn = "",
+    fallbackVi?: string,
+  ) => {
+    const row = rows.find((r) => r.section === section && r.field === field);
+    if (lang === "vi")
+      return row?.value_vi || row?.value_en || fallbackVi || fallbackEn;
+    return row?.value_en ?? fallbackEn;
   };
 
+  const heroTitle = g(
+    "hero",
+    "title",
+    "Verify Official Consultant",
+    "Xác Minh Tư Vấn Viên Chính Thức",
+  );
+  const heroSubtitle = g(
+    "hero",
+    "subtitle",
+    "Protect yourself from fraud. Verify that your agent is an officially licensed VietPoint Insurance & Tax consultant before sharing any personal information.",
+    "Bảo vệ bản thân khỏi gian lận. Xác minh rằng đại lý của bạn là tư vấn viên được VietPoint cấp phép chính thức trước khi chia sẻ thông tin cá nhân.",
+  );
+  const formLabel = g(
+    "hero",
+    "form_label",
+    "Agent License ID or Full Name",
+    "Mã Giấy Phép hoặc Họ Tên Đầy Đủ",
+  );
+  const formPlaceholder = g(
+    "hero",
+    "form_placeholder",
+    "e.g. TS-12345 or Hung Huynh",
+  );
+
+  let tips = lang === "vi" ? DEFAULT_TIPS_VI : DEFAULT_TIPS_EN;
+  const tipsRaw = g("tips", "data", "");
+  if (tipsRaw) {
+    try {
+      tips = JSON.parse(tipsRaw);
+    } catch {
+      /* use default */
+    }
+  }
+
   return (
-    <main className="min-h-screen bg-white">
-      <section
-        className="pt-16 min-h-[320px] flex items-center"
-        style={{
-          background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
-        }}
-      >
-        <div className="max-w-4xl mx-auto px-6 py-16 text-white text-center">
-          <p className="text-sm font-bold tracking-widest uppercase opacity-80 mb-2">
-            About VietPoint
-          </p>
-          <h1 className="text-4xl font-extrabold mb-3">
-            Verify Official Consultant
-          </h1>
-          <p className="text-white/85 text-lg max-w-2xl mx-auto">
-            Protect yourself from fraud. Verify that your agent is an officially
-            licensed VietPoint Insurance & Tax consultant before sharing any personal
-            information.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-16 px-6">
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-            <h2 className="text-xl font-bold text-gray-900 mb-2">
-              Consultant Verification Tool
-            </h2>
-            <p className="text-gray-500 text-sm mb-6">
-              Enter the agent&apos;s license ID or full name to verify their
-              official status with VietPoint Insurance & Tax.
-            </p>
-            <form onSubmit={handleVerify} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Agent License ID or Full Name
-                </label>
-                <input
-                  type="text"
-                  value={licenseId}
-                  onChange={(e) => setLicenseId(e.target.value)}
-                  placeholder="e.g. TS-12345 or Hung Huynh"
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-red-400"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full text-white font-bold py-3.5 rounded-xl text-sm hover:opacity-90 transition-opacity"
-                style={{ background: "#2F5E9E" }}
-              >
-                Verify Now
-              </button>
-            </form>
-
-            {result === "found" && (
-              <div className="mt-6 bg-green-50 border border-green-200 rounded-xl p-5">
-                <p className="text-green-800 font-bold mb-1">
-                  ✅ Verified Official Consultant
-                </p>
-                <p className="text-green-700 text-sm">
-                  This individual is an officially registered and licensed
-                  consultant with VietPoint Insurance & Tax. You can safely proceed
-                  with your insurance consultation.
-                </p>
-              </div>
-            )}
-            {result === "not-found" && (
-              <div className="mt-6 bg-red-50 border border-red-200 rounded-xl p-5">
-                <p className="text-red-800 font-bold mb-1">
-                  ⚠️ Consultant Not Found
-                </p>
-                <p className="text-red-700 text-sm mb-3">
-                  This person does not appear in our official consultant
-                  registry. Please do NOT share personal or financial
-                  information with this individual.
-                </p>
-                <Link
-                  href="/contact"
-                  className="text-sm font-semibold underline"
-                  style={{ color: "#2F5E9E" }}
-                >
-                  Report suspicious activity →
-                </Link>
-              </div>
-            )}
-          </div>
-
-          <div className="mt-8 bg-amber-50 rounded-2xl p-6 border border-amber-100">
-            <h3 className="font-bold text-amber-900 mb-2">
-              ⚠️ How to Stay Safe
-            </h3>
-            <ul className="space-y-2 text-sm text-amber-800">
-              <li className="flex gap-2">
-                <span>•</span> Always verify your agent through this official
-                tool before providing personal information
-              </li>
-              <li className="flex gap-2">
-                <span>•</span> Official VietPoint agents will never ask for
-                Social Security Numbers via text or unencrypted email
-              </li>
-              <li className="flex gap-2">
-                <span>•</span> All official consultants have a VietPoint-issued
-                license ID starting with &quot;TS-&quot;
-              </li>
-              <li className="flex gap-2">
-                <span>•</span> If in doubt, call our office directly:{" "}
-                <a href="tel:+16788253737" className="font-semibold underline">
-                  (678) 825-3737
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-    </main>
+    <VerifyConsultantClient
+      heroTitle={heroTitle}
+      heroSubtitle={heroSubtitle}
+      formLabel={formLabel}
+      formPlaceholder={formPlaceholder}
+      tips={tips}
+    />
   );
 }

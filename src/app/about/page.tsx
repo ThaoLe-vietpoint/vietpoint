@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/server";
+import { getLang } from "@/utils/getLang";
 
 export const metadata: Metadata = {
   title: "About Us - VietPoint Insurance & Tax",
@@ -7,7 +9,7 @@ export const metadata: Metadata = {
     "VietPoint Insurance & Tax was founded in 2013 with a clear mission: to become the most trusted Financial Doctor for every Vietnamese family in the US.",
 };
 
-const coreValues = [
+const DEFAULT_CORE_VALUES = [
   { title: "Conscientious", desc: "Always put customer interests first." },
   { title: "Responsibility", desc: "Committed to doing what was promised." },
   { title: "Transparent", desc: "Provide clear and honest information." },
@@ -15,7 +17,21 @@ const coreValues = [
   { title: "Follow", desc: "Ensure all activities comply with the law." },
 ];
 
-const whyUs = [
+const DEFAULT_AGENTS = [
+  "HUNG HUYNH",
+  "CELINE NGUYEN",
+  "GINA DANG",
+  "VICKY TRIEU",
+  "TY TRIEU",
+  "HA NGUYEN",
+];
+const DEFAULT_AMBASSADORS = [
+  "KHANH THI LE LA",
+  "CHIEU ANH NU TRAN",
+  "THU THI NGUYEN",
+];
+
+const DEFAULT_WHY_US = [
   {
     title: "Trusted Partner",
     desc: "We represent leading insurance companies in the US, ensuring the highest quality and most reliable products.",
@@ -42,15 +58,23 @@ const whyUs = [
   },
 ];
 
-const agents = [
-  "HUNG HUYNH",
-  "CELINE NGUYEN",
-  "GINA DANG",
-  "VICKY TRIEU",
-  "TY TRIEU",
-  "HA NGUYEN",
+const DEFAULT_WHAT_WE_DO = [
+  {
+    icon: "\uD83D\uDEE1\uFE0F",
+    title: "Death benefits",
+    desc: "Protect your loved ones financially in case the unfortunate happens.",
+  },
+  {
+    icon: "\uD83C\uDFE5",
+    title: "Right to life",
+    desc: "Financial support when you face serious health risks.",
+  },
+  {
+    icon: "\uD83D\uDCB0",
+    title: "Retirement savings",
+    desc: "Provides a stable and secure source of income with attractive interest rates (from 6\u201315%), tax-deferred and tax-free withdrawal at retirement age.",
+  },
 ];
-const ambassadors = ["KHANH THI LE LA", "CHIEU ANH NU TRAN", "THU THI NGUYEN"];
 
 const products = [
   {
@@ -79,7 +103,168 @@ const products = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const supabase = await createClient();
+  const lang = await getLang();
+  const { data } = await supabase
+    .from("page_content")
+    .select("section, field, value_en, value_vi")
+    .eq("page", "about");
+  const rows = data ?? [];
+
+  const g = (
+    section: string,
+    field: string,
+    fallbackEn = "",
+    fallbackVi?: string,
+  ) => {
+    const row = rows.find((r) => r.section === section && r.field === field);
+    if (lang === "vi")
+      return row?.value_vi || row?.value_en || fallbackVi || fallbackEn;
+    return row?.value_en ?? fallbackEn;
+  };
+
+  const T = {
+    en: {
+      hero_welcome: "Welcome to",
+      hero_tagline: "Smart Planning, Secure Living!",
+      about_h: "About VietPoint Insurance & Tax",
+      brand_h: "Brand Story",
+      mission_h: "Mission & Vision",
+      mission_label: "Mission",
+      vision_label: "Vision",
+      core_h: "Core Values",
+      wwd_h: "What We Do?",
+      solutions_h: "Comprehensive Insurance Solutions",
+      solutions_sub:
+        "We offer a diverse portfolio of life insurance plans, flexibly designed to meet your various financial needs and goals.",
+      learn_more: "Learn more \u2192",
+      why_h: "Why Choose VietPoint Insurance & Tax?",
+      stats: ["ESTABLISH", "CLIENT", "STATE LICENSED", "SUPPORT"],
+      agents_h: "Elite Agents",
+      agent_label: "AGENT",
+      ambassadors_h: "Brand Ambassadors",
+      ambassador_label: "AMBASSADOR",
+    },
+    vi: {
+      hero_welcome: "Ch\u00e0o M\u1eebng \u0110\u1ebfn V\u1edbi",
+      hero_tagline:
+        "Ho\u1ea1ch \u0110\u1ecbnh Th\u00f4ng Minh, S\u1ed1ng An L\u00e0nh!",
+      about_h: "V\u1ec1 VietPoint Insurance & Tax",
+      brand_h: "C\u00e2u Chuy\u1ec7n Th\u01b0\u01a1ng Hi\u1ec7u",
+      mission_h: "S\u1ee9 M\u1ec7nh & T\u1ea7m Nh\u00ecn",
+      mission_label: "S\u1ee9 M\u1ec7nh",
+      vision_label: "T\u1ea7m Nh\u00ecn",
+      core_h: "Gi\u00e1 Tr\u1ecb C\u1ed1t L\u00f5i",
+      wwd_h: "Ch\u00fang T\u00f4i L\u00e0m G\u00ec?",
+      solutions_h: "Gi\u1ea3i Ph\u00e1p B\u1ea3o Hi\u1ec3m To\u00e0n Di\u1ec7n",
+      solutions_sub:
+        "Ch\u00fang t\u00f4i cung c\u1ea5p danh m\u1ee5c b\u1ea3o hi\u1ec3m nh\u00e2n th\u1ecd \u0111a d\u1ea1ng, \u0111\u01b0\u1ee3c thi\u1ebft k\u1ebf linh ho\u1ea1t \u0111\u1ec3 \u0111\u00e1p \u1ee9ng c\u00e1c m\u1ee5c ti\u00eau t\u00e0i ch\u00ednh kh\u00e1c nhau c\u1ee7a b\u1ea1n.",
+      learn_more: "T\u00ecm hi\u1ec3u th\u00eam \u2192",
+      why_h: "T\u1ea1i Sao Ch\u1ecdn VietPoint Insurance & Tax?",
+      stats: [
+        "N\u0102M TH\u00c0NH L\u1eacP",
+        "KH\u00c1CH H\u00c0NG",
+        "TI\u1ec2U BANG",
+        "H\u1ed6 TR\u1ee2",
+      ],
+      agents_h: "\u0110\u1ed9i Ng\u0169 Chuy\u00ean Vi\u00ean",
+      agent_label: "CHU\u00daEN VI\u00caN",
+      ambassadors_h: "\u0110\u1ea1i S\u1ee9 Th\u01b0\u01a1ng Hi\u1ec7u",
+      ambassador_label: "\u0110\u1ea0I S\u1ee8",
+    },
+  };
+  const t = T[lang];
+
+  // Core values
+  let coreValues = DEFAULT_CORE_VALUES;
+  const coreValuesRaw = g("core_values", "data", "");
+  if (coreValuesRaw) {
+    try {
+      coreValues = JSON.parse(coreValuesRaw);
+    } catch {}
+  }
+
+  // What We Do
+  let whatWeDo = DEFAULT_WHAT_WE_DO;
+  const whatWeDoRaw = g("what_we_do", "data", "");
+  if (whatWeDoRaw) {
+    try {
+      whatWeDo = JSON.parse(whatWeDoRaw);
+    } catch {}
+  }
+  const whatWeDoSubtitle = g(
+    "what_we_do",
+    "subtitle",
+    "VietPoint Insurance & Tax provides diverse life insurance programs designed to meet all your needs. We focus on three main benefits:",
+    "VietPoint Insurance & Tax cung c\u1ea5p c\u00e1c ch\u01b0\u01a1ng tr\u00ecnh b\u1ea3o hi\u1ec3m nh\u00e2n th\u1ecd \u0111a d\u1ea1ng \u0111\u00e1p \u1ee9ng m\u1ecdi nhu c\u1ea7u c\u1ee7a b\u1ea1n. Ch\u00fang t\u00f4i t\u1eadp trung v\u00e0o ba quy\u1ec1n l\u1ee3i ch\u00ednh:",
+  );
+
+  // Why Us
+  let whyUs = DEFAULT_WHY_US;
+  const whyUsRaw = g("why_us", "data", "");
+  if (whyUsRaw) {
+    try {
+      whyUs = JSON.parse(whyUsRaw);
+    } catch {}
+  }
+
+  // CTA
+  const ctaTitle = g(
+    "cta",
+    "title",
+    "Ready to secure your family\u2019s future?",
+    "S\u1eb5n S\u00e0ng B\u1ea3o V\u1ec7 T\u01b0\u01a1ng Lai Gia \u0110\u00ecnh B\u1ea1n?",
+  );
+  const ctaDescription = g(
+    "cta",
+    "description",
+    "Contact us today for a free consultation.",
+    "Li\u00ean h\u1ec7 ch\u00fang t\u00f4i ngay h\u00f4m nay \u0111\u1ec3 \u0111\u01b0\u1ee3c t\u01b0 v\u1ea5n mi\u1ec5n ph\u00ed.",
+  );
+  const ctaButton = g(
+    "cta",
+    "button_text",
+    "Contact Us Now",
+    "Li\u00ean H\u1ec7 Ngay",
+  );
+
+  // Team
+  const agentsRaw = g("team", "agents", "");
+  const agents = agentsRaw
+    ? agentsRaw.split("\n").filter(Boolean)
+    : DEFAULT_AGENTS;
+  const ambassadorsRaw = g("team", "ambassadors", "");
+  const ambassadors = ambassadorsRaw
+    ? ambassadorsRaw.split("\n").filter(Boolean)
+    : DEFAULT_AMBASSADORS;
+
+  // Text fields
+  const introText = g(
+    "story",
+    "intro_text",
+    "Welcome to VietPoint Insurance & Tax, a trusted financial partner dedicated to serving the Vietnamese community in the United States.",
+    "Ch\u00e0o m\u1eebng \u0111\u1ebfn v\u1edbi VietPoint Insurance & Tax, \u0111\u1ed1i t\u00e1c t\u00e0i ch\u00ednh uy t\u00edn chuy\u00ean ph\u1ee5c v\u1ee5 c\u1ed9ng \u0111\u1ed3ng ng\u01b0\u1eddi Vi\u1ec7t t\u1ea1i Hoa K\u1ef3.",
+  );
+  const brandText = g(
+    "story",
+    "brand_text",
+    "VietPoint Insurance & Tax was founded in 2013 with a clear mission: to become the most trusted Financial Doctor for every Vietnamese family in the US.",
+    "VietPoint Insurance & Tax \u0111\u01b0\u1ee3c th\u00e0nh l\u1eadp n\u0103m 2013 v\u1edbi s\u1ee9 m\u1ec7nh r\u00f5 r\u00e0ng: tr\u1edf th\u00e0nh \u2018B\u00e1c S\u0129 T\u00e0i Ch\u00ednh\u2019 \u0111\u00e1ng tin c\u1eady nh\u1ea5t cho m\u1ecdi gia \u0111\u00ecnh ng\u01b0\u1eddi Vi\u1ec7t t\u1ea1i M\u1ef9.",
+  );
+  const missionText = g(
+    "mission",
+    "mission",
+    "Providing comprehensive financial protection, ensuring stable income during retirement and bringing peace of mind to households in the United States, especially the Asian community in the US.",
+    "Cung c\u1ea5p b\u1ea3o v\u1ec7 t\u00e0i ch\u00ednh to\u00e0n di\u1ec7n, \u0111\u1ea3m b\u1ea3o thu nh\u1eadp \u1ed5n \u0111\u1ecbnh khi h\u01b0u tr\u00ed v\u00e0 mang l\u1ea1i s\u1ef1 an t\u00e2m cho c\u00e1c h\u1ed9 gia \u0111\u00ecnh t\u1ea1i Hoa K\u1ef3.",
+  );
+  const visionText = g(
+    "mission",
+    "vision",
+    "Become the leading financial-insurance company in the US, the first choice of Vietnamese people when looking for the best insurance programs.",
+    "Tr\u1edf th\u00e0nh c\u00f4ng ty b\u1ea3o hi\u1ec3m-t\u00e0i ch\u00ednh h\u00e0ng \u0111\u1ea7u t\u1ea1i Hoa K\u1ef3, l\u00e0 l\u1ef1a ch\u1ecdn \u0111\u1ea7u ti\u00ean c\u1ee7a ng\u01b0\u1eddi Vi\u1ec7t khi t\u00ecm ki\u1ebfm ch\u01b0\u01a1ng tr\u00ecnh b\u1ea3o hi\u1ec3m t\u1ed1t nh\u1ea5t.",
+  );
+
   return (
     <main className="min-h-screen bg-white">
       {/* Hero */}
@@ -92,13 +277,13 @@ export default function AboutPage() {
       >
         <div className="max-w-4xl mx-auto px-6 py-20 text-white text-center">
           <p className="text-sm font-semibold tracking-widest uppercase opacity-80 mb-3">
-            Welcome to
+            {t.hero_welcome}
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-widest mb-4">
             VIETPOINT INSURANCE
           </h1>
           <p className="text-xl md:text-2xl italic font-light opacity-90">
-            Smart Planning, Secure Living!
+            {t.hero_tagline}
           </p>
         </div>
       </section>
@@ -106,35 +291,13 @@ export default function AboutPage() {
       {/* About section */}
       <section className="py-16 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            About VietPoint Insurance & Tax
-          </h2>
-          <p className="text-gray-600 leading-relaxed mb-6">
-            Welcome to VietPoint Insurance & Tax, a trusted financial partner
-            dedicated to serving the Vietnamese community in the United States.
-            We are a reputable financial services company, operating as an
-            independent agency, working closely with leading insurance
-            corporations in the U.S. such as National Life Group, AIG, and
-            Allianz. Our ultimate goal is to provide the most optimal and
-            suitable life insurance solutions, helping you and your family
-            confidently build a solid financial future.
-          </p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{t.about_h}</h2>
+          <p className="text-gray-600 leading-relaxed mb-6">{introText}</p>
 
           <h3 className="text-xl font-bold text-gray-900 mb-3 mt-10">
-            Brand Story
+            {t.brand_h}
           </h3>
-          <p className="text-gray-600 leading-relaxed">
-            VietPoint Insurance & Tax was founded in 2013 with a clear mission: to
-            become the most trusted &quot;Financial Doctor&quot; for every
-            Vietnamese family in the US. We believe that everyone deserves a
-            solid financial plan to protect, save and invest for the future.
-            Life insurance is not only a financial guarantee after losses, but
-            also a powerful tool to protect against serious health risks and
-            ensure a stable source of income for retirement. With dedication and
-            a deep understanding of the needs of the Vietnamese community, we
-            constantly strive to bring the most suitable and effective insurance
-            solutions.
-          </p>
+          <p className="text-gray-600 leading-relaxed">{brandText}</p>
         </div>
       </section>
 
@@ -142,7 +305,7 @@ export default function AboutPage() {
       <section className="py-12 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">
-            Mission &amp; Vision
+            {t.mission_h}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
@@ -152,13 +315,10 @@ export default function AboutPage() {
               >
                 <span className="text-white font-bold text-lg">M</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Mission</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Providing comprehensive financial protection, ensuring stable
-                income during retirement and bringing peace of mind to
-                households in the United States, especially the Asian community
-                in the US.
-              </p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                {t.mission_label}
+              </h3>
+              <p className="text-gray-600 leading-relaxed">{missionText}</p>
             </div>
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
               <div
@@ -167,12 +327,10 @@ export default function AboutPage() {
               >
                 <span className="text-white font-bold text-lg">V</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Vision</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Become the leading financial-insurance company in the US, the
-                first choice of Vietnamese people when looking for the best
-                insurance programs.
-              </p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                {t.vision_label}
+              </h3>
+              <p className="text-gray-600 leading-relaxed">{visionText}</p>
             </div>
           </div>
         </div>
@@ -182,7 +340,7 @@ export default function AboutPage() {
       <section className="py-12 px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">
-            Core Values
+            {t.core_h}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {coreValues.map((v) => (
@@ -214,30 +372,13 @@ export default function AboutPage() {
       <section className="py-12 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
-            What We Do?
+            {t.wwd_h}
           </h2>
           <p className="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
-            VietPoint Insurance & Tax provides diverse life insurance programs
-            designed to meet all your needs. We focus on three main benefits:
+            {whatWeDoSubtitle}
           </p>
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: "🛡️",
-                title: "Death benefits",
-                desc: "Protect your loved ones financially in case the unfortunate happens.",
-              },
-              {
-                icon: "🏥",
-                title: "Right to life",
-                desc: "Financial support when you face serious health risks.",
-              },
-              {
-                icon: "💰",
-                title: "Retirement savings",
-                desc: "Provides a stable and secure source of income with attractive interest rates (from 6–15%), tax-deferred and tax-free withdrawal at retirement age.",
-              },
-            ].map((item) => (
+            {whatWeDo.map((item) => (
               <div
                 key={item.title}
                 className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100"
@@ -257,12 +398,9 @@ export default function AboutPage() {
       <section className="py-16 px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center">
-            Comprehensive Insurance Solutions
+            {t.solutions_h}
           </h2>
-          <p className="text-center text-gray-500 mb-10">
-            We offer a diverse portfolio of life insurance plans, flexibly
-            designed to meet your various financial needs and goals.
-          </p>
+          <p className="text-center text-gray-500 mb-10">{t.solutions_sub}</p>
           <div className="grid md:grid-cols-2 gap-6">
             {products.map((p) => (
               <div
@@ -282,7 +420,7 @@ export default function AboutPage() {
                     className="text-sm font-semibold hover:underline"
                     style={{ color: p.color }}
                   >
-                    Learn more →
+                    {t.learn_more}
                   </Link>
                 </div>
               </div>
@@ -295,7 +433,7 @@ export default function AboutPage() {
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">
-            Why Choose VietPoint Insurance & Tax?
+            {t.why_h}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {whyUs.map((item, i) => (
@@ -329,10 +467,10 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto">
           <div className="grid grid-cols-2 gap-4">
             {[
-              { value: "10+", label: "ESTABLISH" },
-              { value: "20K+", label: "CLIENT" },
-              { value: "50", label: "STATE LICENSED" },
-              { value: "24/7", label: "SUPPORT" },
+              { value: "10+", label: t.stats[0] },
+              { value: "20K+", label: t.stats[1] },
+              { value: "50", label: t.stats[2] },
+              { value: "24/7", label: t.stats[3] },
             ].map((s) => (
               <div
                 key={s.label}
@@ -355,10 +493,10 @@ export default function AboutPage() {
       <section className="py-16 px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">
-            Elite Agents
+            {t.agents_h}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {agents.map((name) => (
+            {agents.map((name: string) => (
               <div key={name} className="text-center">
                 <div
                   className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center text-white font-bold text-lg"
@@ -367,7 +505,7 @@ export default function AboutPage() {
                   {name[0]}
                 </div>
                 <h4 className="font-bold text-gray-900 text-xs">{name}</h4>
-                <p className="text-gray-500 text-xs">AGENT</p>
+                <p className="text-gray-500 text-xs">{t.agent_label}</p>
               </div>
             ))}
           </div>
@@ -378,16 +516,16 @@ export default function AboutPage() {
       <section className="py-12 px-6 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            Brand Ambassadors
+            {t.ambassadors_h}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
-            {ambassadors.map((name) => (
+            {ambassadors.map((name: string) => (
               <div key={name} className="text-center">
                 <div className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center text-white font-bold text-lg bg-gray-400">
                   {name[0]}
                 </div>
                 <h4 className="font-bold text-gray-900 text-xs">{name}</h4>
-                <p className="text-gray-500 text-xs">Brand Ambassador</p>
+                <p className="text-gray-500 text-xs">{t.ambassador_label}</p>
               </div>
             ))}
           </div>
@@ -396,18 +534,14 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="py-16 px-6 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Ready to secure your family&apos;s future?
-        </h2>
-        <p className="text-gray-600 mb-8">
-          Contact us today for a free consultation.
-        </p>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">{ctaTitle}</h2>
+        <p className="text-gray-600 mb-8">{ctaDescription}</p>
         <Link
           href="/contact"
           className="inline-block text-white font-bold px-10 py-4 rounded-full text-sm hover:opacity-90 transition-opacity"
           style={{ background: "#2F5E9E" }}
         >
-          Contact Us Now
+          {ctaButton}
         </Link>
       </section>
     </main>

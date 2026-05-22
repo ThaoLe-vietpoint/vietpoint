@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 
 const wiggleKeyframes = `
 @keyframes wiggle {
@@ -12,6 +13,10 @@ const wiggleKeyframes = `
   70%  { transform: rotate(-2deg); }
   80%  { transform: rotate(2deg); }
   100% { transform: rotate(0deg); }
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px) scale(0.85); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
 }
 `;
 
@@ -143,43 +148,134 @@ const contacts = [
 ];
 
 export default function ContactFloat() {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <style>{wiggleKeyframes}</style>
-      <div className="fixed left-3 bottom-24 sm:bottom-16 z-50 hidden sm:flex flex-col items-center gap-4">
-        <div
-          className="bg-white rounded-2xl shadow-xl px-2 py-3 flex flex-col items-center gap-3"
-          style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
-        >
-          {contacts.map((c) => (
-            <a
-              key={c.label}
-              href={c.href}
-              target={c.href.startsWith("http") ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              className="flex flex-col items-center gap-1 group"
-              title={c.label}
-            >
-              <div
-                style={{
-                  animationName: "wiggle",
-                  animationDuration: "2.8s",
-                  animationTimingFunction: "ease-in-out",
-                  animationIterationCount: "infinite",
-                  animationDelay: c.delay,
-                  transformOrigin: "center center",
-                  display: "inline-block",
-                }}
-                className="group-hover:[animation-play-state:paused] transition-transform"
+
+      {/* Desktop: collapsible panel on the left */}
+      <div className="fixed left-3 bottom-16 z-50 hidden sm:flex flex-col items-center gap-2">
+        {/* Expanded panel */}
+        {open && (
+          <div
+            className="bg-white rounded-2xl shadow-xl px-2 py-3 flex flex-col items-center gap-3 mb-1"
+            style={{
+              boxShadow: "0 4px 24px rgba(0,0,0,0.13)",
+              animation: "fadeSlideUp 0.2s ease both",
+            }}
+          >
+            {contacts.map((c) => (
+              <a
+                key={c.label}
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-1 group"
+                title={c.label}
+                onClick={() => setOpen(false)}
               >
-                {c.icon}
-              </div>
-              <span className="text-[11px] font-semibold text-gray-600 leading-none">
-                {c.label}
-              </span>
-            </a>
-          ))}
-        </div>
+                <div
+                  style={{
+                    animationName: "wiggle",
+                    animationDuration: "2.8s",
+                    animationTimingFunction: "ease-in-out",
+                    animationIterationCount: "infinite",
+                    animationDelay: c.delay,
+                    transformOrigin: "center center",
+                    display: "inline-block",
+                  }}
+                  className="group-hover:[animation-play-state:paused] transition-transform"
+                >
+                  {c.icon}
+                </div>
+                <span className="text-[11px] font-semibold text-gray-600 leading-none">
+                  {c.label}
+                </span>
+              </a>
+            ))}
+          </div>
+        )}
+
+        {/* Toggle button */}
+        <button
+          onClick={() => setOpen((v) => !v)}
+          className="w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-transform active:scale-95"
+          style={{
+            background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
+          }}
+          aria-label={open ? "Close contacts" : "Open contacts"}
+        >
+          {open ? (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M18 6L6 18M6 6l12 12"
+                stroke="white"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z" />
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {/* Mobile: collapsible FAB — bottom-LEFT (ChatWidget stays bottom-right) */}
+      <div className="fixed bottom-20 left-4 z-50 flex sm:hidden flex-col items-start gap-3">
+        {/* Contact options — slide up when open */}
+        {open && (
+          <div className="flex flex-col items-start gap-2 max-h-[70vh] overflow-y-auto pr-1">
+            {contacts.map((c, i) => (
+              <a
+                key={c.label}
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 group"
+                style={{
+                  animation: `fadeSlideUp 0.22s ease both`,
+                  animationDelay: `${i * 0.04}s`,
+                }}
+                onClick={() => setOpen(false)}
+              >
+                <div className="w-11 h-11 rounded-full shadow-lg flex items-center justify-center shrink-0">
+                  {c.icon}
+                </div>
+                <span className="bg-white text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-full shadow border border-gray-100 whitespace-nowrap">
+                  {c.label}
+                </span>
+              </a>
+            ))}
+          </div>
+        )}
+
+        {/* FAB toggle button */}
+        <button
+          onClick={() => setOpen((v) => !v)}
+          className="w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-transform active:scale-95"
+          style={{
+            background: "linear-gradient(135deg, #2F5E9E 0%, #1a3d6e 100%)",
+          }}
+          aria-label={open ? "Close contacts" : "Open contacts"}
+        >
+          {open ? (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M18 6L6 18M6 6l12 12"
+                stroke="white"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          ) : (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z" />
+            </svg>
+          )}
+        </button>
       </div>
     </>
   );

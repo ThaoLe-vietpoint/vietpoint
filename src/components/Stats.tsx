@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-const stats = [
+const DEFAULT_STATS = [
   { value: 10, suffix: "+", label: "ESTABLISH" },
   { value: 20, suffix: "K+", label: "CLIENT" },
   { value: 50, suffix: "", label: "STATE LICENSED" },
@@ -32,15 +32,25 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 
   return (
     <span ref={ref} className="text-4xl md:text-5xl font-extrabold text-white">
-      {count}{suffix}
+      {count}
+      {suffix}
     </span>
   );
 }
 
-export default function Stats() {
+export default function Stats({
+  title = "Why choose VietPoint Insurance & Tax?",
+  items,
+}: {
+  title?: string;
+  items?: { value: number; suffix: string; label: string }[];
+}) {
+  const stats = items ?? DEFAULT_STATS;
   return (
     <section
-      style={{ background: "linear-gradient(135deg, #2F5E9E 0%, #0d2a52 100%)" }}
+      style={{
+        background: "linear-gradient(135deg, #2F5E9E 0%, #0d2a52 100%)",
+      }}
       className="py-4"
     >
       <div className="max-w-4xl mx-auto px-4">
@@ -50,7 +60,7 @@ export default function Stats() {
           viewport={{ once: true }}
           className="text-2xl md:text-3xl font-bold text-white text-center mb-6"
         >
-          Why choose VietPoint Insurance & Tax?
+          {title}
         </motion.h2>
         <div className="grid grid-cols-2 gap-3">
           {stats.map((s, i) => (

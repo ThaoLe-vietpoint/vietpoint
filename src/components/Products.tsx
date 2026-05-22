@@ -3,12 +3,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
-const products = [
+const DEFAULT_PRODUCTS = [
   {
     id: 1,
     title: "IUL For Kids (EBTP)",
     tag: "Children Protection",
     tagColor: "#4CAF50",
+    quoteParam: "kid-iul",
     image:
       "https://thinksmartinsurance.com/wp-content/uploads/2025/04/EBTP-1024x683.webp",
     description:
@@ -25,6 +26,7 @@ const products = [
     title: "Max Funded IUL",
     tag: "Retirement Planning",
     tagColor: "#2196F3",
+    quoteParam: "max-iul",
     image:
       "https://thinksmartinsurance.com/wp-content/uploads/2025/04/Maxfund-1024x683.webp",
     description:
@@ -41,6 +43,7 @@ const products = [
     title: "IUL Secrets",
     tag: "Premium IUL",
     tagColor: "#2F5E9E",
+    quoteParam: "iul",
     image:
       "https://thinksmartinsurance.com/wp-content/uploads/2025/04/IUL-1024x683.webp",
     description:
@@ -57,6 +60,7 @@ const products = [
     title: "Term Life",
     tag: "Term Insurance",
     tagColor: "#FF9800",
+    quoteParam: "termlife",
     image:
       "https://thinksmartinsurance.com/wp-content/uploads/2025/04/Term-Life-1024x683.webp",
     description:
@@ -70,7 +74,12 @@ const products = [
   },
 ];
 
-export default function Products() {
+export default function Products({
+  initialProducts,
+}: {
+  initialProducts?: typeof DEFAULT_PRODUCTS;
+}) {
+  const products = initialProducts ?? DEFAULT_PRODUCTS;
   const [active, setActive] = useState(0);
 
   const prev = () => setActive((a) => (a === 0 ? products.length - 1 : a - 1));
@@ -135,7 +144,7 @@ export default function Products() {
               {product.description}
             </p>
             <a
-              href="#"
+              href={`/contact?product=${product.quoteParam ?? "general"}`}
               style={{ background: "#2F5E9E" }}
               className="inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
             >
