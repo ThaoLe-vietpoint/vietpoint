@@ -5,9 +5,24 @@ export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", question: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setLoading(true);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          message: form.question ? `Question: ${form.question}` : undefined,
+          source: "chat_widget",
+        }),
+      });
+    } catch {}
+    setLoading(false);
     setSubmitted(true);
   }
 
@@ -161,10 +176,11 @@ export default function ChatWidget() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-2.5 rounded-lg text-white font-bold text-sm transition-opacity hover:opacity-90 mt-1"
+                    disabled={loading}
+                    className="w-full py-2.5 rounded-lg text-white font-bold text-sm transition-opacity hover:opacity-90 mt-1 disabled:opacity-60"
                     style={{ background: "#2F5E9E" }}
                   >
-                    Get started
+                    {loading ? "Sending..." : "Get started"}
                   </button>
                 </form>
               )}

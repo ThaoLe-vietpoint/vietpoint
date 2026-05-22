@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { createClient } from "@/utils/supabase/client";
 
 type SiteSettings = {
   phone: string;
@@ -196,15 +195,18 @@ function ContactPageInner() {
 
   const [settings, setSettings] = useState<SiteSettings>(DEFAULT_SETTINGS);
   useEffect(() => {
-    const supabase = createClient();
-    supabase
-      .from("site_settings")
-      .select("key, value")
-      .then(({ data }) => {
-        if (!data) return;
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+    const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
+    fetch(`${url}/rest/v1/site_settings?select=key,value`, {
+      headers: { apikey: key, Authorization: `Bearer ${key}` },
+    })
+      .then((r) => r.json())
+      .then((data: { key: string; value: string }[]) => {
+        if (!Array.isArray(data)) return;
         const map = Object.fromEntries(data.map((r) => [r.key, r.value]));
         setSettings((prev) => ({ ...prev, ...map }));
-      });
+      })
+      .catch(() => {});
   }, []);
   const [joined, setJoined] = useState<"yes" | "no" | null>(null);
   const [form, setForm] = useState({
@@ -280,16 +282,19 @@ function ContactPageInner() {
       parts.push(`${lang === "vi" ? "Hợp đồng" : "Policy"}: ${form.policy}`);
     if (form.greenCard) parts.push(`Green Card: ${form.greenCard}`);
 
-    const supabase = createClient();
-    const { error } = await supabase.from("leads").insert({
-      name: form.name,
-      phone: form.phone,
-      email: form.email,
-      message: parts.join(" | "),
-      source: "contact_form",
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name,
+        phone: form.phone,
+        email: form.email,
+        message: parts.join(" | "),
+        source: "contact_form",
+      }),
     });
 
-    if (error) {
+    if (!res.ok) {
       setSubmitError(
         lang === "vi"
           ? "Có lỗi xảy ra, vui lòng thử lại."

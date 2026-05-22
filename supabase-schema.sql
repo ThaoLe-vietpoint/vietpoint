@@ -36,8 +36,12 @@ create table if not exists leads (
   email      text        not null default '',
   message    text        not null default '',
   source     text        not null default 'contact_form',
+  processed  boolean     not null default false,
   created_at timestamptz not null default now()
 );
+
+-- Migration: add processed column to existing leads table
+alter table leads add column if not exists processed boolean not null default false;
 
 -- 3. TESTIMONIALS
 create table if not exists testimonials (
@@ -78,12 +82,15 @@ create table if not exists site_settings (
 
 -- Seed default values (safe to re-run via ON CONFLICT DO NOTHING)
 insert into site_settings (key, label, value) values
-  ('phone',         'Số điện thoại',    '(678) 825 3737'),
-  ('phone_e164',    'Phone (E.164)',     '+16788253737'),
-  ('email',         'Email',            'support@VietPointinsurance.com'),
-  ('address',       'Địa chỉ',          '1424 N Brown Rd #450, Lawrenceville, GA 30043'),
-  ('hours_weekday', 'Giờ CN – Thứ 5',   '9 AM – 7 PM'),
-  ('hours_closed',  'Giờ Thứ 6 & 7',    'Closed')
+  ('phone',              'Số điện thoại',             '(678) 825 3737'),
+  ('phone_e164',         'Phone (E.164)',              '+16788253737'),
+  ('email',              'Email',                     'support@VietPointinsurance.com'),
+  ('address',            'Địa chỉ',                   '1424 N Brown Rd #450, Lawrenceville, GA 30043'),
+  ('hours_weekday',      'Giờ CN – Thứ 5',            '9 AM – 7 PM'),
+  ('hours_closed',       'Giờ Thứ 6 & 7',             'Closed'),
+  ('notify_email',       'Email nhận thông báo',       ''),
+  ('gmail_user',         'Gmail gửi thông báo',        ''),
+  ('gmail_app_password', 'Gmail App Password',         '')
 on conflict (key) do nothing;
 
 -- 6. MEDIA (image library)
