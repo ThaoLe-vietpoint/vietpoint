@@ -57,15 +57,17 @@ export default async function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang={lang}>
       <body className={inter.className}>
         <Header initialLang={lang} />
-        <div className="pb-24 sm:pb-0">
+        {/* translate="no" protects server-rendered DB content from Google Translate.
+            Components outside this div (ChatWidget, ContactFloat) are still translated by GT. */}
+        <div className="pb-24 sm:pb-0" translate="no">
           {children}
           <Footer {...footerProps} lang={lang} />
         </div>
         <ContactFloat />
-        <ChatWidget />
+        <ChatWidget lang={lang} />
       </body>
     </html>
   );

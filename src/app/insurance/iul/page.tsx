@@ -280,7 +280,7 @@ export default async function IULPage() {
           <h3 className="text-3xl font-extrabold text-yellow-400 mb-8">
             {t.quote_h2}
           </h3>
-          <IULQuoteForm />
+          <IULQuoteForm lang={lang} />
           <div className="mt-6">
             <p className="text-white/60 text-sm mb-2">{t.quote_or}</p>
             <a

@@ -1,9 +1,23 @@
-import { type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
-export async function middleware(_request: NextRequest) {
-    // Admin moved to separate project: vietpoint-admin
+export function middleware(request: NextRequest) {
+    const response = NextResponse.next();
+
+    // Set lang cookie on first visit based on geo (Vercel header)
+    // Manual toggle will overwrite this cookie later
+    if (!request.cookies.get("lang")) {
+        const country = request.geo?.country;
+        const lang = country === "VN" ? "vi" : "en";
+        response.cookies.set("lang", lang, {
+            path: "/",
+            maxAge: 31536000,
+            sameSite: "lax",
+        });
+    }
+
+    return response;
 }
 
 export const config = {
-    matcher: [],
+    matcher: ["/((?!api|_next/static|_next/image|favicon\\.ico|.*\\..*).*)",],
 };

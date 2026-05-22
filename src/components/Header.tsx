@@ -5,12 +5,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 
-const GT_HIDE_CSS = `
-  .goog-te-banner-frame.skiptranslate,
-  .skiptranslate { display: none !important; }
-  body { top: 0 !important; position: static !important; }
-`;
-
 type NavItem = {
   label: string;
   href: string;
@@ -187,29 +181,37 @@ export default function Header({
   const pathname = usePathname();
   const router = useRouter();
 
-  // Sync with cookie value set client-side after toggle
+  // Sync lang state with cookie (middleware always sets it, so this is a safety net)
   useEffect(() => {
     const match = document.cookie.match(/(?:^|;\s*)lang=([^;]+)/);
     if (match?.[1] === "vi" || match?.[1] === "en")
       setLang(match[1] as "en" | "vi");
   }, []);
 
-  // Global auto-translate: EN→VI when lang=vi, restore when lang=en
+  // Google Translate: apply when lang=vi (for content not covered by DB bilingual)
+  // Elements with translate="no" (server-rendered DB content) are skipped by GT
   useEffect(() => {
+    const target = lang === "vi" ? "vi" : "";
+
+    // Inject CSS to hide GT toolbar
     if (!document.getElementById("gt-hide-style")) {
-      const style = document.createElement("style");
-      style.id = "gt-hide-style";
-      style.innerHTML = GT_HIDE_CSS;
-      document.head.appendChild(style);
+      const s = document.createElement("style");
+      s.id = "gt-hide-style";
+      s.innerHTML = `
+        .goog-te-banner-frame.skiptranslate,
+        .skiptranslate { display: none !important; }
+        body { top: 0 !important; position: static !important; }
+      `;
+      document.head.appendChild(s);
     }
+
+    // Create hidden GT mount point
     if (!document.getElementById("google_translate_element")) {
       const el = document.createElement("div");
       el.id = "google_translate_element";
       el.style.display = "none";
       document.body.appendChild(el);
     }
-
-    const target = lang === "vi" ? "vi" : "";
 
     const applyTranslation = (attempts = 0) => {
       const select =

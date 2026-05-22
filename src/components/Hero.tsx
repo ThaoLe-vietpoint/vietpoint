@@ -12,6 +12,7 @@ type HeroProps = {
   stat1?: { value: string; label: string };
   stat2?: { value: string; label: string };
   stat3?: { value: string; label: string };
+  lang?: "en" | "vi";
 };
 
 export default function Hero({
@@ -23,6 +24,7 @@ export default function Hero({
   stat1 = { value: "20,000+", label: "Families Protected" },
   stat2 = { value: "50", label: "U.S. States" },
   stat3 = { value: "10+", label: "Years Trusted" },
+  lang = "en",
 }: HeroProps) {
   const [showVideo, setShowVideo] = useState(false);
 
@@ -67,7 +69,7 @@ export default function Hero({
               onClick={() => setShowVideo(true)}
               className="flex items-center gap-3 bg-white text-[#2F5E9E] font-bold px-10 py-4 rounded-full hover:bg-white/90 transition-all duration-300 text-base tracking-wider shadow-lg"
             >
-              PLAY VIDEO
+              {lang === "vi" ? "XEM VIDEO" : "PLAY VIDEO"}
               <Play size={18} fill="currentColor" />
             </button>
           </motion.div>

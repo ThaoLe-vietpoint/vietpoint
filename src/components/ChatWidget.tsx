@@ -1,7 +1,37 @@
 "use client";
 import { useState } from "react";
 
-export default function ChatWidget() {
+const T = {
+  en: {
+    fullName: "Full name",
+    fullNamePlaceholder: "Enter your full name",
+    phone: "Phone number",
+    phonePlaceholder: "(xxx) xxx-xxxx",
+    question: "Question",
+    questionPlaceholder: "I'd like to know more about...",
+    submit: "Get started",
+    sending: "Sending...",
+    thankYou: "Thank you for reaching out!",
+    thankYouSub: "We will get back to you as soon as possible.",
+    close: "Close",
+  },
+  vi: {
+    fullName: "Họ và tên",
+    fullNamePlaceholder: "Nhập họ và tên",
+    phone: "Số điện thoại",
+    phonePlaceholder: "(xxx) xxx-xxxx",
+    question: "Câu hỏi",
+    questionPlaceholder: "Tôi muốn biết thêm về...",
+    submit: "Bắt đầu",
+    sending: "Đang gửi...",
+    thankYou: "Cảm ơn bạn đã liên hệ!",
+    thankYouSub: "Chúng tôi sẽ phản hồi bạn sớm nhất có thể.",
+    close: "Đóng",
+  },
+};
+
+export default function ChatWidget({ lang = "en" }: { lang?: "en" | "vi" }) {
+  const t = T[lang];
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", question: "" });
   const [submitted, setSubmitted] = useState(false);
@@ -112,11 +142,9 @@ export default function ChatWidget() {
                 <div className="text-center py-6">
                   <div className="text-4xl mb-3">✅</div>
                   <p className="font-semibold text-gray-800 text-sm">
-                    Thank you for reaching out!
+                    {t.thankYou}
                   </p>
-                  <p className="text-gray-500 text-xs mt-1">
-                    We will get back to you as soon as possible.
-                  </p>
+                  <p className="text-gray-500 text-xs mt-1">{t.thankYouSub}</p>
                   <button
                     onClick={() => {
                       setOpen(false);
@@ -125,14 +153,14 @@ export default function ChatWidget() {
                     className="mt-4 px-5 py-2 rounded-full text-white text-sm font-semibold transition-opacity hover:opacity-90"
                     style={{ background: "#e53935" }}
                   >
-                    Close
+                    {t.close}
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                   <div>
                     <label className="block text-xs font-medium text-gray-700 mb-1">
-                      Full name
+                      {t.fullName}
                     </label>
                     <input
                       type="text"
@@ -142,12 +170,12 @@ export default function ChatWidget() {
                         setForm({ ...form, name: e.target.value })
                       }
                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 transition-colors"
-                      placeholder="Enter your full name"
+                      placeholder={t.fullNamePlaceholder}
                     />
                   </div>
                   <div>
                     <label className="block text-xs font-medium text-gray-700 mb-1">
-                      Phone number
+                      {t.phone}
                     </label>
                     <input
                       type="tel"
@@ -157,12 +185,12 @@ export default function ChatWidget() {
                         setForm({ ...form, phone: e.target.value })
                       }
                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 transition-colors"
-                      placeholder="(xxx) xxx-xxxx"
+                      placeholder={t.phonePlaceholder}
                     />
                   </div>
                   <div>
                     <label className="block text-xs font-medium text-gray-700 mb-1">
-                      Question
+                      {t.question}
                     </label>
                     <textarea
                       value={form.question}
@@ -171,7 +199,7 @@ export default function ChatWidget() {
                       }
                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 transition-colors resize-none"
                       rows={3}
-                      placeholder="I'd like to know more about..."
+                      placeholder={t.questionPlaceholder}
                     />
                   </div>
                   <button
@@ -180,7 +208,7 @@ export default function ChatWidget() {
                     className="w-full py-2.5 rounded-lg text-white font-bold text-sm transition-opacity hover:opacity-90 mt-1 disabled:opacity-60"
                     style={{ background: "#2F5E9E" }}
                   >
-                    {loading ? "Sending..." : "Get started"}
+                    {loading ? t.sending : t.submit}
                   </button>
                 </form>
               )}

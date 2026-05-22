@@ -157,7 +157,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-white">
-      <Hero {...heroProps} />
+      <Hero {...heroProps} lang={lang} />
       <Products initialProducts={initialProducts} />
       <Process
         title={processTitle}
