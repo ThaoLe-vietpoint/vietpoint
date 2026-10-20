@@ -162,65 +162,77 @@ create table if not exists priority_perks (
 
 -- 11. IUL — Why Choose IUL cards (icon, title, description)
 create table if not exists iul_reasons (
-  id          uuid        primary key default gen_random_uuid(),
-  icon        text        not null default '✅',
-  title       text        not null default '',
-  description text        not null default '',
-  sort_order  int         not null default 0,
-  active      boolean     not null default true,
-  created_at  timestamptz not null default now()
+  id              uuid        primary key default gen_random_uuid(),
+  icon            text        not null default '✅',
+  title_en        text        not null default '',
+  title_vi        text        not null default '',
+  description_en  text        not null default '',
+  description_vi  text        not null default '',
+  sort_order      int         not null default 0,
+  active          boolean     not null default true,
+  created_at      timestamptz not null default now()
 );
 
--- 12. IUL — How It Works steps (step_label, title, description)
+-- 12. IUL — How It Works steps (step_label, title_en, title_vi, description_en, description_vi)
 create table if not exists iul_steps (
-  id          uuid        primary key default gen_random_uuid(),
-  step_label  text        not null default 'STEP 1',
-  title       text        not null default '',
-  description text        not null default '',
-  sort_order  int         not null default 0,
-  active      boolean     not null default true,
-  created_at  timestamptz not null default now()
+  id              uuid        primary key default gen_random_uuid(),
+  step_label      text        not null default 'STEP 1',
+  title_en        text        not null default '',
+  title_vi        text        not null default '',
+  description_en  text        not null default '',
+  description_vi  text        not null default '',
+  sort_order      int         not null default 0,
+  active          boolean     not null default true,
+  created_at      timestamptz not null default now()
 );
 
--- 13. IUL — FAQ accordion (question, answer)
+-- 13. IUL — FAQ accordion (question_en, question_vi, answer_en, answer_vi)
 create table if not exists iul_faqs (
-  id          uuid        primary key default gen_random_uuid(),
-  question    text        not null default '',
-  answer      text        not null default '',
-  sort_order  int         not null default 0,
-  active      boolean     not null default true,
-  created_at  timestamptz not null default now()
+  id              uuid        primary key default gen_random_uuid(),
+  question_en     text        not null default '',
+  question_vi     text        not null default '',
+  answer_en       text        not null default '',
+  answer_vi       text        not null default '',
+  sort_order      int         not null default 0,
+  active          boolean     not null default true,
+  created_at      timestamptz not null default now()
 );
 
--- 14. KID IUL — Benefits list (icon, title, description)
+-- 14. KID IUL — Benefits list (icon, title_en, title_vi, description_en, description_vi)
 create table if not exists kid_iul_benefits (
-  id          uuid        primary key default gen_random_uuid(),
-  icon        text        not null default '✅',
-  title       text        not null default '',
-  description text        not null default '',
-  sort_order  int         not null default 0,
-  active      boolean     not null default true,
-  created_at  timestamptz not null default now()
+  id              uuid        primary key default gen_random_uuid(),
+  icon            text        not null default '✅',
+  title_en        text        not null default '',
+  title_vi        text        not null default '',
+  description_en  text        not null default '',
+  description_vi  text        not null default '',
+  sort_order      int         not null default 0,
+  active          boolean     not null default true,
+  created_at      timestamptz not null default now()
 );
 
--- 15. MAX-FUNDED IUL — Reasons accordion (num, title, description)
+-- 15. MAX-FUNDED IUL — Reasons accordion (num, title_en, title_vi, description_en, description_vi)
 create table if not exists max_iul_reasons (
-  id          uuid        primary key default gen_random_uuid(),
-  num         text        not null default '1',
-  title       text        not null default '',
-  description text        not null default '',
-  sort_order  int         not null default 0,
-  active      boolean     not null default true,
-  created_at  timestamptz not null default now()
+  id              uuid        primary key default gen_random_uuid(),
+  num             text        not null default '1',
+  title_en        text        not null default '',
+  title_vi        text        not null default '',
+  description_en  text        not null default '',
+  description_vi  text        not null default '',
+  sort_order      int         not null default 0,
+  active          boolean     not null default true,
+  created_at      timestamptz not null default now()
 );
 
--- 16. TERM LIFE — Benefits list (icon, title, description)
+-- 16. TERM LIFE — Benefits list (icon, title_en, title_vi, description_en, description_vi)
 create table if not exists termlife_benefits (
-  id          uuid        primary key default gen_random_uuid(),
-  icon        text        not null default '✅',
-  title       text        not null default '',
-  description text        not null default '',
-  sort_order  int         not null default 0,
-  active      boolean     not null default true,
-  created_at  timestamptz not null default now()
+  id              uuid        primary key default gen_random_uuid(),
+  icon            text        not null default '✅',
+  title_en        text        not null default '',
+  title_vi        text        not null default '',
+  description_en  text        not null default '',
+  description_vi  text        not null default '',
+  sort_order      int         not null default 0,
+  active          boolean     not null default true,
+  created_at      timestamptz not null default now()
 );
