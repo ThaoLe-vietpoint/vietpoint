@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import MaxFundedAccordion from "./MaxFundedAccordion";
 import { getLang } from "@/utils/getLang";
+import { getGlobalContact } from "@/utils/getGlobalContact";
 
 const fallbackReasons = [
   {
@@ -197,7 +198,7 @@ export default async function MaxFundedIULPage() {
   const txt = (row: any, field: string): string =>
     row[`${field}_${lang}`] || row[`${field}_en`] || row[field] || "";
   const supabase = await createClient();
-  const [{ data: dbReasons }, { data: contentRows }] = await Promise.all([
+  const [{ data: dbReasons }, { data: contentRows }, contact] = await Promise.all([
     supabase
       .from("max_iul_reasons")
       .select("*")
@@ -207,6 +208,7 @@ export default async function MaxFundedIULPage() {
       .from("page_content")
       .select("section, field, value_en, value_vi")
       .eq("page", "insurance_max_iul"),
+    getGlobalContact(lang),
   ]);
 
   const g = (sec: string, fld: string, fallback: string) => {
@@ -220,6 +222,16 @@ export default async function MaxFundedIULPage() {
   const heroDesc2 = g("hero", "desc2", t.hero_desc2);
   const heroCta = g("hero", "cta", t.hero_cta);
   const reasonsH1 = g("sections", "reasons_h1", t.reasons_h1);
+  const lockH = g("lock", "h", t.lock_h);
+  const lockDesc = g("lock", "desc", t.lock_desc);
+  const allianzH = g("allianz", "h", t.allianz_h);
+  const allianzDesc = g("allianz", "desc", t.allianz_desc);
+  const taxH = g("tax", "h", t.tax_h);
+  const adviceH = g("advice", "h", t.advice_h);
+  const advice1H = g("advice", "1_h", t.advice1_h);
+  const advice1Desc = g("advice", "1_desc", t.advice1_desc);
+  const advice2H = g("advice", "2_h", t.advice2_h);
+  const advice2Desc = g("advice", "2_desc", t.advice2_desc);
   const ctaH = g("cta", "h", t.cta_h);
   const ctaSub = g("cta", "sub", t.cta_sub);
 
@@ -279,10 +291,10 @@ export default async function MaxFundedIULPage() {
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.lock_h}
+                {lockH}
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                {t.lock_desc}
+                {lockDesc}
               </p>
               <div className="space-y-3 mt-6">
                 {t.lock_features.map((f) => (
@@ -300,10 +312,10 @@ export default async function MaxFundedIULPage() {
             </div>
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.allianz_h}
+                {allianzH}
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                {t.allianz_desc}
+                {allianzDesc}
               </p>
               <div className="bg-gray-50 rounded-xl p-5 space-y-2 text-sm text-gray-700">
                 {t.allianz_items.map((item) => (
@@ -322,7 +334,7 @@ export default async function MaxFundedIULPage() {
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">
-            {t.tax_h}
+            {taxH}
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             {t.tax_items.map((item) => (
@@ -343,19 +355,19 @@ export default async function MaxFundedIULPage() {
       <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">
-            {t.advice_h}
+            {adviceH}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-blue-50 rounded-2xl p-6">
-              <h4 className="font-bold text-blue-800 mb-3">{t.advice1_h}</h4>
+              <h4 className="font-bold text-blue-800 mb-3">{advice1H}</h4>
               <p className="text-gray-600 text-sm leading-relaxed">
-                {t.advice1_desc}
+                {advice1Desc}
               </p>
             </div>
             <div className="bg-green-50 rounded-2xl p-6">
-              <h4 className="font-bold text-green-800 mb-3">{t.advice2_h}</h4>
+              <h4 className="font-bold text-green-800 mb-3">{advice2H}</h4>
               <p className="text-gray-600 text-sm leading-relaxed">
-                {t.advice2_desc}
+                {advice2Desc}
               </p>
             </div>
           </div>
@@ -374,11 +386,11 @@ export default async function MaxFundedIULPage() {
         <p className="text-white/80 mb-8">{ctaSub}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="tel:+16787223447"
+            href={contact.phoneTel}
             className="inline-block font-bold px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
             style={{ background: "#2F5E9E", color: "white" }}
           >
-            📞 (678) 722-3447
+            📞 {contact.phone}
           </a>
           <a
             href="/contact"

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { createClient } from "@/utils/supabase/server";
 import { getLang } from "@/utils/getLang";
+import { getGlobalContact } from "@/utils/getGlobalContact";
 
 export const metadata: Metadata = {
   title: "IUL For Kids (EBTP) - VietPoint Insurance & Tax",
@@ -124,7 +125,7 @@ export default async function KidIULPage() {
   const txt = (row: any, field: string): string =>
     row[`${field}_${lang}`] || row[`${field}_en`] || row[field] || "";
   const supabase = await createClient();
-  const [{ data: dbBenefits }, { data: contentRows }] = await Promise.all([
+  const [{ data: dbBenefits }, { data: contentRows }, contact] = await Promise.all([
     supabase
       .from("kid_iul_benefits")
       .select("*")
@@ -134,6 +135,7 @@ export default async function KidIULPage() {
       .from("page_content")
       .select("section, field, value_en, value_vi")
       .eq("page", "insurance_kid_iul"),
+    getGlobalContact(lang),
   ]);
 
   const g = (sec: string, fld: string, fallback: string) => {
@@ -150,7 +152,26 @@ export default async function KidIULPage() {
   const heroCta = g("hero", "cta", t.hero_cta);
   const howH = g("how", "h", t.how_h);
   const howDesc = g("how", "desc", t.how_desc);
+  const howSteps = [
+    {
+      step: "01",
+      title: g("how", "step1_title", t.steps[0].title),
+      desc: g("how", "step1_desc", t.steps[0].desc),
+    },
+    {
+      step: "02",
+      title: g("how", "step2_title", t.steps[1].title),
+      desc: g("how", "step2_desc", t.steps[1].desc),
+    },
+    {
+      step: "03",
+      title: g("how", "step3_title", t.steps[2].title),
+      desc: g("how", "step3_desc", t.steps[2].desc),
+    },
+  ];
   const benefitsH = g("sections", "benefits_h", t.benefits_h);
+  const testimonialQuote = g("testimonial", "quote", t.testimonial);
+  const testimonialBy = g("testimonial", "by", t.testimonial_by);
   const ctaH = g("cta", "h", t.cta_h);
   const ctaSub = g("cta", "sub", t.cta_sub);
 
@@ -191,7 +212,7 @@ export default async function KidIULPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">{howH}</h2>
           <p className="text-gray-600 mb-10 max-w-2xl mx-auto">{howDesc}</p>
           <div className="grid md:grid-cols-3 gap-6 text-left">
-            {t.steps.map((s) => (
+            {howSteps.map((s) => (
               <div
                 key={s.step}
                 className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
@@ -238,9 +259,9 @@ export default async function KidIULPage() {
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-3xl mb-4">💬</p>
           <blockquote className="text-gray-700 text-lg italic leading-relaxed mb-4">
-            {t.testimonial}
+            {testimonialQuote}
           </blockquote>
-          <p className="font-semibold text-gray-900">{t.testimonial_by}</p>
+          <p className="font-semibold text-gray-900">{testimonialBy}</p>
         </div>
       </section>
 
@@ -256,11 +277,11 @@ export default async function KidIULPage() {
         <p className="text-white/80 mb-8">{ctaSub}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="tel:+16788253737"
+            href={contact.phoneTel}
             className="inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:bg-green-50 transition-colors"
             style={{ color: "#16a34a" }}
           >
-            📞 (678) 825-3737
+            📞 {contact.phone}
           </a>
           <Link
             href="/contact"

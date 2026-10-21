@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getLang } from "@/utils/getLang";
+import { getGlobalContact } from "@/utils/getGlobalContact";
 
 export const metadata: Metadata = {
   title: "Customer Care - VietPoint Insurance & Tax",
@@ -96,6 +97,7 @@ const T = {
 
 export default async function CustomerCarePage() {
   const lang = await getLang();
+  const contact = await getGlobalContact(lang);
   const t = T[lang];
   return (
     <main className="min-h-screen bg-white">
@@ -150,14 +152,14 @@ export default async function CustomerCarePage() {
         </h2>
         <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
           <a
-            href="tel:+16788253737"
+            href={contact.phoneTel}
             className="inline-block text-white font-bold px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
             style={{ background: "#2F5E9E" }}
           >
-            📞 (678) 825-3737
+            📞 {contact.phone}
           </a>
           <a
-            href="mailto:support@VietPointinsurance.com"
+            href={`mailto:${contact.email}`}
             className="inline-block border-2 border-gray-300 text-gray-700 font-bold px-8 py-3.5 rounded-full text-sm hover:border-gray-400 transition-colors"
           >
             {t.email_label}

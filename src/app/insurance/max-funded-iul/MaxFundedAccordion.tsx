@@ -2,6 +2,7 @@
 import { useState } from "react";
 
 interface Reason {
+  id?: string;
   num: string;
   title: string;
   description: string;
@@ -14,7 +15,7 @@ export default function MaxFundedAccordion({ reasons }: { reasons: Reason[] }) {
     <div className="space-y-3">
       {reasons.map((r, i) => (
         <div
-          key={r.num}
+          key={r.id ?? `${r.num}-${i}`}
           className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden"
         >
           <button

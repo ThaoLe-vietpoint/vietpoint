@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import IULQuoteForm from "./IULQuoteForm";
 import IULFaqAccordion from "./IULFaqAccordion";
 import { getLang } from "@/utils/getLang";
+import { getGlobalContact } from "@/utils/getGlobalContact";
 
 const diseases = [
   "Coronary artery disease",
@@ -178,6 +179,7 @@ export default async function IULPage() {
     { data: stepsData },
     { data: faqsData },
     { data: contentRows },
+    contact,
   ] = await Promise.all([
     supabase
       .from("iul_reasons")
@@ -198,6 +200,7 @@ export default async function IULPage() {
       .from("page_content")
       .select("section, field, value_en, value_vi")
       .eq("page", "insurance_iul"),
+    getGlobalContact(lang),
   ]);
 
   const g = (sec: string, fld: string, fallback: string) => {
@@ -212,6 +215,9 @@ export default async function IULPage() {
   const reasonsH1 = g("sections", "reasons_h1", t.reasons_h1);
   const diseasesH1 = g("sections", "diseases_h1", t.diseases_h1);
   const diseasesSub = g("sections", "diseases_sub", t.diseases_sub);
+  const quoteH1 = g("quote", "h1", t.quote_h1);
+  const quoteH2 = g("quote", "h2", t.quote_h2);
+  const quoteOr = g("quote", "or", t.quote_or);
   const stepsH1 = g("sections", "steps_h1", t.steps_h1);
   const faqH1 = g("sections", "faq_h1", t.faq_h1);
   const ctaH1 = g("cta", "h1", t.cta_h1);
@@ -325,18 +331,18 @@ export default async function IULPage() {
         style={{ background: "#1a1a2e" }}
       >
         <div className="max-w-2xl mx-auto text-white text-center">
-          <h2 className="text-2xl font-extrabold mb-2">{t.quote_h1}</h2>
+          <h2 className="text-2xl font-extrabold mb-2">{quoteH1}</h2>
           <h3 className="text-3xl font-extrabold text-yellow-400 mb-8">
-            {t.quote_h2}
+            {quoteH2}
           </h3>
           <IULQuoteForm lang={lang} />
           <div className="mt-6">
-            <p className="text-white/60 text-sm mb-2">{t.quote_or}</p>
+            <p className="text-white/60 text-sm mb-2">{quoteOr}</p>
             <a
-              href="tel:+16787223447"
+              href={contact.phoneTel}
               className="text-2xl font-bold text-yellow-400 hover:text-yellow-300"
             >
-              (678) 722 - 3447
+              {contact.phone}
             </a>
           </div>
         </div>
@@ -364,7 +370,9 @@ export default async function IULPage() {
                     className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xs tracking-wide"
                     style={{ background: "#2F5E9E" }}
                   >
-                    {s.step_label}
+                    {lang === "vi"
+                      ? String(s.step_label ?? "").replace(/^STEP\b/i, "BƯỚC")
+                      : s.step_label}
                   </div>
                   <h4 className="font-bold text-gray-900 mb-2">
                     {txt(s, "title")}
@@ -398,11 +406,11 @@ export default async function IULPage() {
       >
         <h2 className="text-2xl font-bold text-white mb-4">{ctaH1}</h2>
         <a
-          href="tel:+16787223447"
+          href={contact.phoneTel}
           className="inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
           style={{ color: "#2F5E9E" }}
         >
-          {t.cta_btn}
+          📞 HOTLINE {contact.phone}
         </a>
       </section>
     </main>

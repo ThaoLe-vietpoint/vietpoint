@@ -3,7 +3,9 @@ import { useState } from "react";
 
 type FooterProps = {
   phone?: string;
+  phoneTel?: string;
   fax?: string;
+  email?: string;
   address?: string;
   hoursWeekdays?: string;
   hoursWeekend?: string;
@@ -78,8 +80,10 @@ const T = {
 };
 
 export default function Footer({
-  phone = "(678) 825 3737",
-  fax = "(678) 825 3737",
+  phone = "(678) 825-3737",
+  phoneTel,
+  fax = "(678) 825-3737",
+  email: contactEmail = "servicing@vietpointservices.com",
   address = "1424 N Brown Rd #450,\nLawrenceville, GA 30043",
   hoursWeekdays = "Sunday – Thursday: 9 AM – 7 PM",
   hoursWeekend = "Friday & Saturday: Closed",
@@ -92,6 +96,7 @@ export default function Footer({
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const t = T[lang];
+  const telHref = phoneTel || `tel:+1${phone.replace(/\D/g, "").slice(-10)}`;
 
   return (
     <>
@@ -207,7 +212,7 @@ export default function Footer({
                     <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z" />
                   </svg>
                   <div>
-                    <a href={`tel:${phone}`} className="text-slate-300 text-sm hover:text-white transition-colors font-medium">{phone}</a>
+                    <a href={telHref} className="text-slate-300 text-sm hover:text-white transition-colors font-medium">{phone}</a>
                     {fax !== phone && <p className="text-slate-500 text-xs mt-0.5">{t.fax}: {fax}</p>}
                   </div>
                 </li>
@@ -265,7 +270,7 @@ export default function Footer({
         {[
           {
             label: "Hotline",
-            href: `tel:+1${phone.replace(/\D/g, "")}`,
+            href: telHref,
             bg: "linear-gradient(145deg, #f44336, #c62828)",
             icon: (
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
@@ -285,7 +290,7 @@ export default function Footer({
           },
           {
             label: "Email",
-            href: "mailto:info@vietpointinsurance.com",
+            href: `mailto:${contactEmail}`,
             bg: "#ffffff",
             icon: (
               <svg width="22" height="17" viewBox="0 0 52 39" fill="none">

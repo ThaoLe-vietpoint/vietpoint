@@ -147,8 +147,27 @@ const contacts = [
   },
 ];
 
-export default function ContactFloat() {
+export default function ContactFloat({
+  phoneTel = "tel:+16788253737",
+  email = "servicing@vietpointservices.com",
+  address = "1424 N Brown Rd #450, Lawrenceville, GA 30043",
+}: {
+  phoneTel?: string;
+  email?: string;
+  address?: string;
+} = {}) {
   const [open, setOpen] = useState(false);
+
+  const items = contacts.map((c) => {
+    if (c.label === "Hotline") return { ...c, href: phoneTel };
+    if (c.label === "Email") return { ...c, href: `mailto:${email}` };
+    if (c.label === "Google Maps")
+      return {
+        ...c,
+        href: `https://maps.google.com/?q=${encodeURIComponent(address.replace(/\s*\n\s*/g, ", "))}`,
+      };
+    return c;
+  });
 
   return (
     <>
@@ -165,7 +184,7 @@ export default function ContactFloat() {
               animation: "fadeSlideUp 0.2s ease both",
             }}
           >
-            {contacts.map((c) => (
+            {items.map((c) => (
               <a
                 key={c.label}
                 href={c.href}
@@ -228,7 +247,7 @@ export default function ContactFloat() {
         {/* Contact options — slide up when open */}
         {open && (
           <div className="flex flex-col items-start gap-2 max-h-[70vh] overflow-y-auto pr-1">
-            {contacts.map((c, i) => (
+            {items.map((c, i) => (
               <a
                 key={c.label}
                 href={c.href}

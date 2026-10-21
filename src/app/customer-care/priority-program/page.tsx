@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { createClient } from "@/utils/supabase/server";
 import { getLang } from "@/utils/getLang";
+import { getGlobalContact } from "@/utils/getGlobalContact";
 
 export const metadata: Metadata = {
   title: "Priority Program - VietPoint Insurance & Tax",
@@ -38,11 +39,14 @@ export default async function PriorityProgramPage() {
   const txt = (row: any, field: string): string =>
     row[`${field}_${lang}`] || row[`${field}_en`] || row[field] || "";
   const supabase = await createClient();
-  const { data: perks } = await supabase
-    .from("priority_perks")
-    .select("*")
-    .eq("active", true)
-    .order("sort_order", { ascending: true });
+  const [{ data: perks }, contact] = await Promise.all([
+    supabase
+      .from("priority_perks")
+      .select("*")
+      .eq("active", true)
+      .order("sort_order", { ascending: true }),
+    getGlobalContact(lang),
+  ]);
 
   return (
     <main className="min-h-screen bg-white">
@@ -95,11 +99,11 @@ export default async function PriorityProgramPage() {
           <p className="text-gray-500 mb-8">{t.qualify_desc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:+16788253737"
+              href={contact.phoneTel}
               className="inline-block text-white font-bold px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
               style={{ background: "#2F5E9E" }}
             >
-              📞 (678) 825-3737
+              📞 {contact.phone}
             </a>
             <Link
               href="/contact"

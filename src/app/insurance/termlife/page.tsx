@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { createClient } from "@/utils/supabase/server";
 import { getLang } from "@/utils/getLang";
+import { getGlobalContact } from "@/utils/getGlobalContact";
 
 export const metadata: Metadata = {
   title: "Term Life Insurance - VietPoint Insurance & Tax",
@@ -109,7 +110,7 @@ export default async function TermLifePage() {
   const txt = (row: any, field: string): string =>
     row[`${field}_${lang}`] || row[`${field}_en`] || row[field] || "";
   const supabase = await createClient();
-  const [{ data: dbBenefits }, { data: contentRows }] = await Promise.all([
+  const [{ data: dbBenefits }, { data: contentRows }, contact] = await Promise.all([
     supabase
       .from("termlife_benefits")
       .select("*")
@@ -119,6 +120,7 @@ export default async function TermLifePage() {
       .from("page_content")
       .select("section, field, value_en, value_vi")
       .eq("page", "insurance_termlife"),
+    getGlobalContact(lang),
   ]);
 
   const g = (sec: string, fld: string, fallback: string) => {
@@ -204,7 +206,7 @@ export default async function TermLifePage() {
               <thead>
                 <tr>
                   <th className="text-left p-4 bg-gray-50 font-semibold text-gray-700 rounded-tl-lg border border-gray-200">
-                    Feature
+                    {lang === "vi" ? "Tính năng" : "Feature"}
                   </th>
                   <th
                     className="p-4 bg-orange-50 font-semibold border border-gray-200"
@@ -252,11 +254,11 @@ export default async function TermLifePage() {
         <p className="text-white/80 mb-8 max-w-xl mx-auto">{ctaSub}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="tel:+16788253737"
+            href={contact.phoneTel}
             className="inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:bg-orange-50 transition-colors"
             style={{ color: "#ea580c" }}
           >
-            📞 (678) 825-3737
+            📞 {contact.phone}
           </a>
           <Link
             href="/contact"

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { createClient } from "@/utils/supabase/server";
 import { getLang } from "@/utils/getLang";
+import { getGlobalContact } from "@/utils/getGlobalContact";
 
 export const metadata: Metadata = {
   title: "My Story, My Family - VietPoint Insurance & Tax",
@@ -36,11 +37,14 @@ export default async function StoriesPage() {
   const txt = (row: any, field: string): string =>
     row[`${field}_${lang}`] || row[`${field}_en`] || row[field] || "";
   const supabase = await createClient();
-  const { data: stories } = await supabase
-    .from("customer_stories")
-    .select("*")
-    .eq("active", true)
-    .order("created_at", { ascending: false });
+  const [{ data: stories }, contact] = await Promise.all([
+    supabase
+      .from("customer_stories")
+      .select("*")
+      .eq("active", true)
+      .order("created_at", { ascending: false }),
+    getGlobalContact(lang),
+  ]);
 
   return (
     <main className="min-h-screen bg-white">
@@ -116,11 +120,11 @@ export default async function StoriesPage() {
         <p className="text-white/80 mb-8">{t.cta_desc}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="tel:+16788253737"
+            href={contact.phoneTel}
             className="inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:bg-gray-50 transition-colors"
             style={{ color: "#2F5E9E" }}
           >
-            📞 (678) 825-3737
+            📞 {contact.phone}
           </a>
           <Link
             href="/contact"

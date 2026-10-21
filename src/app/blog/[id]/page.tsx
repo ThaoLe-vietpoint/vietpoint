@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { getLang } from "@/utils/getLang";
+import { getGlobalContact } from "@/utils/getGlobalContact";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -388,6 +389,7 @@ export default async function BlogPostPage({
     lang === "vi" ? "vi-VN" : "en-US",
     { year: "numeric", month: "long", day: "numeric" },
   );
+  const contact = await getGlobalContact(lang);
 
   return (
     <main className="min-h-screen bg-white pt-16">
@@ -490,11 +492,11 @@ export default async function BlogPostPage({
               : "Talk to a VietPoint Insurance & Tax expert — free consultation."}
           </h3>
           <a
-            href="tel:+16788253737"
+            href={contact.phoneTel}
             className="inline-block bg-white font-bold px-7 py-2.5 rounded-full text-sm hover:bg-gray-100 transition-colors"
             style={{ color: "#2F5E9E" }}
           >
-            📞 (678) 825-3737
+            📞 {contact.phone}
           </a>
         </div>
 

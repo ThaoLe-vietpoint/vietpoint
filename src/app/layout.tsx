@@ -5,8 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactFloat from "@/components/ContactFloat";
 import ChatWidget from "@/components/ChatWidget";
-import { createClient } from "@/utils/supabase/server";
 import { getLang } from "@/utils/getLang";
+import { getGlobalContact } from "@/utils/getGlobalContact";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,40 +21,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClient();
   const lang = await getLang();
-  const { data: rows } = await supabase
-    .from("page_content")
-    .select("section, field, value_en, value_vi")
-    .eq("page", "global");
-
-  const g = (section: string, field: string, fallback: string) => {
-    const row = rows?.find((r) => r.section === section && r.field === field);
-    return (
-      (lang === "vi" ? row?.value_vi || row?.value_en : row?.value_en) ??
-      fallback
-    );
-  };
-
-  const footerProps = {
-    phone: g("contact", "phone", "(678) 825 3737"),
-    fax: g("contact", "fax", "(678) 825 3737"),
-    address: g(
-      "contact",
-      "address",
-      "1424 N Brown Rd #450,\nLawrenceville, GA 30043",
-    ),
-    hoursWeekdays: g(
-      "hours",
-      "weekdays",
-      "Sunday \u2013 Thursday: 9 AM \u2013 7 PM",
-    ),
-    hoursWeekend: g("hours", "weekend", "Friday & Saturday: Closed"),
-    facebook: g("social", "facebook", "#"),
-    instagram: g("social", "instagram", "#"),
-    twitter: g("social", "twitter", "#"),
-    youtube: g("social", "youtube", "#"),
-  };
+  const contact = await getGlobalContact(lang);
 
   return (
     <html lang={lang}>
@@ -64,9 +32,13 @@ export default async function RootLayout({
             Components outside this div (ChatWidget, ContactFloat) are still translated by GT. */}
         <div className="pb-24 sm:pb-0" translate="no">
           {children}
-          <Footer {...footerProps} lang={lang} />
+          <Footer {...contact} lang={lang} />
         </div>
-        <ContactFloat />
+        <ContactFloat
+          phoneTel={contact.phoneTel}
+          email={contact.email}
+          address={contact.address}
+        />
         <ChatWidget lang={lang} />
       </body>
     </html>
