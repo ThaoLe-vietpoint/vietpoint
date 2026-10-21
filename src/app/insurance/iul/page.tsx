@@ -173,28 +173,52 @@ export default async function IULPage() {
   const txt = (row: any, field: string): string =>
     row[`${field}_${lang}`] || row[`${field}_en`] || row[field] || "";
   const supabase = await createClient();
-  const [{ data: reasonsData }, { data: stepsData }, { data: faqsData }] =
-    await Promise.all([
-      supabase
-        .from("iul_reasons")
-        .select("*")
-        .eq("active", true)
-        .order("sort_order"),
-      supabase
-        .from("iul_steps")
-        .select("*")
-        .eq("active", true)
-        .order("sort_order"),
-      supabase
-        .from("iul_faqs")
-        .select("*")
-        .eq("active", true)
-        .order("sort_order"),
-    ]);
-  const reasons =
-    reasonsData && reasonsData.length > 0 ? reasonsData : fallbackReasons;
-  const steps = stepsData && stepsData.length > 0 ? stepsData : fallbackSteps;
-  const faqs = faqsData && faqsData.length > 0 ? faqsData : fallbackFaqs;
+  const [
+    { data: reasonsData },
+    { data: stepsData },
+    { data: faqsData },
+    { data: contentRows },
+  ] = await Promise.all([
+    supabase
+      .from("iul_reasons")
+      .select("*")
+      .eq("active", true)
+      .order("sort_order"),
+    supabase
+      .from("iul_steps")
+      .select("*")
+      .eq("active", true)
+      .order("sort_order"),
+    supabase
+      .from("iul_faqs")
+      .select("*")
+      .eq("active", true)
+      .order("sort_order"),
+    supabase
+      .from("page_content")
+      .select("section, field, value_en, value_vi")
+      .eq("page", "insurance_iul"),
+  ]);
+
+  const g = (sec: string, fld: string, fallback: string) => {
+    const r = contentRows?.find((x) => x.section === sec && x.field === fld);
+    return (lang === "vi" ? r?.value_vi || r?.value_en : r?.value_en) || fallback;
+  };
+
+  const heroSub = g("hero", "sub", t.hero_sub);
+  const heroH1 = g("hero", "h1", t.hero_h1);
+  const heroH2 = g("hero", "h2", t.hero_h2);
+  const heroCta = g("hero", "cta", t.hero_cta);
+  const reasonsH1 = g("sections", "reasons_h1", t.reasons_h1);
+  const diseasesH1 = g("sections", "diseases_h1", t.diseases_h1);
+  const diseasesSub = g("sections", "diseases_sub", t.diseases_sub);
+  const stepsH1 = g("sections", "steps_h1", t.steps_h1);
+  const faqH1 = g("sections", "faq_h1", t.faq_h1);
+  const ctaH1 = g("cta", "h1", t.cta_h1);
+
+  const reasons = reasonsData ?? [];
+  const steps = stepsData ?? [];
+  const faqs = faqsData ?? [];
   const processedFaqs = faqs.map((f) => ({
     question: txt(f, "question"),
     answer: txt(f, "answer"),
@@ -215,63 +239,65 @@ export default async function IULPage() {
             className="text-sm font-bold tracking-widest uppercase mb-2"
             style={{ color: "#e94560" }}
           >
-            {t.hero_sub}
+            {heroSub}
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
-            {t.hero_h1}
+            {heroH1}
           </h1>
           <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-yellow-400">
-            {t.hero_h2}
+            {heroH2}
           </h2>
           <a
             href="/contact?product=iul"
             className="inline-block font-bold px-8 py-3.5 rounded-full text-white text-sm hover:opacity-90 transition-opacity"
             style={{ background: "#2F5E9E" }}
           >
-            {t.hero_cta}
+            {heroCta}
           </a>
         </div>
       </section>
 
       {/* 6 Reasons */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-center text-gray-900 mb-2">
-            {t.reasons_h1}
-          </h2>
-          <h3
-            className="text-2xl font-extrabold text-center mb-10"
-            style={{ color: "#2F5E9E" }}
-          >
-            IUL SECRETS
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reasons.map((r) => (
-              <div
-                key={r.title}
-                className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
-              >
-                <div className="text-3xl mb-3">{r.icon}</div>
-                <h4 className="font-bold text-gray-900 mb-2">
-                  {txt(r, "title")}
-                </h4>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {txt(r, "description")}
-                </p>
-              </div>
-            ))}
+      {reasons.length > 0 && (
+        <section className="py-16 px-6 bg-gray-50">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-center text-gray-900 mb-2">
+              {reasonsH1}
+            </h2>
+            <h3
+              className="text-2xl font-extrabold text-center mb-10"
+              style={{ color: "#2F5E9E" }}
+            >
+              IUL SECRETS
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {reasons.map((r) => (
+                <div
+                  key={r.id ?? r.title}
+                  className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+                >
+                  <div className="text-3xl mb-3">{r.icon}</div>
+                  <h4 className="font-bold text-gray-900 mb-2">
+                    {txt(r, "title")}
+                  </h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {txt(r, "description")}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Diseases covered */}
       <section className="py-16 px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-xl font-extrabold text-center text-gray-900 mb-2 uppercase tracking-wide">
-            {t.diseases_h1}
+            {diseasesH1}
           </h2>
           <p className="text-center text-gray-500 mb-10 text-sm">
-            {t.diseases_sub}
+            {diseasesSub}
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {diseases.map((d) => (
@@ -316,57 +342,61 @@ export default async function IULPage() {
         </div>
       </section>
       {/* 3 Steps */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-extrabold text-center text-gray-900 mb-2">
-            {t.steps_h1}
-          </h2>
-          <h3
-            className="text-2xl font-extrabold text-center mb-10"
-            style={{ color: "#2F5E9E" }}
-          >
-            IUL SECRETS
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            {steps.map((s) => (
-              <div
-                key={s.title}
-                className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center"
-              >
+      {steps.length > 0 && (
+        <section className="py-16 px-6 bg-gray-50">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-extrabold text-center text-gray-900 mb-2">
+              {stepsH1}
+            </h2>
+            <h3
+              className="text-2xl font-extrabold text-center mb-10"
+              style={{ color: "#2F5E9E" }}
+            >
+              IUL SECRETS
+            </h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              {steps.map((s) => (
                 <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xs tracking-wide"
-                  style={{ background: "#2F5E9E" }}
+                  key={s.id ?? s.title}
+                  className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center"
                 >
-                  {s.step_label}
+                  <div
+                    className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xs tracking-wide"
+                    style={{ background: "#2F5E9E" }}
+                  >
+                    {s.step_label}
+                  </div>
+                  <h4 className="font-bold text-gray-900 mb-2">
+                    {txt(s, "title")}
+                  </h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {txt(s, "description")}
+                  </p>
                 </div>
-                <h4 className="font-bold text-gray-900 mb-2">
-                  {txt(s, "title")}
-                </h4>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {txt(s, "description")}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* FAQ */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">
-            {t.faq_h1}
-          </h2>
-          <IULFaqAccordion faqs={processedFaqs} />
-        </div>
-      </section>
+      {processedFaqs.length > 0 && (
+        <section className="py-16 px-6">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">
+              {faqH1}
+            </h2>
+            <IULFaqAccordion faqs={processedFaqs} />
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section
         className="py-12 px-6 text-center"
         style={{ background: "#2F5E9E" }}
       >
-        <h2 className="text-2xl font-bold text-white mb-4">{t.cta_h1}</h2>
+        <h2 className="text-2xl font-bold text-white mb-4">{ctaH1}</h2>
         <a
           href="tel:+16787223447"
           className="inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"

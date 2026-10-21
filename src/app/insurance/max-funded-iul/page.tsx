@@ -197,13 +197,33 @@ export default async function MaxFundedIULPage() {
   const txt = (row: any, field: string): string =>
     row[`${field}_${lang}`] || row[`${field}_en`] || row[field] || "";
   const supabase = await createClient();
-  const { data: dbReasons } = await supabase
-    .from("max_iul_reasons")
-    .select("*")
-    .eq("active", true)
-    .order("sort_order");
-  const reasons =
-    dbReasons && dbReasons.length > 0 ? dbReasons : fallbackReasons;
+  const [{ data: dbReasons }, { data: contentRows }] = await Promise.all([
+    supabase
+      .from("max_iul_reasons")
+      .select("*")
+      .eq("active", true)
+      .order("sort_order"),
+    supabase
+      .from("page_content")
+      .select("section, field, value_en, value_vi")
+      .eq("page", "insurance_max_iul"),
+  ]);
+
+  const g = (sec: string, fld: string, fallback: string) => {
+    const r = contentRows?.find((x) => x.section === sec && x.field === fld);
+    return (lang === "vi" ? r?.value_vi || r?.value_en : r?.value_en) || fallback;
+  };
+
+  const heroH = g("hero", "h", t.hero_h);
+  const heroDesc = g("hero", "desc", t.hero_desc);
+  const heroAmount = g("hero", "amount", t.hero_amount);
+  const heroDesc2 = g("hero", "desc2", t.hero_desc2);
+  const heroCta = g("hero", "cta", t.hero_cta);
+  const reasonsH1 = g("sections", "reasons_h1", t.reasons_h1);
+  const ctaH = g("cta", "h", t.cta_h);
+  const ctaSub = g("cta", "sub", t.cta_sub);
+
+  const reasons = dbReasons ?? [];
   const processedReasons = reasons.map((r) => ({
     ...r,
     title: txt(r, "title"),
@@ -221,35 +241,37 @@ export default async function MaxFundedIULPage() {
       >
         <div className="max-w-4xl mx-auto px-6 py-20 text-white text-center">
           <h1 className="text-3xl md:text-4xl font-extrabold mb-4">
-            {t.hero_h}
+            {heroH}
           </h1>
           <p className="text-xl text-white/85 mb-6 max-w-3xl mx-auto leading-relaxed">
-            {t.hero_desc}{" "}
-            <strong className="text-yellow-400">{t.hero_amount}</strong>
-            {t.hero_desc2}
+            {heroDesc}{" "}
+            <strong className="text-yellow-400">{heroAmount}</strong>
+            {heroDesc2}
           </p>
           <a
             href="/contact?product=max-iul"
             className="inline-block font-bold px-8 py-3.5 rounded-full text-white text-sm hover:opacity-90 transition-opacity"
             style={{ background: "#2F5E9E" }}
           >
-            {t.hero_cta}
+            {heroCta}
           </a>
         </div>
       </section>
 
       {/* 9 Reasons */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-extrabold text-center text-gray-900 mb-2">
-            {t.reasons_h1}
-          </h2>
-          <h3 className="text-2xl font-extrabold text-center mb-10 text-blue-800">
-            MAX FUNDED IUL
-          </h3>
-          <MaxFundedAccordion reasons={processedReasons} />
-        </div>
-      </section>
+      {processedReasons.length > 0 && (
+        <section className="py-16 px-6 bg-gray-50">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-extrabold text-center text-gray-900 mb-2">
+              {reasonsH1}
+            </h2>
+            <h3 className="text-2xl font-extrabold text-center mb-10 text-blue-800">
+              MAX FUNDED IUL
+            </h3>
+            <MaxFundedAccordion reasons={processedReasons} />
+          </div>
+        </section>
+      )}
 
       {/* Index Lock Feature */}
       <section className="py-16 px-6">
@@ -348,8 +370,8 @@ export default async function MaxFundedIULPage() {
           background: "linear-gradient(135deg, #1e3a5f 0%, #0f2744 100%)",
         }}
       >
-        <h2 className="text-2xl font-bold text-white mb-2">{t.cta_h}</h2>
-        <p className="text-white/80 mb-8">{t.cta_sub}</p>
+        <h2 className="text-2xl font-bold text-white mb-2">{ctaH}</h2>
+        <p className="text-white/80 mb-8">{ctaSub}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="tel:+16787223447"

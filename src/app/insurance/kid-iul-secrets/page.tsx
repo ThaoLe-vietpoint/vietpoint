@@ -124,13 +124,37 @@ export default async function KidIULPage() {
   const txt = (row: any, field: string): string =>
     row[`${field}_${lang}`] || row[`${field}_en`] || row[field] || "";
   const supabase = await createClient();
-  const { data: dbBenefits } = await supabase
-    .from("kid_iul_benefits")
-    .select("*")
-    .eq("active", true)
-    .order("sort_order");
-  const benefits =
-    dbBenefits && dbBenefits.length > 0 ? dbBenefits : fallbackBenefits;
+  const [{ data: dbBenefits }, { data: contentRows }] = await Promise.all([
+    supabase
+      .from("kid_iul_benefits")
+      .select("*")
+      .eq("active", true)
+      .order("sort_order"),
+    supabase
+      .from("page_content")
+      .select("section, field, value_en, value_vi")
+      .eq("page", "insurance_kid_iul"),
+  ]);
+
+  const g = (sec: string, fld: string, fallback: string) => {
+    const r = contentRows?.find((x) => x.section === sec && x.field === fld);
+    return (lang === "vi" ? r?.value_vi || r?.value_en : r?.value_en) || fallback;
+  };
+
+  const heroTitle = g(
+    "hero",
+    "title",
+    lang === "vi" ? "IUL Cho Trẻ Em (EBTP)" : "IUL For Kids (EBTP)",
+  );
+  const heroDesc = g("hero", "desc", t.hero_desc);
+  const heroCta = g("hero", "cta", t.hero_cta);
+  const howH = g("how", "h", t.how_h);
+  const howDesc = g("how", "desc", t.how_desc);
+  const benefitsH = g("sections", "benefits_h", t.benefits_h);
+  const ctaH = g("cta", "h", t.cta_h);
+  const ctaSub = g("cta", "sub", t.cta_sub);
+
+  const benefits = dbBenefits ?? [];
 
   return (
     <main className="min-h-screen bg-white">
@@ -146,17 +170,17 @@ export default async function KidIULPage() {
             {t.hero_by}
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-3">
-            IUL For Kids (EBTP)
+            {heroTitle}
           </h1>
           <p className="text-xl opacity-90 max-w-2xl mx-auto leading-relaxed mb-6">
-            {t.hero_desc}
+            {heroDesc}
           </p>
           <a
             href="/contact?product=kid-iul"
             className="inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:bg-green-50 transition-colors"
             style={{ color: "#16a34a" }}
           >
-            {t.hero_cta}
+            {heroCta}
           </a>
         </div>
       </section>
@@ -164,8 +188,8 @@ export default async function KidIULPage() {
       {/* How it works */}
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">{t.how_h}</h2>
-          <p className="text-gray-600 mb-10 max-w-2xl mx-auto">{t.how_desc}</p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">{howH}</h2>
+          <p className="text-gray-600 mb-10 max-w-2xl mx-auto">{howDesc}</p>
           <div className="grid md:grid-cols-3 gap-6 text-left">
             {t.steps.map((s) => (
               <div
@@ -186,26 +210,28 @@ export default async function KidIULPage() {
       </section>
 
       {/* Benefits */}
-      <section className="py-16 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">
-            {t.benefits_h}
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((b) => (
-              <div key={b.title} className="bg-gray-50 rounded-2xl p-6">
-                <div className="text-3xl mb-3">{b.icon}</div>
-                <h4 className="font-bold text-gray-900 mb-2">
-                  {txt(b, "title")}
-                </h4>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {txt(b, "description")}
-                </p>
-              </div>
-            ))}
+      {benefits.length > 0 && (
+        <section className="py-16 px-6">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">
+              {benefitsH}
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {benefits.map((b) => (
+                <div key={b.id ?? b.title} className="bg-gray-50 rounded-2xl p-6">
+                  <div className="text-3xl mb-3">{b.icon}</div>
+                  <h4 className="font-bold text-gray-900 mb-2">
+                    {txt(b, "title")}
+                  </h4>
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {txt(b, "description")}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Testimonial */}
       <section className="py-12 px-6 bg-green-50">
@@ -226,8 +252,8 @@ export default async function KidIULPage() {
           background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
         }}
       >
-        <h2 className="text-2xl font-bold text-white mb-4">{t.cta_h}</h2>
-        <p className="text-white/80 mb-8">{t.cta_sub}</p>
+        <h2 className="text-2xl font-bold text-white mb-4">{ctaH}</h2>
+        <p className="text-white/80 mb-8">{ctaSub}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="tel:+16788253737"

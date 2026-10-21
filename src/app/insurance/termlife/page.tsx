@@ -109,13 +109,36 @@ export default async function TermLifePage() {
   const txt = (row: any, field: string): string =>
     row[`${field}_${lang}`] || row[`${field}_en`] || row[field] || "";
   const supabase = await createClient();
-  const { data: dbBenefits } = await supabase
-    .from("termlife_benefits")
-    .select("*")
-    .eq("active", true)
-    .order("sort_order");
-  const benefits =
-    dbBenefits && dbBenefits.length > 0 ? dbBenefits : fallbackBenefits;
+  const [{ data: dbBenefits }, { data: contentRows }] = await Promise.all([
+    supabase
+      .from("termlife_benefits")
+      .select("*")
+      .eq("active", true)
+      .order("sort_order"),
+    supabase
+      .from("page_content")
+      .select("section, field, value_en, value_vi")
+      .eq("page", "insurance_termlife"),
+  ]);
+
+  const g = (sec: string, fld: string, fallback: string) => {
+    const r = contentRows?.find((x) => x.section === sec && x.field === fld);
+    return (lang === "vi" ? r?.value_vi || r?.value_en : r?.value_en) || fallback;
+  };
+
+  const heroTitle = g(
+    "hero",
+    "title",
+    lang === "vi" ? "BẢO HIỂM KỲ HẠN (TERM LIFE)" : "TERM LIFE INSURANCE",
+  );
+  const heroDesc = g("hero", "desc", t.hero_desc);
+  const heroCta = g("hero", "cta", t.hero_cta);
+  const benefitsH = g("sections", "benefits_h", t.benefits_h);
+  const compareH = g("sections", "compare_h", t.compare_h);
+  const ctaH = g("cta", "h", t.cta_h);
+  const ctaSub = g("cta", "sub", t.cta_sub);
+
+  const benefits = dbBenefits ?? [];
   return (
     <main className="min-h-screen bg-white">
       {/* Hero */}
@@ -130,49 +153,51 @@ export default async function TermLifePage() {
             {t.hero_by}
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
-            TERM LIFE INSURANCE
+            {heroTitle}
           </h1>
-          <p className="text-xl opacity-90 max-w-2xl mx-auto">{t.hero_desc}</p>
+          <p className="text-xl opacity-90 max-w-2xl mx-auto">{heroDesc}</p>
           <a
             href="/contact?product=termlife"
             className="mt-8 inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:bg-orange-50 transition-colors"
             style={{ color: "#ea580c" }}
           >
-            {t.hero_cta}
+            {heroCta}
           </a>
         </div>
       </section>
 
       {/* Benefits */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">
-            {t.benefits_h}
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((b) => (
-              <div
-                key={b.title}
-                className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
-              >
-                <div className="text-3xl mb-3">{b.icon}</div>
-                <h4 className="font-bold text-gray-900 mb-2">
-                  {txt(b, "title")}
-                </h4>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {txt(b, "description")}
-                </p>
-              </div>
-            ))}
+      {benefits.length > 0 && (
+        <section className="py-16 px-6 bg-gray-50">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">
+              {benefitsH}
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {benefits.map((b) => (
+                <div
+                  key={b.id ?? b.title}
+                  className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+                >
+                  <div className="text-3xl mb-3">{b.icon}</div>
+                  <h4 className="font-bold text-gray-900 mb-2">
+                    {txt(b, "title")}
+                  </h4>
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {txt(b, "description")}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Comparison */}
       <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">
-            {t.compare_h}
+            {compareH}
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
@@ -223,8 +248,8 @@ export default async function TermLifePage() {
           background: "linear-gradient(135deg, #ea580c 0%, #c2410c 100%)",
         }}
       >
-        <h2 className="text-2xl font-bold text-white mb-4">{t.cta_h}</h2>
-        <p className="text-white/80 mb-8 max-w-xl mx-auto">{t.cta_sub}</p>
+        <h2 className="text-2xl font-bold text-white mb-4">{ctaH}</h2>
+        <p className="text-white/80 mb-8 max-w-xl mx-auto">{ctaSub}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="tel:+16788253737"
