@@ -25,6 +25,27 @@ const diseases = [
   "Coronary artery bypass surgery",
 ];
 
+const diseasesVi: Record<string, string> = {
+  "Coronary artery disease": "Bệnh động mạch vành",
+  "Severe burns": "Bỏng nặng",
+  "Stroke": "Đột quỵ",
+  "Traumatic brain injury": "Chấn thương sọ não",
+  "Cancer": "Ung thư",
+  "Disability accident": "Tai nạn gây tàn tật",
+  "Organ transplantation": "Ghép tạng",
+  "Kidney failure": "Suy thận",
+  "Blindness": "Mù lòa",
+  "Sudden cardiac arrest": "Ngừng tim đột ngột",
+  "Amyotrophic lateral sclerosis": "Xơ cứng teo cơ một bên (ALS)",
+  "Aplastic anemia": "Thiếu máu bất sản",
+  "Paralysis": "Liệt",
+  "Fibrosis": "Xơ hóa",
+  "Coma": "Hôn mê",
+  "Heart transplantation": "Ghép tim",
+  "Motor neuron disease": "Bệnh thần kinh vận động",
+  "Coronary artery bypass surgery": "Phẫu thuật bắc cầu động mạch vành",
+};
+
 const fallbackReasons = [
   {
     icon: "❤️‍🩹",
@@ -262,7 +283,9 @@ export default async function IULPage() {
                   className="w-2 h-2 rounded-full shrink-0"
                   style={{ background: "#2F5E9E" }}
                 />
-                <span className="text-sm text-gray-700">{d}</span>
+                <span className="text-sm text-gray-700">
+                  {lang === "vi" ? (diseasesVi[d] ?? d) : d}
+                </span>
               </div>
             ))}
           </div>
