@@ -3,17 +3,36 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
-const DEFAULT_PRODUCTS = [
+type ProductItem = {
+  id?: number;
+  title: string;
+  title_vi?: string;
+  tag: string;
+  tag_vi?: string;
+  tagColor: string;
+  quoteParam?: string;
+  image: string;
+  description: string;
+  description_vi?: string;
+  features: string[];
+  features_vi?: string[];
+};
+
+const DEFAULT_PRODUCTS: ProductItem[] = [
   {
     id: 1,
     title: "IUL For Kids (EBTP)",
+    title_vi: "IUL Cho Trẻ Em (EBTP)",
     tag: "Children Protection",
+    tag_vi: "Bảo Vệ Trẻ Em",
     tagColor: "#4CAF50",
     quoteParam: "kid-iul",
     image:
       "https://thinksmartinsurance.com/wp-content/uploads/2025/04/EBTP-1024x683.webp",
     description:
       "Protect your children and build a financial fund for them to enter university, giving them wings to fly far and higher at the age of 18.",
+    description_vi:
+      "Bảo vệ con bạn và xây dựng quỹ tài chính để con bước vào đại học, chắp cánh cho con bay cao và xa hơn ở tuổi 18.",
     features: [
       "Education fund",
       "Life protection",
@@ -24,13 +43,17 @@ const DEFAULT_PRODUCTS = [
   {
     id: 2,
     title: "Max Funded IUL",
+    title_vi: "Max Funded IUL",
     tag: "Retirement Planning",
+    tag_vi: "Kế Hoạch Hưu Trí",
     tagColor: "#2196F3",
     quoteParam: "max-iul",
     image:
       "https://thinksmartinsurance.com/wp-content/uploads/2025/04/Maxfund-1024x683.webp",
     description:
       "Full retirement thanks to the ability to generate 8–15% profit per year, absolute safety thanks to the NO LOSS policy. Protect you and your family in case of illness, disability and death.",
+    description_vi:
+      "Hưu trí trọn vẹn nhờ khả năng sinh lời 8–15%/năm, an toàn tuyệt đối với chính sách KHÔNG MẤT VỐN. Bảo vệ bạn và gia đình trước bệnh tật, thương tật và tử vong.",
     features: [
       "8–15% profit/year",
       "NO LOSS policy",
@@ -41,13 +64,17 @@ const DEFAULT_PRODUCTS = [
   {
     id: 3,
     title: "IUL Secrets",
+    title_vi: "IUL Secrets",
     tag: "Premium IUL",
+    tag_vi: "Bảo Hiểm IUL Cao Cấp",
     tagColor: "#2F5E9E",
     quoteParam: "iul",
     image:
       "https://thinksmartinsurance.com/wp-content/uploads/2025/04/IUL-1024x683.webp",
     description:
       "Compensation for more than 16 types of diseases and disabilities. Compensation upon death. Accumulate TAX-FREE retirement funds with high interest rates of 6–12%/year and flexible contract terms.",
+    description_vi:
+      "Đền bù hơn 16 loại bệnh hiểm nghèo và thương tật. Bảo vệ sinh mạng. Tích lũy quỹ hưu trí MIỄN THUẾ với lãi suất cao 6–12%/năm và thời hạn linh hoạt.",
     features: [
       "16+ disease types",
       "TAX-FREE retirement",
@@ -58,13 +85,17 @@ const DEFAULT_PRODUCTS = [
   {
     id: 4,
     title: "Term Life",
+    title_vi: "Bảo Hiểm Kỳ Hạn (Term Life)",
     tag: "Term Insurance",
+    tag_vi: "Bảo Hiểm Có Kỳ Hạn",
     tagColor: "#FF9800",
     quoteParam: "termlife",
     image:
       "https://thinksmartinsurance.com/wp-content/uploads/2025/04/Term-Life-1024x683.webp",
     description:
       "CHEAP PRICE, suitable for all participants. Compensation for more than 16 types of diseases, disabilities and death with a contract term of up to 30 years.",
+    description_vi:
+      "CHI PHÍ THẤP, phù hợp với mọi đối tượng tham gia. Đền bù hơn 16 loại bệnh hiểm nghèo, thương tật và tử vong với thời hạn hợp đồng lên đến 30 năm.",
     features: [
       "Affordable premiums",
       "16+ disease types",
@@ -76,8 +107,10 @@ const DEFAULT_PRODUCTS = [
 
 export default function Products({
   initialProducts,
+  lang = "en",
 }: {
-  initialProducts?: typeof DEFAULT_PRODUCTS;
+  initialProducts?: ProductItem[];
+  lang?: "en" | "vi";
 }) {
   const products = initialProducts ?? DEFAULT_PRODUCTS;
   const [active, setActive] = useState(0);
@@ -98,10 +131,14 @@ export default function Products({
           className="text-center mb-12"
         >
           <p className="text-[#2F5E9E] text-sm font-semibold tracking-widest uppercase mb-2">
-            We provide insurance services
+            {lang === "vi"
+              ? "Chúng tôi cung cấp dịch vụ bảo hiểm"
+              : "We provide insurance services"}
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Our Insurance Products
+            {lang === "vi"
+              ? "Các Sản Phẩm Bảo Hiểm Của Chúng Tôi"
+              : "Our Insurance Products"}
           </h2>
         </motion.div>
 
@@ -138,17 +175,20 @@ export default function Products({
           {/* Title + Description below image */}
           <div className="mt-5 px-1">
             <h3 className="text-2xl font-bold text-gray-900 mb-3">
-              {product.title}
+              {lang === "vi" ? product.title_vi || product.title : product.title}
             </h3>
             <p className="text-gray-600 leading-relaxed mb-5">
-              {product.description}
+              {lang === "vi"
+                ? product.description_vi || product.description
+                : product.description}
             </p>
             <a
               href={`/contact?product=${product.quoteParam ?? "general"}`}
               style={{ background: "#2F5E9E" }}
               className="inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
             >
-              Get a free quote <ArrowRight size={16} />
+              {lang === "vi" ? "Nhận báo giá miễn phí" : "Get a free quote"}{" "}
+              <ArrowRight size={16} />
             </a>
           </div>
 

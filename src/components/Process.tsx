@@ -1,38 +1,49 @@
 "use client";
 import { motion } from "framer-motion";
 
-type Step = { step: string; icon: string; text: string };
+type Step = { step: string; icon: string; text: string; text_vi?: string };
 
 const DEFAULT_STEPS: Step[] = [
-  { step: "STEP 1", text: "Sign up, leave your information", icon: "👤" },
+  {
+    step: "STEP 1",
+    text: "Sign up, leave your information",
+    text_vi: "Đăng ký, để lại thông tin liên hệ",
+    icon: "👤",
+  },
   {
     step: "STEP 2",
     text: "Agent will contact you for consultation and free quote within 24 hours.",
+    text_vi: "Tư vấn viên sẽ liên hệ tư vấn và báo giá miễn phí trong vòng 24 giờ.",
     icon: "📞",
   },
   {
     step: "STEP 3",
     text: "Receive the contract proposal, and only agree to enroll in the insurance once you have fully understood the program.",
+    text_vi: "Nhận bảng minh họa hợp đồng và chỉ đồng ý tham gia khi đã hiểu rõ chương trình.",
     icon: "📋",
   },
   {
     step: "STEP 4",
     text: "Document review, medical examination (if any), wait for results in 5–14 days.",
+    text_vi: "Thẩm định hồ sơ, khám sức khỏe (nếu có), chờ kết quả trong 5–14 ngày.",
     icon: "🔍",
   },
   {
     step: "STEP 5",
     text: "Get full insurance contract, complete information.",
+    text_vi: "Nhận bộ hợp đồng bảo hiểm đầy đủ, hoàn tất thông tin.",
     icon: "📄",
   },
   {
     step: "STEP 6",
     text: "Issue contract and pay fees. Contract takes effect immediately upon completion of fees.",
+    text_vi: "Phát hành hợp đồng và đóng phí. Hợp đồng có hiệu lực ngay khi hoàn tất phí.",
     icon: "✅",
   },
   {
     step: "STEP 7",
     text: "Customer care department receives documents. All customer questions and problems will be consulted and resolved free of charge 24/7, continuously and permanently.",
+    text_vi: "Bộ phận chăm sóc khách hàng tiếp nhận hồ sơ. Mọi thắc mắc được tư vấn và giải quyết miễn phí 24/7.",
     icon: "🤝",
   },
 ];
@@ -41,13 +52,17 @@ type ProcessProps = {
   title?: string;
   steps?: Step[];
   ctaText?: string;
+  lang?: "en" | "vi";
 };
 
 export default function Process({
   title = "Insurance participation process",
   steps = DEFAULT_STEPS,
   ctaText = "Get Free Quote",
+  lang = "en",
 }: ProcessProps) {
+  const formatStepBadge = (s: string) =>
+    lang === "vi" ? s.replace(/^STEP\s+/i, "BƯỚC ") : s;
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4">
@@ -74,7 +89,7 @@ export default function Process({
               >
                 {/* Step badge */}
                 <div className="inline-flex items-center gap-1 bg-[#4CAF50] text-white text-xs font-bold px-3 py-1 rounded mb-4">
-                  {s.step}
+                  {formatStepBadge(s.step)}
                 </div>
                 {/* Connector line */}
                 {i < steps.length - 1 && (
@@ -82,7 +97,7 @@ export default function Process({
                 )}
                 <div className="text-3xl mb-3">{s.icon}</div>
                 <p className="text-sm text-gray-700 leading-relaxed">
-                  {s.text}
+                  {lang === "vi" ? s.text_vi || s.text : s.text}
                 </p>
               </motion.div>
             ))}

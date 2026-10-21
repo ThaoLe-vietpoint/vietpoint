@@ -7,24 +7,45 @@ export const metadata: Metadata = {
   title: "Careers - VietPoint Insurance & Tax",
 };
 
-const DEFAULT_POSITIONS = [
+const DEFAULT_POSITIONS: {
+  title: string;
+  type: string;
+  location: string;
+  desc: string;
+  title_vi?: string;
+  type_vi?: string;
+  location_vi?: string;
+  desc_vi?: string;
+}[] = [
   {
     title: "Licensed Insurance Agent",
+    title_vi: "Đại Lý Bảo Hiểm Có Giấy Phép",
     type: "Full-time / Part-time",
+    type_vi: "Toàn thời gian / Bán thời gian",
     location: "Remote (Georgia preferred)",
+    location_vi: "Làm từ xa (ưu tiên Georgia)",
     desc: "Join our team of elite agents serving the Vietnamese-American community. We provide full training, licensing support, and an established client pipeline.",
+    desc_vi: "Gia nhập đội ngũ đại lý xuất sắc phục vụ cộng đồng người Mỹ gốc Việt. Chúng tôi cung cấp đào tạo đầy đủ, hỗ trợ cấp phép và nguồn khách hàng sẵn có.",
   },
   {
     title: "Insurance Consultant (Vietnamese Speaker)",
+    title_vi: "Chuyên Viên Tư Vấn Bảo Hiểm (Tiếng Việt)",
     type: "Full-time",
+    type_vi: "Toàn thời gian",
     location: "Lawrenceville, GA",
+    location_vi: "Lawrenceville, GA",
     desc: "Work directly with Vietnamese clients to assess their insurance needs, present suitable policies, and build long-term financial relationships.",
+    desc_vi: "Làm việc trực tiếp với khách hàng người Việt để đánh giá nhu cầu bảo hiểm, giới thiệu gói phù hợp và xây dựng mối quan hệ tài chính lâu dài.",
   },
   {
     title: "Client Success Associate",
+    title_vi: "Chuyên Viên Chăm Sóc Khách Hàng",
     type: "Part-time",
+    type_vi: "Bán thời gian",
     location: "Remote",
+    location_vi: "Làm từ xa",
     desc: "Support existing policyholders with claims, policy questions, renewals, and ongoing communication. Bilingual (Vietnamese/English) required.",
+    desc_vi: "Hỗ trợ khách hàng hiện tại về bồi thường, giải đáp hợp đồng, gia hạn và liên lạc định kỳ. Yêu cầu song ngữ (Việt/Anh).",
   },
 ];
 
@@ -35,6 +56,15 @@ const DEFAULT_BENEFITS = [
   "Supportive team environment",
   "Leadership advancement opportunities",
   "Serving a meaningful mission for our community",
+];
+
+const DEFAULT_BENEFITS_VI = [
+  "Thu nhập hoa hồng không giới hạn",
+  "Lịch làm việc linh hoạt",
+  "Đào tạo đầy đủ & tài trợ cấp phép",
+  "Môi trường làm việc hỗ trợ",
+  "Cơ hội thăng tiến lãnh đạo",
+  "Phục vụ sứ mệnh ý nghĩa cho cộng đồng",
 ];
 
 export default async function RecruitmentPage() {
@@ -108,11 +138,14 @@ export default async function RecruitmentPage() {
     }
   }
 
-  let benefits = DEFAULT_BENEFITS;
+  let benefits = lang === "vi" ? DEFAULT_BENEFITS_VI : DEFAULT_BENEFITS;
   const benefitsRaw = g("benefits", "data", "");
   if (benefitsRaw) {
     try {
-      benefits = JSON.parse(benefitsRaw);
+      const parsed: string[] = JSON.parse(benefitsRaw);
+      if (Array.isArray(parsed) && parsed.some((x) => x && x.trim())) {
+        benefits = parsed.filter((x) => x && x.trim());
+      }
     } catch {
       /* use default */
     }
@@ -171,7 +204,9 @@ export default async function RecruitmentPage() {
                 className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
               >
                 <div className="flex items-start justify-between gap-4 mb-3">
-                  <h3 className="font-bold text-gray-900 text-lg">{p.title}</h3>
+                  <h3 className="font-bold text-gray-900 text-lg">
+                    {lang === "vi" ? p.title_vi || p.title : p.title}
+                  </h3>
                   <Link
                     href="/contact"
                     className="shrink-0 text-white text-xs font-bold px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
@@ -181,11 +216,13 @@ export default async function RecruitmentPage() {
                   </Link>
                 </div>
                 <div className="flex gap-4 mb-3 text-xs text-gray-500">
-                  <span>🕐 {p.type}</span>
-                  <span>📍 {p.location}</span>
+                  <span>🕐 {lang === "vi" ? p.type_vi || p.type : p.type}</span>
+                  <span>
+                    📍 {lang === "vi" ? p.location_vi || p.location : p.location}
+                  </span>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  {p.desc}
+                  {lang === "vi" ? p.desc_vi || p.desc : p.desc}
                 </p>
               </div>
             ))}

@@ -9,12 +9,42 @@ export const metadata: Metadata = {
     "VietPoint Insurance & Tax was founded in 2013 with a clear mission: to become the most trusted Financial Doctor for every Vietnamese family in the US.",
 };
 
-const DEFAULT_CORE_VALUES = [
-  { title: "Conscientious", desc: "Always put customer interests first." },
-  { title: "Responsibility", desc: "Committed to doing what was promised." },
-  { title: "Transparent", desc: "Provide clear and honest information." },
-  { title: "Reputation", desc: "Building trust through quality service." },
-  { title: "Follow", desc: "Ensure all activities comply with the law." },
+const DEFAULT_CORE_VALUES: {
+  title: string;
+  desc: string;
+  title_vi?: string;
+  desc_vi?: string;
+}[] = [
+  {
+    title: "Conscientious",
+    title_vi: "Tận tâm",
+    desc: "Always put customer interests first.",
+    desc_vi: "Luôn đặt lợi ích của khách hàng lên hàng đầu.",
+  },
+  {
+    title: "Responsibility",
+    title_vi: "Trách nhiệm",
+    desc: "Committed to doing what was promised.",
+    desc_vi: "Cam kết thực hiện đúng những gì đã hứa.",
+  },
+  {
+    title: "Transparent",
+    title_vi: "Minh bạch",
+    desc: "Provide clear and honest information.",
+    desc_vi: "Cung cấp thông tin rõ ràng và trung thực.",
+  },
+  {
+    title: "Reputation",
+    title_vi: "Uy tín",
+    desc: "Building trust through quality service.",
+    desc_vi: "Xây dựng niềm tin qua chất lượng dịch vụ.",
+  },
+  {
+    title: "Follow",
+    title_vi: "Tuân thủ",
+    desc: "Ensure all activities comply with the law.",
+    desc_vi: "Đảm bảo mọi hoạt động tuân thủ pháp luật.",
+  },
 ];
 
 const DEFAULT_AGENTS = [
@@ -31,73 +61,110 @@ const DEFAULT_AMBASSADORS = [
   "THU THI NGUYEN",
 ];
 
-const DEFAULT_WHY_US = [
+const DEFAULT_WHY_US: {
+  title: string;
+  desc: string;
+  title_vi?: string;
+  desc_vi?: string;
+}[] = [
   {
     title: "Trusted Partner",
+    title_vi: "Đối Tác Tin Cậy",
     desc: "We represent leading insurance companies in the US, ensuring the highest quality and most reliable products.",
+    desc_vi: "Chúng tôi đại diện cho các công ty bảo hiểm hàng đầu tại Hoa Kỳ, đảm bảo sản phẩm chất lượng và đáng tin cậy nhất.",
   },
   {
     title: "Excellent Customer Service",
+    title_vi: "Dịch Vụ Khách Hàng Xuất Sắc",
     desc: "We are committed to providing the best service experience, with a knowledgeable, reliable, and responsive support team available online or in person, in both English and Vietnamese.",
+    desc_vi: "Cam kết mang đến trải nghiệm dịch vụ tốt nhất với đội ngũ hỗ trợ am hiểu, tận tình bằng cả tiếng Anh và tiếng Việt.",
   },
   {
     title: "Experienced Consulting Team",
+    title_vi: "Đội Ngũ Tư Vấn Giàu Kinh Nghiệm",
     desc: 'Our consultants are experienced, well-trained Vietnamese experts with extensive knowledge of insurance products and always put "heart" first.',
+    desc_vi: 'Chuyên viên tư vấn người Việt giàu kinh nghiệm, được đào tạo bài bản và luôn đặt chữ "Tâm" lên hàng đầu.',
   },
   {
     title: "Reliable & Quality Products",
+    title_vi: "Sản Phẩm Uy Tín & Chất Lượng",
     desc: "We partner with leading US insurance companies to provide the most trusted life insurance products, using cutting-edge technology to make the process quick and easy.",
+    desc_vi: "Hợp tác với các tập đoàn bảo hiểm hàng đầu Hoa Kỳ, ứng dụng công nghệ hiện đại giúp quy trình nhanh chóng và dễ dàng.",
   },
   {
     title: "Personalized Solutions",
+    title_vi: "Giải Pháp Cá Nhân Hóa",
     desc: "We understand that each customer has a unique situation and needs. Therefore, we always strive to provide insurance solutions tailored to each individual's financial goals.",
+    desc_vi: "Mỗi khách hàng có hoàn cảnh và nhu cầu riêng, chúng tôi luôn thiết kế giải pháp phù hợp nhất với mục tiêu tài chính của từng gia đình.",
   },
   {
     title: "Modern Technology",
+    title_vi: "Công Nghệ Hiện Đại",
     desc: "We apply the latest technological advances to provide a fast, convenient and easy service experience.",
+    desc_vi: "Ứng dụng công nghệ tiên tiến mang lại trải nghiệm dịch vụ nhanh chóng, thuận tiện và dễ dàng.",
   },
 ];
 
-const DEFAULT_WHAT_WE_DO = [
+const DEFAULT_WHAT_WE_DO: {
+  icon: string;
+  title: string;
+  desc: string;
+  title_vi?: string;
+  desc_vi?: string;
+}[] = [
   {
     icon: "\uD83D\uDEE1\uFE0F",
     title: "Death benefits",
+    title_vi: "Quyền lợi tử vong",
     desc: "Protect your loved ones financially in case the unfortunate happens.",
+    desc_vi: "Bảo vệ tài chính cho những người thân yêu nếu rủi ro không may xảy ra.",
   },
   {
     icon: "\uD83C\uDFE5",
     title: "Right to life",
+    title_vi: "Quyền lợi sống",
     desc: "Financial support when you face serious health risks.",
+    desc_vi: "Hỗ trợ tài chính kịp thời khi bạn đối mặt với các rủi ro sức khỏe nghiêm trọng.",
   },
   {
     icon: "\uD83D\uDCB0",
     title: "Retirement savings",
+    title_vi: "Tiết kiệm hưu trí",
     desc: "Provides a stable and secure source of income with attractive interest rates (from 6\u201315%), tax-deferred and tax-free withdrawal at retirement age.",
+    desc_vi: "Cung cấp nguồn thu nhập ổn định và an toàn với lãi suất hấp dẫn (6–15%), hoãn thuế và rút tiền miễn thuế ở tuổi nghỉ hưu.",
   },
 ];
 
 const products = [
   {
     title: "IUL For Kids (EBTP)",
+    title_vi: "IUL Cho Trẻ Em (EBTP)",
     desc: "Protect your children and build a financial fund for them to enter university, giving them wings to fly far and higher at the age of 18.",
+    desc_vi: "Bảo vệ con bạn và xây dựng quỹ tài chính để con bước vào đại học, chắp cánh cho con bay xa hơn ở tuổi 18.",
     href: "/insurance/kid-iul-secrets",
     color: "#16a34a",
   },
   {
     title: "Max Funded IUL",
+    title_vi: "Max Funded IUL",
     desc: "Full retirement thanks to the ability to generate 8–15% profit per year, absolute safety thanks to the NO LOSS policy.",
+    desc_vi: "Hưu trí trọn vẹn nhờ khả năng sinh lời 8–15%/năm, an toàn tuyệt đối nhờ chính sách KHÔNG MẤT VỐN.",
     href: "/insurance/max-funded-iul",
     color: "#2563eb",
   },
   {
     title: "IUL Secrets",
+    title_vi: "IUL Secrets",
     desc: "Compensation for more than 16 types of diseases. Accumulate TAX-FREE retirement funds with high interest rates of 6–12%/year.",
+    desc_vi: "Đền bù hơn 16 loại bệnh hiểm nghèo. Tích lũy quỹ hưu trí MIỄN THUẾ với lãi suất cao 6–12%/năm.",
     href: "/insurance/iul",
     color: "#2F5E9E",
   },
   {
     title: "Term Life",
+    title_vi: "Bảo Hiểm Kỳ Hạn (Term Life)",
     desc: "CHEAP PRICE, suitable for all. Compensation for more than 16 types of diseases and death with a contract term of up to 30 years.",
+    desc_vi: "CHI PHÍ THẤP, phù hợp với mọi người. Đền bù hơn 16 loại bệnh và tử vong với thời hạn hợp đồng lên đến 30 năm.",
     href: "/insurance/termlife",
     color: "#ea580c",
   },
@@ -343,27 +410,31 @@ export default async function AboutPage() {
             {t.core_h}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {coreValues.map((v) => (
-              <div
-                key={v.title}
-                className="bg-gray-50 rounded-2xl p-5 text-center"
-              >
+            {coreValues.map((v) => {
+              const vTitle = lang === "vi" ? v.title_vi || v.title : v.title;
+              const vDesc = lang === "vi" ? v.desc_vi || v.desc : v.desc;
+              return (
                 <div
-                  className="w-10 h-10 rounded-full mx-auto mb-3 flex items-center justify-center"
-                  style={{ background: "#2F5E9E" }}
+                  key={v.title}
+                  className="bg-gray-50 rounded-2xl p-5 text-center"
                 >
-                  <span className="text-white font-bold text-sm">
-                    {v.title[0]}
-                  </span>
+                  <div
+                    className="w-10 h-10 rounded-full mx-auto mb-3 flex items-center justify-center"
+                    style={{ background: "#2F5E9E" }}
+                  >
+                    <span className="text-white font-bold text-sm">
+                      {vTitle[0]}
+                    </span>
+                  </div>
+                  <h4 className="font-bold text-gray-900 text-sm mb-1">
+                    {vTitle}
+                  </h4>
+                  <p className="text-gray-500 text-xs leading-relaxed">
+                    {vDesc}
+                  </p>
                 </div>
-                <h4 className="font-bold text-gray-900 text-sm mb-1">
-                  {v.title}
-                </h4>
-                <p className="text-gray-500 text-xs leading-relaxed">
-                  {v.desc}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -384,9 +455,11 @@ export default async function AboutPage() {
                 className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100"
               >
                 <div className="text-4xl mb-4">{item.icon}</div>
-                <h4 className="font-bold text-gray-900 mb-2">{item.title}</h4>
+                <h4 className="font-bold text-gray-900 mb-2">
+                  {lang === "vi" ? item.title_vi || item.title : item.title}
+                </h4>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  {item.desc}
+                  {lang === "vi" ? item.desc_vi || item.desc : item.desc}
                 </p>
               </div>
             ))}
@@ -410,10 +483,10 @@ export default async function AboutPage() {
                 <div className="h-2" style={{ background: p.color }} />
                 <div className="p-6">
                   <h4 className="font-bold text-gray-900 text-lg mb-2">
-                    {p.title}
+                    {lang === "vi" ? p.title_vi || p.title : p.title}
                   </h4>
                   <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                    {p.desc}
+                    {lang === "vi" ? p.desc_vi || p.desc : p.desc}
                   </p>
                   <Link
                     href={p.href}
@@ -447,9 +520,11 @@ export default async function AboutPage() {
                 >
                   {i + 1}
                 </div>
-                <h4 className="font-bold text-gray-900 mb-2">{item.title}</h4>
+                <h4 className="font-bold text-gray-900 mb-2">
+                  {lang === "vi" ? item.title_vi || item.title : item.title}
+                </h4>
                 <p className="text-gray-500 text-sm leading-relaxed">
-                  {item.desc}
+                  {lang === "vi" ? item.desc_vi || item.desc : item.desc}
                 </p>
               </div>
             ))}

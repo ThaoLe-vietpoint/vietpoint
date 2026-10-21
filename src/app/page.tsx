@@ -158,11 +158,12 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-white">
       <Hero {...heroProps} lang={lang} />
-      <Products initialProducts={initialProducts} />
+      <Products initialProducts={initialProducts} lang={lang} />
       <Process
         title={processTitle}
         ctaText={processCtaText}
         steps={processSteps}
+        lang={lang}
       />
       <Testimonials title={testimonialsTitle} testimonials={testimonialItems} />
       <Stats title={statsTitle} items={statsItems} />
