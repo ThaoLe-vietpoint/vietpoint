@@ -203,11 +203,45 @@ function ContactPageInner() {
       .then((r) => r.json())
       .then((data: { key: string; value: string }[]) => {
         if (!Array.isArray(data)) return;
-        const map = Object.fromEntries(data.map((r) => [r.key, r.value]));
+        // phone/email/address come from page_content (see effect below)
+        const skip = ["phone", "phone_e164", "email", "address"];
+        const map = Object.fromEntries(
+          data.filter((r) => !skip.includes(r.key)).map((r) => [r.key, r.value]),
+        );
         setSettings((prev) => ({ ...prev, ...map }));
       })
       .catch(() => {});
   }, []);
+
+  // Phone / email / address: single source of truth = admin "Liên hệ & Footer"
+  // (page_content: global/contact) — same data the footer uses.
+  useEffect(() => {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+    const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
+    fetch(
+      `${url}/rest/v1/page_content?select=field,value_en,value_vi&page=eq.global&section=eq.contact&field=in.(phone,email,address)`,
+      { headers: { apikey: key, Authorization: `Bearer ${key}` } },
+    )
+      .then((r) => r.json())
+      .then((rows: { field: string; value_en: string; value_vi: string }[]) => {
+        if (!Array.isArray(rows)) return;
+        const next: Partial<SiteSettings> = {};
+        for (const r of rows) {
+          const v = ((lang === "vi" ? r.value_vi || r.value_en : r.value_en) ?? "")
+            .replace(/\s*\n\s*/g, ", ")
+            .trim();
+          if (!v) continue;
+          if (r.field === "phone") {
+            next.phone = v;
+            const digits = v.replace(/\D/g, "");
+            if (digits.length >= 10) next.phone_e164 = `+1${digits.slice(-10)}`;
+          } else if (r.field === "email") next.email = v;
+          else if (r.field === "address") next.address = v;
+        }
+        setSettings((prev) => ({ ...prev, ...next }));
+      })
+      .catch(() => {});
+  }, [lang]);
   const [joined, setJoined] = useState<"yes" | "no" | null>(null);
   const [form, setForm] = useState({
     name: "",

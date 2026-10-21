@@ -250,9 +250,9 @@ export default function Footer({
             <p className="text-slate-500 text-xs">{t.copyright}</p>
             <div className="flex gap-5">
               {[t.terms, t.privacy, t.cookie, t.disclaimer].map((link) => (
-                <a key={link} href="#" className="text-slate-500 text-xs hover:text-slate-300 transition-colors">
+                <span key={link} className="text-slate-500 text-xs">
                   {link}
-                </a>
+                </span>
               ))}
             </div>
           </div>

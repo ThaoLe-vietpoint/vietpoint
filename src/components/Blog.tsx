@@ -95,7 +95,7 @@ export default function Blog() {
               <div className="w-10 h-0.5 bg-[#2F5E9E]" />
             </div>
             <a
-              href="#"
+              href="/blog"
               className="flex items-center gap-1 text-[#2F5E9E] font-medium text-sm hover:gap-2 transition-all"
             >
               View more <ArrowRight size={16} />

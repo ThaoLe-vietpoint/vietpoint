@@ -79,7 +79,7 @@ export default function CustomerStories() {
                 <h3 className="font-bold text-gray-900 text-sm mb-2 line-clamp-2">{story.title}</h3>
                 <p className="text-gray-500 text-xs line-clamp-2 mb-4">{story.excerpt}</p>
                 <a
-                  href="#"
+                  href="/customer-care/stories"
                   className="flex items-center gap-1 text-[#2F5E9E] text-sm font-medium hover:gap-2 transition-all"
                 >
                   View more <ArrowRight size={14} />
@@ -113,7 +113,7 @@ export default function CustomerStories() {
               <p className="text-[#2F5E9E] text-xs font-semibold mb-1">{stories[active].name}</p>
               <h3 className="font-bold text-gray-900 mb-2">{stories[active].title}</h3>
               <p className="text-gray-500 text-sm mb-4">{stories[active].excerpt}</p>
-              <a href="#" className="flex items-center gap-1 text-[#2F5E9E] text-sm font-medium">
+              <a href="/customer-care/stories" className="flex items-center gap-1 text-[#2F5E9E] text-sm font-medium">
                 View more <ArrowRight size={14} />
               </a>
             </div>

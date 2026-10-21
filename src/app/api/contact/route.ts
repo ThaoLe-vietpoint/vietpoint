@@ -1,33 +1,101 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@/utils/supabase/server";
 
-export async function POST(req: NextRequest) {
-    const body = await req.json();
-    const { name, phone, email, message, source } = body;
+// Simple in-memory rate limit (per server instance): 5 requests / 10 min per IP
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const RATE_MAX = 5;
+const hits = new Map<string, number[]>();
 
-    if (!name || !phone) {
+function rateLimited(ip: string): boolean {
+    const now = Date.now();
+    const recent = (hits.get(ip) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
+    if (recent.length >= RATE_MAX) {
+        hits.set(ip, recent);
+        return true;
+    }
+    recent.push(now);
+    hits.set(ip, recent);
+    if (hits.size > 5000) {
+        for (const [k, v] of hits) if (v.every((t) => now - t >= RATE_WINDOW_MS)) hits.delete(k);
+    }
+    return false;
+}
+
+function esc(v: unknown): string {
+    return String(v ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function str(v: unknown, max: number): string {
+    return typeof v === "string" ? v.trim().slice(0, max) : "";
+}
+
+export async function POST(req: NextRequest) {
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
+    if (rateLimited(ip)) {
+        return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+    }
+
+    let body: Record<string, unknown>;
+    try {
+        body = await req.json();
+    } catch {
+        return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+    }
+
+    const rawName = str(body?.name, 200);
+    const rawPhone = str(body?.phone, 40);
+    const rawEmail = str(body?.email, 200);
+    const rawMessage = str(body?.message, 5000);
+    const rawSource = str(body?.source, 100);
+
+    if (!rawName || !rawPhone) {
         return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+    if (!/^[0-9+()\-.\s]{6,40}$/.test(rawPhone)) {
+        return NextResponse.json({ error: "Invalid phone number" }, { status: 400 });
+    }
+    if (rawEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawEmail)) {
+        return NextResponse.json({ error: "Invalid email" }, { status: 400 });
     }
 
     const supabase = await createClient();
 
     // 1. Save to database
     const { error: dbError } = await supabase.from("leads").insert({
-        name,
-        phone,
-        email: email || null,
-        message: message || null,
-        source: source || "contact_form",
+        name: rawName,
+        phone: rawPhone,
+        email: rawEmail || null,
+        message: rawMessage || null,
+        source: rawSource || "contact_form",
     });
 
     if (dbError) {
         console.error("DB insert error:", dbError.message);
-        return NextResponse.json({ error: dbError.message }, { status: 500 });
+        return NextResponse.json({ error: "Could not save request" }, { status: 500 });
     }
 
+    // HTML-escaped values for the email template
+    const name = esc(rawName);
+    const phone = esc(rawPhone);
+    const email = esc(rawEmail);
+    const message = esc(rawMessage);
+    const source = esc(rawSource);
+
     // 2. Load email settings from site_settings (fallback to env vars)
-    const { data: emailRows } = await supabase
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const settingsClient = serviceKey
+        ? createSupabaseClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, serviceKey, {
+              auth: { persistSession: false },
+          })
+        : supabase;
+    const { data: emailRows } = await settingsClient
         .from("site_settings")
         .select("key, value")
         .in("key", ["gmail_user", "gmail_app_password", "notify_email", "email"]);
@@ -196,7 +264,7 @@ export async function POST(req: NextRequest) {
             await transporter.sendMail({
                 from: `"VietPoint Website" <${gmailUser}>`,
                 to: notifyEmail,
-                subject: `📬 New Contact: ${name} — ${phone}`,
+                subject: `📬 New Contact: ${rawName} — ${rawPhone}`.replace(/[\r\n]+/g, " "),
                 html,
             });
         } catch (mailErr) {
