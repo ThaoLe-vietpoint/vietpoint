@@ -5,118 +5,94 @@ import { getLang } from "@/utils/getLang";
 import { getGlobalContact } from "@/utils/getGlobalContact";
 
 export const metadata: Metadata = {
-  title: "IUL For Kids (EBTP) - VietPoint Insurance & Tax",
+  title: "ACA Marketplace Health Insurance - VietPoint Insurance & Tax",
   description:
-    "Protect your children and build a financial fund for them to enter university. IUL For Kids (EBTP) gives your children wings to fly far at the age of 18.",
+    "Explore ACA Marketplace health insurance options with Vietnamese-language support from VietPoint Insurance & Tax.",
 };
-
-const fallbackBenefits = [
-  {
-    icon: "🎓",
-    title: "College Fund",
-    description:
-      "Build a tax-free financial fund for your children to enter university at age 18 — fully funded and ready when they need it most.",
-  },
-  {
-    icon: "🛡️",
-    title: "Life Protection",
-    description:
-      "Your child is protected with a life insurance death benefit, providing financial support to your family in case of tragedy.",
-  },
-  {
-    icon: "💰",
-    title: "Tax-Free Growth",
-    description:
-      "The cash value grows tax-deferred, and withdrawals at age 18 are completely tax-free under IRS rules.",
-  },
-  {
-    icon: "📈",
-    title: "Indexed Returns",
-    description:
-      "Funds grow linked to the S&P 500 index with a floor of 0% — never lose money, yet benefit from market gains.",
-  },
-  {
-    icon: "🏥",
-    title: "Health Protection",
-    description:
-      "Living benefits provide coverage if your child faces a critical illness before age 18.",
-  },
-  {
-    icon: "🔒",
-    title: "Long-Term Security",
-    description:
-      "Lock in low child rates now. Starting early means more growth time and lower monthly premiums.",
-  },
-];
 
 export default async function KidIULPage() {
   const lang = await getLang();
   const T = {
     en: {
       hero_by: "VietPoint Insurance & Tax",
+      hero_title: "ACA Marketplace Health Insurance",
       hero_desc:
-        "Protect your children and build a financial fund for them to enter university, giving them wings to fly far and higher at the age of 18.",
+        "Explore ACA Marketplace health insurance options with Vietnamese-language support. VietPoint helps you understand coverage, estimated costs, and available financial assistance based on your circumstances.",
       hero_cta: "Get Free Quote",
       how_h: "How It Works",
       how_desc:
-        "IUL For Kids (EBTP — Educational Benefits Trust Program) is a specially designed Indexed Universal Life insurance policy for children. Parents start the policy early, premiums grow with the market, and by age 18 your child has a tax-free fund ready for college or life expenses.",
+        "VietPoint guides you through the ACA Marketplace enrollment process, from understanding your needs and reviewing available plans to completing your application and receiving enrollment confirmation.",
       steps: [
         {
           step: "01",
-          title: "Start Early",
-          desc: "Enroll your child as young as 2 weeks old. The earlier you start, the lower the premiums and the more time the fund has to grow.",
+          title: "Free Consultation",
+          desc: "Contact VietPoint and tell us about your household, healthcare needs, and estimated income.",
         },
         {
           step: "02",
-          title: "Grow Tax-Free",
-          desc: "Premiums are invested in the S&P 500 index with a 0% floor guarantee. Cash value grows every year — good markets or bad.",
+          title: "Review Your Options",
+          desc: "Review available plans, estimated premiums, deductibles, provider networks, and potential financial assistance.",
         },
         {
           step: "03",
-          title: "Collect at 18",
-          desc: "At age 18, your child can withdraw the accumulated fund completely tax-free for college, a car, a business, or any life goal.",
+          title: "Complete Your Application",
+          desc: "Provide the required information and complete your Marketplace application with guidance from your agent.",
+        },
+        {
+          step: "04",
+          title: "Enrollment Confirmation",
+          desc: "Review your enrollment confirmation and follow any instructions provided by the insurance company, including premium payment if required.",
+        },
+        {
+          step: "05",
+          title: "Ongoing Support",
+          desc: "Contact VietPoint if you have questions about your coverage, premium payments, medical bills, or updating your Marketplace information.",
         },
       ],
-      benefits_h: "Key Benefits",
-      testimonial:
-        '"I started IUL For Kids for my daughter when she was 3. By the time she turned 18, she had over $80,000 in tax-free funds ready for college. Best financial decision I ever made for her."',
-      testimonial_by: "— Ha Nguyen, VietPoint Client",
-      cta_h: "Give Your Child the Gift of Financial Security",
-      cta_sub: "Start your child's IUL policy today. Consultation is free.",
+      cta_h: "Get Help Finding the Right Coverage",
+      cta_sub:
+        "Contact VietPoint today for free consultation in Vietnamese.",
       cta_msg: "Send a Message",
     },
     vi: {
       hero_by: "VietPoint Bảo Hiểm & Thuế",
+      hero_title: "Bảo Hiểm Sức Khỏe ACA Marketplace",
       hero_desc:
-        "Bảo vệ con bạn và xây dựng quỹ tài chính cho con vào đại học, cho con đôi cánh để bay xa hơn ở tuổi 18.",
-      hero_cta: "Nhận Báo Giá Miễn Phí",
-      how_h: "Cách Thức Hoạt Động",
+        "Tìm hiểu các lựa chọn bảo hiểm sức khỏe ACA Marketplace với sự hỗ trợ bằng tiếng Việt. VietPoint giúp bạn hiểu rõ quyền lợi, chi phí dự kiến và khả năng đủ điều kiện nhận hỗ trợ tài chính tùy theo hoàn cảnh.",
+      hero_cta: "Nhận Tư Vấn Miễn Phí",
+      how_h: "Quy Trình Hỗ Trợ",
       how_desc:
-        "IUL For Kids (EBTP — Chương trình Tín thác Phúc lợi Giáo dục) là hợp đồng bảo hiểm nhân thọ toàn cầu có chỉ số được thiết kế đặc biệt cho trẻ em. Cha mẹ bắt đầu hợp đồng sớm, phí bảo hiểm tăng theo thị trường và đến năm 18 tuổi, con bạn có quỹ miễn thuế sẵn sàng cho đại học hoặc chi phí cuộc sống.",
+        "VietPoint đồng hành cùng bạn trong quá trình đăng ký ACA Marketplace, từ tìm hiểu nhu cầu, xem xét các chương trình hiện có đến hoàn tất hồ sơ và nhận xác nhận đăng ký.",
       steps: [
         {
           step: "01",
-          title: "Bắt Đầu Sớm",
-          desc: "Đăng ký cho con từ khi 2 tuần tuổi. Bắt đầu càng sớm, phí hàng tháng càng thấp và quỹ có nhiều thời gian để tăng trưởng.",
+          title: "Tư vấn miễn phí",
+          desc: "Liên hệ VietPoint và chia sẻ thông tin hộ gia đình, nhu cầu chăm sóc sức khỏe và thu nhập dự kiến.",
         },
         {
           step: "02",
-          title: "Tăng Trưởng Miễn Thuế",
-          desc: "Phí bảo hiểm được đầu tư vào chỉ số S&P 500 với sàn bảo đảm 0%. Giá trị tiền mặt tăng mỗi năm — dù thị trường tốt hay xấu.",
+          title: "Xem xét các lựa chọn",
+          desc: "Xem xét các chương trình hiện có, phí bảo hiểm dự kiến, khoản khấu trừ, mạng lưới bác sĩ và khả năng nhận hỗ trợ tài chính.",
         },
         {
           step: "03",
-          title: "Rút Tiền Lúc 18 Tuổi",
-          desc: "Ở tuổi 18, con bạn có thể rút toàn bộ quỹ tích lũy hoàn toàn miễn thuế cho đại học, xe hơi, kinh doanh hoặc bất kỳ mục tiêu nào.",
+          title: "Hoàn tất hồ sơ đăng ký",
+          desc: "Cung cấp thông tin cần thiết và hoàn tất hồ sơ Marketplace với sự hướng dẫn của tư vấn viên.",
+        },
+        {
+          step: "04",
+          title: "Xác nhận đăng ký",
+          desc: "Kiểm tra xác nhận đăng ký và thực hiện các hướng dẫn từ công ty bảo hiểm, bao gồm thanh toán phí nếu được yêu cầu.",
+        },
+        {
+          step: "05",
+          title: "Hỗ trợ sau đăng ký",
+          desc: "Liên hệ VietPoint nếu bạn có thắc mắc về quyền lợi bảo hiểm, thanh toán phí, hóa đơn y tế hoặc cập nhật thông tin Marketplace.",
         },
       ],
-      benefits_h: "Các Lợi Ích Chính",
-      testimonial:
-        '"Tôi bắt đầu IUL For Kids cho con gái khi cô bé 3 tuổi. Đến năm 18 tuổi, cô bé có hơn $80,000 quỹ miễn thuế sẵn sàng cho đại học. Đó là quyết định tài chính tốt nhất tôi từng làm cho con."',
-      testimonial_by: "— Hà Nguyễn, Khách hàng VietPoint",
-      cta_h: "Tặng Con Bạn Nền Tảng Tài Chính Vững Chắc",
+      cta_h: "Nhận Hỗ Trợ Tìm Bảo Hiểm Phù Hợp",
       cta_sub:
-        "Bắt đầu hợp đồng IUL cho con ngay hôm nay. Tư vấn hoàn toàn miễn phí.",
+        "Liên hệ VietPoint ngay hôm nay để được tư vấn hoàn toàn miễn phí bằng tiếng Việt.",
       cta_msg: "Gửi Tin Nhắn",
     },
   };
@@ -143,11 +119,7 @@ export default async function KidIULPage() {
     return (lang === "vi" ? r?.value_vi || r?.value_en : r?.value_en) || fallback;
   };
 
-  const heroTitle = g(
-    "hero",
-    "title",
-    lang === "vi" ? "IUL Cho Trẻ Em (EBTP)" : "IUL For Kids (EBTP)",
-  );
+  const heroTitle = g("hero", "title", t.hero_title);
   const heroDesc = g("hero", "desc", t.hero_desc);
   const heroCta = g("hero", "cta", t.hero_cta);
   const howH = g("how", "h", t.how_h);
@@ -168,10 +140,17 @@ export default async function KidIULPage() {
       title: g("how", "step3_title", t.steps[2].title),
       desc: g("how", "step3_desc", t.steps[2].desc),
     },
+    {
+      step: "04",
+      title: g("how", "step4_title", t.steps[3].title),
+      desc: g("how", "step4_desc", t.steps[3].desc),
+    },
+    {
+      step: "05",
+      title: g("how", "step5_title", t.steps[4].title),
+      desc: g("how", "step5_desc", t.steps[4].desc),
+    },
   ];
-  const benefitsH = g("sections", "benefits_h", t.benefits_h);
-  const testimonialQuote = g("testimonial", "quote", t.testimonial);
-  const testimonialBy = g("testimonial", "by", t.testimonial_by);
   const ctaH = g("cta", "h", t.cta_h);
   const ctaSub = g("cta", "sub", t.cta_sub);
 
@@ -197,7 +176,7 @@ export default async function KidIULPage() {
             {heroDesc}
           </p>
           <a
-            href="/contact?product=kid-iul"
+            href="/contact?product=aca-marketplace"
             className="inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:bg-green-50 transition-colors"
             style={{ color: "#16a34a" }}
           >
@@ -208,10 +187,10 @@ export default async function KidIULPage() {
 
       {/* How it works */}
       <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">{howH}</h2>
           <p className="text-gray-600 mb-10 max-w-2xl mx-auto">{howDesc}</p>
-          <div className="grid md:grid-cols-3 gap-6 text-left">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
             {howSteps.map((s) => (
               <div
                 key={s.step}
@@ -230,13 +209,10 @@ export default async function KidIULPage() {
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* Benefits (không hiển thị tiêu đề mục quyền lợi & bỏ cảm nhận khách hàng theo yêu cầu) */}
       {benefits.length > 0 && (
         <section className="py-16 px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">
-              {benefitsH}
-            </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {benefits.map((b) => (
                 <div key={b.id ?? b.title} className="bg-gray-50 rounded-2xl p-6">
@@ -253,17 +229,6 @@ export default async function KidIULPage() {
           </div>
         </section>
       )}
-
-      {/* Testimonial */}
-      <section className="py-12 px-6 bg-green-50">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-3xl mb-4">💬</p>
-          <blockquote className="text-gray-700 text-lg italic leading-relaxed mb-4">
-            {testimonialQuote}
-          </blockquote>
-          <p className="font-semibold text-gray-900">{testimonialBy}</p>
-        </div>
-      </section>
 
       {/* CTA */}
       <section

@@ -29,10 +29,9 @@ const NAV: Record<"en" | "vi", NavItem[]> = {
       label: "Insurance",
       href: "/insurance/iul",
       children: [
-        { label: "Term Life", href: "/insurance/termlife" },
-        { label: "IUL", href: "/insurance/iul" },
-        { label: "Kid IUL Secrets", href: "/insurance/kid-iul-secrets" },
-        { label: "Max Funded IUL Secrets", href: "/insurance/max-funded-iul" },
+        { label: "Medicare", href: "/insurance/iul" },
+        { label: "ACA Marketplace", href: "/insurance/kid-iul-secrets" },
+        { label: "Auto Insurance", href: "/insurance/termlife" },
       ],
     },
     {
@@ -78,10 +77,9 @@ const NAV: Record<"en" | "vi", NavItem[]> = {
       label: "Bảo hiểm",
       href: "/insurance/iul",
       children: [
-        { label: "Term Life", href: "/insurance/termlife" },
-        { label: "IUL", href: "/insurance/iul" },
-        { label: "IUL Cho Trẻ Em", href: "/insurance/kid-iul-secrets" },
-        { label: "Max Funded IUL", href: "/insurance/max-funded-iul" },
+        { label: "Medicare", href: "/insurance/iul" },
+        { label: "ACA Marketplace", href: "/insurance/kid-iul-secrets" },
+        { label: "Bảo Hiểm Xe Hơi", href: "/insurance/termlife" },
       ],
     },
     {
@@ -133,10 +131,9 @@ const navItems = [
     label: "Insurance",
     href: "/insurance/iul",
     children: [
-      { label: "Termlife", href: "/insurance/termlife" },
-      { label: "IUL", href: "/insurance/iul" },
-      { label: "Kid IUL Secrets", href: "/insurance/kid-iul-secrets" },
-      { label: "Max Funded IUL Secrets", href: "/insurance/max-funded-iul" },
+      { label: "Medicare", href: "/insurance/iul" },
+      { label: "ACA Marketplace", href: "/insurance/kid-iul-secrets" },
+      { label: "Auto Insurance", href: "/insurance/termlife" },
     ],
   },
   {

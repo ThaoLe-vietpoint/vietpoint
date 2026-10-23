@@ -39,10 +39,9 @@ const T = {
     aboutLink: "About VietPoint",
     careers: "Careers",
     verifyConsultant: "Verify Consultant",
-    iul: "IUL Secrets",
-    maxIul: "Max Funded IUL",
-    termLife: "Term Life",
-    kidIul: "IUL For Kids (EBTP)",
+    iul: "Medicare",
+    kidIul: "ACA Marketplace",
+    termLife: "Auto Insurance",
     blog: "Blog & News",
     contact_page: "Contact",
     customerCare: "Customer Care",
@@ -69,10 +68,9 @@ const T = {
     aboutLink: "Về VietPoint",
     careers: "Tuyển dụng",
     verifyConsultant: "Xác minh tư vấn viên",
-    iul: "IUL Secrets",
-    maxIul: "Max Funded IUL",
-    termLife: "Term Life",
-    kidIul: "IUL Cho Trẻ Em",
+    iul: "Medicare",
+    kidIul: "ACA Marketplace",
+    termLife: "Bảo Hiểm Xe Hơi",
     blog: "Blog & Tin tức",
     contact_page: "Liên hệ",
     customerCare: "Chăm sóc khách hàng",
@@ -191,9 +189,8 @@ export default function Footer({
               <ul className="space-y-2.5">
                 {[
                   { label: t.iul, href: "/insurance/iul" },
-                  { label: t.maxIul, href: "/insurance/max-funded-iul" },
-                  { label: t.termLife, href: "/insurance/termlife" },
                   { label: t.kidIul, href: "/insurance/kid-iul-secrets" },
+                  { label: t.termLife, href: "/insurance/termlife" },
                 ].map((l) => (
                   <li key={l.href}>
                     <a href={l.href} className="text-slate-400 text-sm hover:text-white transition-colors">

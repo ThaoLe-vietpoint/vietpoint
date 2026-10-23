@@ -5,103 +5,108 @@ import { getLang } from "@/utils/getLang";
 import { getGlobalContact } from "@/utils/getGlobalContact";
 
 export const metadata: Metadata = {
-  title: "Term Life Insurance - VietPoint Insurance & Tax",
+  title: "Auto Insurance - VietPoint Insurance & Tax",
   description:
-    "Affordable term life insurance with compensation for over 16 types of diseases, disabilities and death. Contract term up to 30 years.",
+    "Explore auto insurance options, understand policy details, and find coverage that fits your needs and budget with VietPoint Insurance & Tax.",
 };
-
-const fallbackBenefits = [
-  {
-    icon: "💰",
-    title: "Affordable Price",
-    description:
-      "CHEAP PRICE, suitable for all participants regardless of income level.",
-  },
-  {
-    icon: "🏥",
-    title: "16+ Diseases Covered",
-    description:
-      "Compensation for more than 16 types of critical illnesses and disabilities.",
-  },
-  {
-    icon: "🛡️",
-    title: "Death Benefit",
-    description:
-      "Full death benefit paid to your family in case of unfortunate events.",
-  },
-  {
-    icon: "📅",
-    title: "Flexible Terms",
-    description:
-      "Contract term of up to 30 years — choose the term that fits your needs.",
-  },
-  {
-    icon: "✅",
-    title: "Easy to Qualify",
-    description:
-      "Simplified underwriting process — most healthy adults qualify quickly.",
-  },
-  {
-    icon: "🔄",
-    title: "Renewable",
-    description:
-      "Option to renew or convert your term policy at the end of the term period.",
-  },
-];
 
 export default async function TermLifePage() {
   const lang = await getLang();
   const T = {
     en: {
       hero_by: "VietPoint Insurance & Tax",
+      hero_title: "AUTO INSURANCE",
       hero_desc:
-        "Affordable protection for you and your family — covering over 16 critical illnesses with terms up to 30 years.",
-      hero_cta: "Get Free Quote",
-      benefits_h: "Why Choose Term Life?",
-      compare_h: "Term Life vs. IUL — Which is Right for You?",
+        "Looking for auto insurance? VietPoint helps you explore coverage options, understand policy details, and find coverage that fits your needs and budget. Our Vietnamese-speaking team is here to make the process easier.",
+      hero_cta: "GET A FREE QUOTE",
+      benefits_h: "Why Choose Auto Insurance?",
+      compare_h: "Understanding Your Auto Coverage Options",
+      col1: "Coverage Type",
+      col2: "What It Covers",
+      col3: "Commonly Used For",
       compare_rows: [
-        ["Premium Cost", "Low", "Higher"],
-        ["Coverage Term", "10–30 years", "Lifetime (to 120)"],
-        ["Cash Value", "None", "✓ Builds over time"],
-        ["Retirement Income", "None", "✓ Tax-free income"],
-        ["Critical Illness Benefit", "✓ 16+ diseases", "✓ 16+ diseases"],
-        ["Death Benefit", "✓", "✓"],
-        ["Tax-Free Withdrawals", "None", "✓"],
         [
-          "Suitable for",
-          "Budget-focused families",
-          "Long-term wealth builders",
+          "Liability Coverage",
+          "Bodily injury & property damage to others when you are at fault",
+          "Required in most states",
+        ],
+        [
+          "Collision Coverage",
+          "Damage to your vehicle from a collision with another car or object",
+          "Financed / leased or newer vehicles",
+        ],
+        [
+          "Comprehensive Coverage",
+          "Non-collision losses (theft, vandalism, hail, falling objects)",
+          "Protecting vehicle value",
+        ],
+        [
+          "Uninsured / Underinsured Motorist",
+          "Helps cover costs if hit by a driver with little or no insurance",
+          "Extra peace of mind",
+        ],
+        [
+          "Medical Payments / PIP",
+          "Eligible medical expenses for you and your passengers",
+          "Health & injury protection",
+        ],
+        [
+          "Roadside & Rental Reimbursement",
+          "Towing, battery jump, flat tire, or rental car during covered repairs",
+          "Everyday convenience",
         ],
       ],
-      cta_h: "Get Your Free Term Life Quote",
+      cta_h: "Get Your Free Auto Insurance Quote",
       cta_sub:
-        "Our agents are ready to find the most suitable Term Life plan for your family. Contact us today — consultation is completely free.",
+        "Our team is ready to help you explore auto insurance options and understand your coverage. Contact VietPoint today for a free quote.",
       cta_msg: "Send a Message",
     },
     vi: {
       hero_by: "VietPoint Bảo Hiểm & Thuế",
+      hero_title: "BẢO HIỂM XE HƠI",
       hero_desc:
-        "Bảo vệ giá cả phải chăng cho bạn và gia đình — bao gồm hơn 16 bệnh nguy kịch với thời hạn lên đến 30 năm.",
-      hero_cta: "Nhận Báo Giá Miễn Phí",
-      benefits_h: "Tại Sao Chọn Bảo Hiểm Kỳ Hạn?",
-      compare_h: "Term Life vs. IUL — Loại Nào Phù Hợp Với Bạn?",
+        "Bạn đang tìm bảo hiểm xe hơi? VietPoint hỗ trợ bạn tìm hiểu các lựa chọn bảo hiểm, giải thích điều khoản hợp đồng và tìm gói bảo hiểm phù hợp với nhu cầu và ngân sách. Đội ngũ hỗ trợ bằng tiếng Việt luôn sẵn sàng giúp bạn thực hiện quy trình dễ dàng hơn.",
+      hero_cta: "NHẬN BÁO GIÁ MIỄN PHÍ",
+      benefits_h: "Vì Sao Nên Có Bảo Hiểm Xe Hơi?",
+      compare_h: "Tìm Hiểu Các Quyền Lợi Bảo Hiểm Xe",
+      col1: "Loại Quyền Lợi",
+      col2: "Phạm Vi Bảo Vệ",
+      col3: "Mục Đích Phổ Biến",
       compare_rows: [
-        ["Phí Bảo Hiểm", "Thấp", "Cao hơn"],
-        ["Thời Hạn Bảo Hiểm", "10–30 năm", "Suốt đời (đến 120 tuổi)"],
-        ["Giá Trị Tiền Mặt", "Không có", "✓ Tích lũy theo thời gian"],
-        ["Thu Nhập Hưu Trí", "Không có", "✓ Thu nhập miễn thuế"],
-        ["Bảo Hiểm Bệnh Nguy Kịch", "✓ 16+ bệnh", "✓ 16+ bệnh"],
-        ["Quyền Lợi Tử Vong", "✓", "✓"],
-        ["Rút Tiền Miễn Thuế", "Không có", "✓"],
         [
-          "Phù Hợp Với",
-          "Gia đình tiết kiệm chi phí",
-          "Người xây dựng tài sản dài hạn",
+          "Bảo hiểm trách nhiệm (Liability)",
+          "Thương tích hoặc thiệt hại tài sản cho người khác khi bạn có lỗi",
+          "Bắt buộc tại hầu hết tiểu bang",
+        ],
+        [
+          "Bảo hiểm va chạm (Collision)",
+          "Thiệt hại xe của bạn khi va chạm với xe khác hoặc vật thể",
+          "Xe trả góp / thuê hoặc xe mới",
+        ],
+        [
+          "Bảo hiểm toàn diện (Comprehensive)",
+          "Thiệt hại ngoài va chạm (trộm cắp, phá hoại, mưa đá, vật rơi)",
+          "Bảo vệ giá trị xe",
+        ],
+        [
+          "Người lái không có / thiếu bảo hiểm",
+          "Hỗ trợ chi phí khi bị đụng bởi tài xế không có hoặc thiếu bảo hiểm",
+          "An tâm hơn khi lưu thông",
+        ],
+        [
+          "Chi phí y tế (MedPay / PIP)",
+          "Chi phí y tế đủ điều kiện cho bạn và hành khách trên xe",
+          "Bảo vệ sức khỏe & thương tích",
+        ],
+        [
+          "Cứu hộ & Thuê xe thay thế",
+          "Kéo xe, kích bình, thay lốp hoặc chi phí thuê xe khi đang sửa chữa",
+          "Tiện lợi khi gặp sự cố",
         ],
       ],
-      cta_h: "Nhận Báo Giá Bảo Hiểm Kỳ Hạn Miễn Phí",
+      cta_h: "Nhận Báo Giá Bảo Hiểm Xe Miễn Phí",
       cta_sub:
-        "Chuyên viên của chúng tôi sẵn sàng tìm gói Term Life phù hợp nhất cho gia đình bạn. Liên hệ ngay — tư vấn hoàn toàn miễn phí.",
+        "Đội ngũ VietPoint sẵn sàng hỗ trợ bạn tìm hiểu các lựa chọn bảo hiểm xe và quyền lợi bảo hiểm. Liên hệ với chúng tôi ngay hôm nay để nhận báo giá miễn phí.",
       cta_msg: "Gửi Tin Nhắn",
     },
   };
@@ -128,11 +133,7 @@ export default async function TermLifePage() {
     return (lang === "vi" ? r?.value_vi || r?.value_en : r?.value_en) || fallback;
   };
 
-  const heroTitle = g(
-    "hero",
-    "title",
-    lang === "vi" ? "BẢO HIỂM KỲ HẠN (TERM LIFE)" : "TERM LIFE INSURANCE",
-  );
+  const heroTitle = g("hero", "title", t.hero_title);
   const heroDesc = g("hero", "desc", t.hero_desc);
   const heroCta = g("hero", "cta", t.hero_cta);
   const benefitsH = g("sections", "benefits_h", t.benefits_h);
@@ -159,7 +160,7 @@ export default async function TermLifePage() {
           </h1>
           <p className="text-xl opacity-90 max-w-2xl mx-auto">{heroDesc}</p>
           <a
-            href="/contact?product=termlife"
+            href="/contact?product=auto-insurance"
             className="mt-8 inline-block bg-white font-bold px-8 py-3.5 rounded-full text-sm hover:bg-orange-50 transition-colors"
             style={{ color: "#ea580c" }}
           >
@@ -206,19 +207,19 @@ export default async function TermLifePage() {
               <thead>
                 <tr>
                   <th className="text-left p-4 bg-gray-50 font-semibold text-gray-700 rounded-tl-lg border border-gray-200">
-                    {lang === "vi" ? "Tính năng" : "Feature"}
+                    {t.col1}
                   </th>
                   <th
                     className="p-4 bg-orange-50 font-semibold border border-gray-200"
                     style={{ color: "#ea580c" }}
                   >
-                    Term Life
+                    {t.col2}
                   </th>
                   <th
                     className="p-4 bg-red-50 font-semibold border border-gray-200 rounded-tr-lg"
                     style={{ color: "#2F5E9E" }}
                   >
-                    IUL Secrets
+                    {t.col3}
                   </th>
                 </tr>
               </thead>
