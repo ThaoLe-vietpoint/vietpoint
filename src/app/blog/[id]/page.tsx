@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { getLang } from "@/utils/getLang";
 import { getGlobalContact } from "@/utils/getGlobalContact";
+import { resolveBlogImages } from "@/utils/blogImages";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -390,6 +391,7 @@ export default async function BlogPostPage({
     { year: "numeric", month: "long", day: "numeric" },
   );
   const contact = await getGlobalContact(lang);
+  const postImgMeta = resolveBlogImages(post!.image, lang);
 
   return (
     <main className="min-h-screen bg-white pt-16">
@@ -433,7 +435,12 @@ export default async function BlogPostPage({
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 md:px-8 pb-16">
-        <BlogArticle contentHtml={contentHtml} title={postTitle} lang={lang} />
+        <BlogArticle
+          contentHtml={contentHtml}
+          title={postTitle}
+          lang={lang}
+          images={postImgMeta.images}
+        />
 
         {/* Related posts */}
         {related.length > 0 && (
@@ -442,34 +449,41 @@ export default async function BlogPostPage({
               {lang === "vi" ? "Bài viết liên quan" : "Related Articles"}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {related.map((r) => (
-                <Link
-                  key={r.id}
-                  href={`/blog/${"slug" in r && r.slug ? r.slug : r.id}`}
-                  className="group rounded-xl border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
-                >
-                  {r.image && (
-                    <img
-                      src={r.image}
-                      alt={r.title_vi || r.title_en}
-                      className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  )}
-                  <div className="p-3">
-                    {r.category && (
-                      <span
-                        className="text-[10px] font-semibold"
-                        style={{ color: "#2F5E9E" }}
-                      >
-                        {r.category}
-                      </span>
+              {related.map((r) => {
+                const relImg = resolveBlogImages(r.image, lang).cover;
+                const relTitle =
+                  lang === "vi"
+                    ? r.title_vi || r.title_en
+                    : r.title_en || r.title_vi;
+                return (
+                  <Link
+                    key={r.id}
+                    href={`/blog/${"slug" in r && r.slug ? r.slug : r.id}`}
+                    className="group rounded-xl border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+                  >
+                    {relImg && (
+                      <img
+                        src={relImg}
+                        alt={relTitle}
+                        className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
                     )}
-                    <p className="text-sm font-semibold mt-1 line-clamp-2 group-hover:text-[#2F5E9E] transition-colors text-gray-800">
-                      {r.title_vi || r.title_en}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+                    <div className="p-3">
+                      {r.category && (
+                        <span
+                          className="text-[10px] font-semibold"
+                          style={{ color: "#2F5E9E" }}
+                        >
+                          {r.category}
+                        </span>
+                      )}
+                      <p className="text-sm font-semibold mt-1 line-clamp-2 group-hover:text-[#2F5E9E] transition-colors text-gray-800">
+                        {relTitle}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         )}

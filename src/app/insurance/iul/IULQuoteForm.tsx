@@ -38,16 +38,26 @@ export default function IULQuoteForm({ lang = "en" }: { lang?: "en" | "vi" }) {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setErrorMsg("");
+    if (!quoteForm.name.trim() || !quoteForm.phone.trim()) {
+      setErrorMsg(
+        lang === "vi"
+          ? "Vui lòng nhập họ tên và số điện thoại."
+          : "Please enter your full name and phone number.",
+      );
+      return;
+    }
     setLoading(true);
     try {
       const parts: string[] = [];
       if (quoteForm.age) parts.push(`Age: ${quoteForm.age}`);
       if (quoteForm.savings) parts.push(`Savings/mo: ${quoteForm.savings}`);
       if (quoteForm.protect) parts.push(`Protect: ${quoteForm.protect}`);
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -55,12 +65,29 @@ export default function IULQuoteForm({ lang = "en" }: { lang?: "en" | "vi" }) {
           phone: quoteForm.phone,
           email: quoteForm.email,
           message: parts.join(" | "),
-          source: "iul_quote_form",
+          source: "medicare_quote_form",
         }),
       });
-    } catch {}
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setErrorMsg(
+          data?.error ||
+            (lang === "vi"
+              ? "Không thể gửi yêu cầu. Vui lòng kiểm tra lại số điện thoại."
+              : "Could not send request. Please check your phone number."),
+        );
+        setLoading(false);
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setErrorMsg(
+        lang === "vi"
+          ? "Lỗi kết nối. Vui lòng thử lại."
+          : "Network error. Please try again.",
+      );
+    }
     setLoading(false);
-    setSubmitted(true);
   }
 
   const FIELDS: [string, string, string[]][] = [
@@ -133,6 +160,11 @@ export default function IULQuoteForm({ lang = "en" }: { lang?: "en" | "vi" }) {
         onChange={(e) => setQuoteForm({ ...quoteForm, email: e.target.value })}
         className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 text-sm focus:outline-none"
       />
+      {errorMsg && (
+        <p className="text-xs text-red-300 bg-red-500/20 border border-red-400/30 rounded-lg px-3 py-2">
+          {errorMsg}
+        </p>
+      )}
       <button
         onClick={handleSubmit}
         disabled={loading}

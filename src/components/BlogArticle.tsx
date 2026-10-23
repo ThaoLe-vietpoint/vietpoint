@@ -1,18 +1,33 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, X, ZoomIn, Images } from "lucide-react";
 
 type Props = {
   contentHtml: string;
   title: string;
   lang: string;
+  images?: string[];
 };
 
-export default function BlogArticle({ contentHtml, title, lang }: Props) {
+export default function BlogArticle({
+  contentHtml,
+  title,
+  lang,
+  images = [],
+}: Props) {
   const [tocOpen, setTocOpen] = useState(true);
   const [shareUrl, setShareUrl] = useState("");
   const [copied, setCopied] = useState(false);
   const [headings, setHeadings] = useState<string[]>([]);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [lightboxUrl, setLightboxUrl] = useState<string | null>(null);
+
+  const validImages = images.filter(Boolean);
+  // Show top cover/gallery if there are multiple images OR if the single cover image isn't already embedded in contentHtml
+  const showGallery =
+    validImages.length > 1 ||
+    (validImages.length === 1 && !contentHtml.includes(validImages[0]));
 
   useEffect(() => {
     setShareUrl(window.location.href);
@@ -178,11 +193,129 @@ export default function BlogArticle({ contentHtml, title, lang }: Props) {
         </div>
       )}
 
+      {/* Cover Image / Multi-Image Gallery */}
+      {showGallery && validImages.length > 0 && (
+        <div className="mb-8 space-y-3">
+          <div className="relative rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 group">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={validImages[activeSlide] ?? validImages[0]}
+              alt={`${title} - ${activeSlide + 1}`}
+              onClick={() =>
+                setLightboxUrl(validImages[activeSlide] ?? validImages[0])
+              }
+              className="w-full max-h-[520px] object-cover cursor-zoom-in transition-transform duration-300"
+            />
+
+            {/* Zoom button */}
+            <button
+              type="button"
+              onClick={() =>
+                setLightboxUrl(validImages[activeSlide] ?? validImages[0])
+              }
+              className="absolute top-3 right-3 px-3 py-1.5 rounded-full bg-black/60 hover:bg-black/80 text-white text-xs font-semibold flex items-center gap-1.5 backdrop-blur-xs transition-colors"
+            >
+              <ZoomIn size={14} />
+              {lang === "vi" ? "Phóng to" : "Zoom"}
+            </button>
+
+            {validImages.length > 1 && (
+              <>
+                <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 text-white text-xs font-bold flex items-center gap-1.5 backdrop-blur-xs">
+                  <Images size={13} />
+                  {activeSlide + 1} / {validImages.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveSlide((prev) =>
+                      prev === 0 ? validImages.length - 1 : prev - 1,
+                    )
+                  }
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-lg flex items-center justify-center transition-all"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveSlide((prev) =>
+                      prev === validImages.length - 1 ? 0 : prev + 1,
+                    )
+                  }
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-lg flex items-center justify-center transition-all"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Thumbnail strip for multiple images */}
+          {validImages.length > 1 && (
+            <div className="flex items-center gap-2.5 overflow-x-auto pb-1">
+              {validImages.map((imgUrl, idx) => (
+                <button
+                  key={`${imgUrl}-${idx}`}
+                  type="button"
+                  onClick={() => setActiveSlide(idx)}
+                  className={`relative shrink-0 w-20 h-14 rounded-xl overflow-hidden border-2 transition-all ${
+                    activeSlide === idx
+                      ? "border-[#2F5E9E] ring-2 ring-[#2F5E9E]/30 scale-[1.03]"
+                      : "border-transparent opacity-65 hover:opacity-100"
+                  }`}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={imgUrl}
+                    alt={`Thumbnail ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Article — always visible */}
       <article
         className="article-content"
+        onClick={(e) => {
+          const target = e.target as HTMLElement;
+          if (target.tagName === "IMG") {
+            const src = (target as HTMLImageElement).src;
+            if (src) setLightboxUrl(src);
+          }
+        }}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />
+
+      {/* Fullscreen Lightbox Modal */}
+      {lightboxUrl && (
+        <div
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-xs flex items-center justify-center p-4"
+          onClick={() => setLightboxUrl(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxUrl(null)}
+            className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-colors"
+            aria-label="Close"
+          >
+            <X size={20} />
+          </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={lightboxUrl}
+            alt={title}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain"
+          />
+        </div>
+      )}
     </>
   );
 }

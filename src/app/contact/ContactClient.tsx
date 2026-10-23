@@ -298,6 +298,8 @@ function ContactPageInner({ initialLang }: { initialLang: "en" | "vi" }) {
 
     // Build a rich message string from all form fields
     const parts: string[] = [];
+    if (product)
+      parts.push(`${lang === "vi" ? "Sản phẩm" : "Product"}: ${product}`);
     if (joined)
       parts.push(
         `${lang === "vi" ? "Đã tham gia" : "Joined"}: ${joined === "yes" ? (lang === "vi" ? "Rồi" : "Yes") : lang === "vi" ? "Chưa" : "No"}`,

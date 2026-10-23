@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/client";
+import { resolveBlogImages } from "@/utils/blogImages";
 
 const categories = [
   "All",
@@ -241,7 +242,18 @@ const posts = [
 export default function BlogClient({ initialLang }: { initialLang: "en" | "vi" }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [lang, setLang] = useState<"en" | "vi">(initialLang);
-  const [activePosts, setActivePosts] = useState(posts);
+  const [activePosts, setActivePosts] = useState<
+    Array<{
+      id: string | number;
+      title: string;
+      excerpt: string;
+      date: string;
+      category: string;
+      categoryColor: string;
+      image: string;
+      imageCount?: number;
+    }>
+  >(posts);
 
   useEffect(() => {
     const c = document.cookie
@@ -272,21 +284,28 @@ export default function BlogClient({ initialLang }: { initialLang: "en" | "vi" }
             Event: "#d97706",
           };
           setActivePosts(
-            data.map((p) => ({
-              id: p.slug || p.id,
-              title: (l === "vi" ? p.title_vi || p.title_en : p.title_en) ?? "",
-              excerpt:
-                (l === "vi" ? p.excerpt_vi || p.excerpt_en : p.excerpt_en) ??
-                "",
-              date: new Date(p.created_at).toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-              }),
-              category: p.category || "Insurance",
-              categoryColor: colorMap[p.category] ?? "#2F5E9E",
-              image: p.image || "",
-            })),
+            data.map((p) => {
+              const imgMeta = resolveBlogImages(p.image, l);
+              return {
+                id: p.slug || p.id,
+                title:
+                  (l === "vi" ? p.title_vi || p.title_en : p.title_en || p.title_vi) ??
+                  "",
+                excerpt:
+                  (l === "vi"
+                    ? p.excerpt_vi || p.excerpt_en
+                    : p.excerpt_en || p.excerpt_vi) ?? "",
+                date: new Date(p.created_at).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                }),
+                category: p.category || "Insurance",
+                categoryColor: colorMap[p.category] ?? "#2F5E9E",
+                image: imgMeta.cover || "",
+                imageCount: imgMeta.images.length,
+              };
+            }),
           );
         }
       });
@@ -387,6 +406,11 @@ export default function BlogClient({ initialLang }: { initialLang: "en" | "vi" }
                   >
                     {post.category}
                   </span>
+                  {post.imageCount && post.imageCount > 1 && (
+                    <span className="absolute bottom-3 right-3 text-xs font-bold px-3 py-1 rounded-full text-white bg-black/65 backdrop-blur-xs">
+                      📷 {post.imageCount} {lang === "vi" ? "ảnh" : "photos"}
+                    </span>
+                  )}
                 </Link>
                 {/* Text */}
                 <div className="mt-5">
