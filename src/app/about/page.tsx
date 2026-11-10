@@ -3,6 +3,9 @@ import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { getLang } from "@/utils/getLang";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "About Us - VietPoint Insurance & Tax",
   description:
@@ -45,20 +48,6 @@ const DEFAULT_CORE_VALUES: {
     desc: "Ensure all activities comply with the law.",
     desc_vi: "Đảm bảo mọi hoạt động tuân thủ pháp luật.",
   },
-];
-
-const DEFAULT_AGENTS = [
-  "HUNG HUYNH",
-  "CELINE NGUYEN",
-  "GINA DANG",
-  "VICKY TRIEU",
-  "TY TRIEU",
-  "HA NGUYEN",
-];
-const DEFAULT_AMBASSADORS = [
-  "KHANH THI LE LA",
-  "CHIEU ANH NU TRAN",
-  "THU THI NGUYEN",
 ];
 
 const DEFAULT_WHY_US: {
@@ -135,41 +124,6 @@ const DEFAULT_WHAT_WE_DO: {
   },
 ];
 
-const products = [
-  {
-    title: "IUL For Kids (EBTP)",
-    title_vi: "IUL Cho Trẻ Em (EBTP)",
-    desc: "Protect your children and build a financial fund for them to enter university, giving them wings to fly far and higher at the age of 18.",
-    desc_vi: "Bảo vệ con bạn và xây dựng quỹ tài chính để con bước vào đại học, chắp cánh cho con bay xa hơn ở tuổi 18.",
-    href: "/insurance/kid-iul-secrets",
-    color: "#16a34a",
-  },
-  {
-    title: "Max Funded IUL",
-    title_vi: "Max Funded IUL",
-    desc: "Full retirement thanks to the ability to generate 8–15% profit per year, absolute safety thanks to the NO LOSS policy.",
-    desc_vi: "Hưu trí trọn vẹn nhờ khả năng sinh lời 8–15%/năm, an toàn tuyệt đối nhờ chính sách KHÔNG MẤT VỐN.",
-    href: "/insurance/max-funded-iul",
-    color: "#2563eb",
-  },
-  {
-    title: "IUL Secrets",
-    title_vi: "IUL Secrets",
-    desc: "Compensation for more than 16 types of diseases. Accumulate TAX-FREE retirement funds with high interest rates of 6–12%/year.",
-    desc_vi: "Đền bù hơn 16 loại bệnh hiểm nghèo. Tích lũy quỹ hưu trí MIỄN THUẾ với lãi suất cao 6–12%/năm.",
-    href: "/insurance/iul",
-    color: "#2F5E9E",
-  },
-  {
-    title: "Term Life",
-    title_vi: "Bảo Hiểm Kỳ Hạn (Term Life)",
-    desc: "CHEAP PRICE, suitable for all. Compensation for more than 16 types of diseases and death with a contract term of up to 30 years.",
-    desc_vi: "CHI PHÍ THẤP, phù hợp với mọi người. Đền bù hơn 16 loại bệnh và tử vong với thời hạn hợp đồng lên đến 30 năm.",
-    href: "/insurance/termlife",
-    color: "#ea580c",
-  },
-];
-
 export default async function AboutPage() {
   const supabase = await createClient();
   const lang = await getLang();
@@ -179,6 +133,12 @@ export default async function AboutPage() {
     .eq("page", "about");
   const rows = data ?? [];
 
+  const hasVietnamese = (str?: string) =>
+    !!str &&
+    /[àáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]/i.test(
+      str,
+    );
+
   const g = (
     section: string,
     field: string,
@@ -186,6 +146,20 @@ export default async function AboutPage() {
     fallbackVi?: string,
   ) => {
     const row = rows.find((r) => r.section === section && r.field === field);
+    if (!row) return lang === "vi" ? fallbackVi || fallbackEn : fallbackEn;
+    if (section === "story") {
+      if (lang === "vi") {
+        if (field === "intro_text") {
+          return row.value_vi?.trim() || row.value_en?.trim() || fallbackVi || fallbackEn;
+        }
+        if (row.value_vi && !row.value_vi.includes("VietPoint ra đời từ niềm tin đơn giản")) {
+          return row.value_vi.trim();
+        }
+        if (hasVietnamese(row.value_en)) return row.value_en;
+        return row.value_vi || row.value_en || fallbackVi || fallbackEn;
+      }
+      return row.value_en || fallbackEn;
+    }
     if (lang === "vi")
       return row?.value_vi || row?.value_en || fallbackVi || fallbackEn;
     return row?.value_en ?? fallbackEn;
@@ -296,17 +270,13 @@ export default async function AboutPage() {
     "Li\u00ean H\u1ec7 Ngay",
   );
 
-  // Team
-  const agentsRaw = g("team", "agents", "");
-  const agents = agentsRaw
-    ? agentsRaw.split("\n").filter(Boolean)
-    : DEFAULT_AGENTS;
-  const ambassadorsRaw = g("team", "ambassadors", "");
-  const ambassadors = ambassadorsRaw
-    ? ambassadorsRaw.split("\n").filter(Boolean)
-    : DEFAULT_AMBASSADORS;
-
   // Text fields
+  const brandTitle = g(
+    "story",
+    "brand_title",
+    "Brand Story",
+    "Người bạn đồng hành đáng tin cậy tại Mỹ - VIETPOINT INSURANCE",
+  );
   const introText = g(
     "story",
     "intro_text",
@@ -359,12 +329,12 @@ export default async function AboutPage() {
       <section className="py-16 px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">{t.about_h}</h2>
-          <p className="text-gray-600 leading-relaxed mb-6">{introText}</p>
+          <p className="text-gray-600 leading-relaxed mb-6 whitespace-pre-line">{introText}</p>
 
           <h3 className="text-xl font-bold text-gray-900 mb-3 mt-10">
-            {t.brand_h}
+            {brandTitle || t.brand_h}
           </h3>
-          <p className="text-gray-600 leading-relaxed">{brandText}</p>
+          <p className="text-gray-600 leading-relaxed whitespace-pre-line">{brandText}</p>
         </div>
       </section>
 
@@ -467,41 +437,6 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Products */}
-      <section className="py-16 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center">
-            {t.solutions_h}
-          </h2>
-          <p className="text-center text-gray-500 mb-10">{t.solutions_sub}</p>
-          <div className="grid md:grid-cols-2 gap-6">
-            {products.map((p) => (
-              <div
-                key={p.title}
-                className="rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="h-2" style={{ background: p.color }} />
-                <div className="p-6">
-                  <h4 className="font-bold text-gray-900 text-lg mb-2">
-                    {lang === "vi" ? p.title_vi || p.title : p.title}
-                  </h4>
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                    {lang === "vi" ? p.desc_vi || p.desc : p.desc}
-                  </p>
-                  <Link
-                    href={p.href}
-                    className="text-sm font-semibold hover:underline"
-                    style={{ color: p.color }}
-                  >
-                    {t.learn_more}
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Why Choose */}
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
@@ -558,49 +493,6 @@ export default async function AboutPage() {
                 <p className="text-white/70 text-xs font-semibold tracking-widest uppercase">
                   {s.label}
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Elite Agents */}
-      <section className="py-16 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">
-            {t.agents_h}
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {agents.map((name: string) => (
-              <div key={name} className="text-center">
-                <div
-                  className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center text-white font-bold text-lg"
-                  style={{ background: "#2F5E9E" }}
-                >
-                  {name[0]}
-                </div>
-                <h4 className="font-bold text-gray-900 text-xs">{name}</h4>
-                <p className="text-gray-500 text-xs">{t.agent_label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Brand Ambassadors */}
-      <section className="py-12 px-6 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            {t.ambassadors_h}
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
-            {ambassadors.map((name: string) => (
-              <div key={name} className="text-center">
-                <div className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center text-white font-bold text-lg bg-gray-400">
-                  {name[0]}
-                </div>
-                <h4 className="font-bold text-gray-900 text-xs">{name}</h4>
-                <p className="text-gray-500 text-xs">{t.ambassador_label}</p>
               </div>
             ))}
           </div>

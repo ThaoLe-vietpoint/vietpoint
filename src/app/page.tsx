@@ -3,7 +3,6 @@ import { getLang } from "@/utils/getLang";
 import Hero from "@/components/Hero";
 import Products from "@/components/Products";
 import Process from "@/components/Process";
-import Testimonials from "@/components/Testimonials";
 import Stats from "@/components/Stats";
 
 type ContentRow = {
@@ -12,6 +11,9 @@ type ContentRow = {
   value_en: string;
   value_vi: string;
 };
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function Home() {
   const supabase = await createClient();
@@ -165,7 +167,6 @@ export default async function Home() {
         steps={processSteps}
         lang={lang}
       />
-      <Testimonials title={testimonialsTitle} testimonials={testimonialItems} />
       <Stats title={statsTitle} items={statsItems} />
     </main>
   );

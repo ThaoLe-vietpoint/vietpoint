@@ -17,12 +17,7 @@ const NAV: Record<"en" | "vi", NavItem[]> = {
       label: "About us",
       href: "/about",
       children: [
-        { label: "About VietPoint Insurance & Tax", href: "/about" },
-        { label: "Recruitment", href: "/about/recruitment" },
-        {
-          label: "Official Consultant Verification",
-          href: "/about/verify-consultant",
-        },
+        { label: "About VietPoint Insurance", href: "/about" },
       ],
     },
     {
@@ -38,27 +33,17 @@ const NAV: Record<"en" | "vi", NavItem[]> = {
       label: "Customer care",
       href: "/customer-care",
       children: [
-        { label: "Resolve insurance claims", href: "/customer-care/claims" },
-        {
-          label: "Calculate insurance fees",
-          href: "/customer-care/calculate-fees",
-        },
-        { label: "My story, my family", href: "/customer-care/stories" },
-        { label: "User manual", href: "/customer-care/user-manual" },
-        { label: "Priority program", href: "/customer-care/priority-program" },
+        { label: "Customer Support", href: "/customer-care/support" },
+        { label: "FAQs", href: "/customer-care/faqs" },
+        { label: "Document Assistance", href: "/customer-care/documents" },
+        { label: "Complaints & Issue Resolution", href: "/customer-care/complaints" },
       ],
     },
     {
       label: "Blog",
       href: "/blog",
       children: [
-        { label: "Featured post", href: "/blog?cat=featured" },
-        { label: "Insurance", href: "/blog?cat=insurance" },
-        { label: "User manual", href: "/blog?cat=user-manual" },
-        { label: "Investment, Saving & Retire", href: "/blog?cat=investing" },
-        { label: "Health – Life", href: "/blog?cat=health" },
-        { label: "Event", href: "/blog?cat=event" },
-        { label: "My story, my family", href: "/blog?cat=stories" },
+        { label: "Featured post", href: "/blog" },
       ],
     },
     { label: "Contact", href: "/contact" },
@@ -68,9 +53,7 @@ const NAV: Record<"en" | "vi", NavItem[]> = {
       label: "Về chúng tôi",
       href: "/about",
       children: [
-        { label: "Về VietPoint Insurance & Tax", href: "/about" },
-        { label: "Tuyển dụng", href: "/about/recruitment" },
-        { label: "Xác minh tư vấn viên", href: "/about/verify-consultant" },
+        { label: "Về VietPoint Insurance", href: "/about" },
       ],
     },
     {
@@ -86,85 +69,24 @@ const NAV: Record<"en" | "vi", NavItem[]> = {
       label: "Chăm sóc khách hàng",
       href: "/customer-care",
       children: [
-        { label: "Giải quyết bồi thường", href: "/customer-care/claims" },
-        { label: "Tính phí bảo hiểm", href: "/customer-care/calculate-fees" },
-        { label: "Câu chuyện của tôi", href: "/customer-care/stories" },
-        { label: "Hướng dẫn sử dụng", href: "/customer-care/user-manual" },
-        {
-          label: "Chương trình ưu tiên",
-          href: "/customer-care/priority-program",
-        },
+        { label: "Hỗ trợ khách hàng", href: "/customer-care/support" },
+        { label: "Câu hỏi thường gặp", href: "/customer-care/faqs" },
+        { label: "Hướng dẫn giấy tờ", href: "/customer-care/documents" },
+        { label: "Khiếu nại & Giải quyết vấn đề", href: "/customer-care/complaints" },
       ],
     },
     {
       label: "Blog",
       href: "/blog",
       children: [
-        { label: "Bài nổi bật", href: "/blog?cat=featured" },
-        { label: "Bảo hiểm", href: "/blog?cat=insurance" },
-        { label: "Hướng dẫn", href: "/blog?cat=user-manual" },
-        { label: "Đầu tư & Hưu trí", href: "/blog?cat=investing" },
-        { label: "Sức khỏe – Cuộc sống", href: "/blog?cat=health" },
-        { label: "Sự kiện", href: "/blog?cat=event" },
-        { label: "Câu chuyện của tôi", href: "/blog?cat=stories" },
+        { label: "Bài nổi bật", href: "/blog" },
       ],
     },
     { label: "Liên hệ", href: "/contact" },
   ],
 };
 
-// legacy — kept so old references don't break until router.refresh() replaces them
-const navItems = [
-  {
-    label: "About us",
-    href: "/about",
-    children: [
-      { label: "About VietPoint Insurance & Tax", href: "/about" },
-      { label: "Recruitment", href: "/about/recruitment" },
-      {
-        label: "Official Consultant Verification",
-        href: "/about/verify-consultant",
-      },
-    ],
-  },
-  {
-    label: "Insurance",
-    href: "/insurance/iul",
-    children: [
-      { label: "Medicare", href: "/insurance/iul" },
-      { label: "ACA Marketplace", href: "/insurance/kid-iul-secrets" },
-      { label: "Auto Insurance", href: "/insurance/termlife" },
-    ],
-  },
-  {
-    label: "Customer care",
-    href: "/customer-care",
-    children: [
-      { label: "Resolve insurance claims", href: "/customer-care/claims" },
-      {
-        label: "Calculate insurance fees",
-        href: "/customer-care/calculate-fees",
-      },
-      { label: "My story, my family", href: "/customer-care/stories" },
-      { label: "User manual", href: "/customer-care/user-manual" },
-      { label: "Priority program", href: "/customer-care/priority-program" },
-    ],
-  },
-  {
-    label: "Blog",
-    href: "/blog",
-    children: [
-      { label: "Featured post", href: "/blog?cat=featured" },
-      { label: "Insurance", href: "/blog?cat=insurance" },
-      { label: "User manual", href: "/blog?cat=user-manual" },
-      { label: "Investment, Saving & Retire", href: "/blog?cat=investing" },
-      { label: "Health – Life", href: "/blog?cat=health" },
-      { label: "Event", href: "/blog?cat=event" },
-      { label: "My story, my family", href: "/blog?cat=stories" },
-    ],
-  },
-  { label: "Contact", href: "/contact" },
-];
+const navItems = NAV.en;
 
 export default function Header({
   initialLang = "en",

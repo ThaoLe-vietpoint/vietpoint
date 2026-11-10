@@ -15,38 +15,32 @@ const T = {
     help_title: "How Can We Help?",
     reach_title: "Reach Out Directly",
     email_label: "✉️ Email Us",
-    hours: "Office hours: Sun–Thu 9AM–7PM EST | Fri–Sat Closed",
+    hours: "Office hours: Mon–Fri 9AM–5PM EST | Sat–Sun Closed",
     learn_more: "Learn more →",
     services: [
       {
-        icon: "📋",
-        title: "Resolve Insurance Claims",
-        desc: "We guide you step by step through the insurance claims process. Our agents are with you every step of the way.",
-        href: "/customer-care/claims",
+        icon: "🎧",
+        title: "Customer Support",
+        desc: "Ways to contact us, support hours, assistance topics, and direct help from our team.",
+        href: "/customer-care/support",
       },
       {
-        icon: "🧮",
-        title: "Calculate Insurance Fees",
-        desc: "Get an instant estimate for your insurance premium. Free, no obligation — just enter your details.",
-        href: "/customer-care/calculate-fees",
+        icon: "❓",
+        title: "FAQs",
+        desc: "Frequently asked questions about Health Insurance, Medicare, Medicaid, Auto Insurance, and application procedures.",
+        href: "/customer-care/faqs",
       },
       {
-        icon: "💬",
-        title: "My Story, My Family",
-        desc: "Real stories from our clients whose lives were transformed by the right insurance coverage.",
-        href: "/customer-care/stories",
+        icon: "📄",
+        title: "Document Assistance",
+        desc: "Guide to key documents, reading insurer notices, understanding Medical Bills, EOB, and Verification Notices.",
+        href: "/customer-care/documents",
       },
       {
-        icon: "📚",
-        title: "User Manual",
-        desc: "Everything you need to know to manage your insurance policy effectively.",
-        href: "/customer-care/user-manual",
-      },
-      {
-        icon: "🏆",
-        title: "Priority Program",
-        desc: "Exclusive benefits and dedicated support for VietPoint Priority Members.",
-        href: "/customer-care/priority-program",
+        icon: "⚖️",
+        title: "Complaints & Issue Resolution",
+        desc: "Support for billing errors, denied claims, and policy review requests with insurance carriers.",
+        href: "/customer-care/complaints",
       },
     ],
   },
@@ -58,38 +52,32 @@ const T = {
     reach_title: "Liên Hệ Trực Tiếp",
     email_label: "✉️ Gửi Email",
     hours:
-      "Giờ làm việc: Chủ nhật – Thứ năm 9SA–7CH EST | Thứ sáu – Thứ bảy Đóng cửa",
+      "Giờ làm việc: Thứ Hai – Thứ Sáu 9SA–5CH EST | Thứ Bảy – Chủ Nhật Đóng cửa",
     learn_more: "Xem thêm →",
     services: [
       {
-        icon: "📋",
-        title: "Giải Quyết Khiếu Nại Bảo Hiểm",
-        desc: "Chúng tôi hướng dẫn bạn từng bước trong quy trình khiếu nại bảo hiểm. Chuyên viên của chúng tôi đồng hành cùng bạn.",
-        href: "/customer-care/claims",
+        icon: "🎧",
+        title: "Hỗ Trợ Khách Hàng",
+        desc: "Các cách liên hệ, thời gian hỗ trợ, các chủ đề hỗ trợ và gửi yêu cầu tư vấn trực tiếp.",
+        href: "/customer-care/support",
       },
       {
-        icon: "🧮",
-        title: "Tính Phí Bảo Hiểm",
-        desc: "Nhận ước tính phí bảo hiểm ngay lập tức. Miễn phí, không ràng buộc — chỉ cần nhập thông tin của bạn.",
-        href: "/customer-care/calculate-fees",
+        icon: "❓",
+        title: "Câu Hỏi Thường Gặp",
+        desc: "Thắc mắc thường gặp về Bảo hiểm sức khỏe, Medicare, Medicaid, Bảo hiểm xe hơi và quy trình nộp hồ sơ.",
+        href: "/customer-care/faqs",
       },
       {
-        icon: "💬",
-        title: "Câu Chuyện Của Tôi, Gia Đình Tôi",
-        desc: "Những câu chuyện thật từ khách hàng có cuộc sống thay đổi nhờ có bảo hiểm phù hợp.",
-        href: "/customer-care/stories",
+        icon: "📄",
+        title: "Hướng Dẫn Giấy Tờ",
+        desc: "Các loại giấy tờ cần lưu ý, cách đọc thư bảo hiểm, giải thích Medical Bill, EOB và Verification Notice.",
+        href: "/customer-care/documents",
       },
       {
-        icon: "📚",
-        title: "Hướng Dẫn Sử Dụng",
-        desc: "Mọi thông tin bạn cần để quản lý hợp đồng bảo hiểm hiệu quả.",
-        href: "/customer-care/user-manual",
-      },
-      {
-        icon: "🏆",
-        title: "Chương Trình Ưu Tiên",
-        desc: "Quyền lợi độc quyền và hỗ trợ chuyên biệt dành cho thành viên VietPoint Priority.",
-        href: "/customer-care/priority-program",
+        icon: "⚖️",
+        title: "Khiếu Nại & Giải Quyết Vấn Đề",
+        desc: "Hỗ trợ khi hóa đơn có sai sót, quyền lợi bảo hiểm bị từ chối hoặc cần yêu cầu xem xét lại từ hãng bảo hiểm.",
+        href: "/customer-care/complaints",
       },
     ],
   },
@@ -120,7 +108,7 @@ export default async function CustomerCarePage() {
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">
             {t.help_title}
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {t.services.map((s) => (
               <Link
                 key={s.title}

@@ -25,12 +25,12 @@ const T = {
     fax: "Fax",
     address: "Address",
     hours: "Office Hours",
-    timezone: "Eastern Time (ET) · Georgia",
+    timezone: "Eastern Time (EST)",
     emailPlaceholder: "Your email address",
     submit: "Subscribe",
     thankYou: "Thank you for subscribing!",
     newsletter: "Stay updated",
-    newsletterDesc: "Get tips on insurance & tax savings delivered to your inbox.",
+    newsletterDesc: "Health insurance tips delivered to your inbox.",
     copyright: "© 2026 VietPoint Insurance & Tax LLC. All rights reserved.",
     terms: "Terms",
     privacy: "Privacy",
@@ -54,12 +54,12 @@ const T = {
     fax: "Fax",
     address: "Địa chỉ",
     hours: "Giờ làm việc",
-    timezone: "Múi giờ ET · Georgia",
+    timezone: "Múi giờ EST",
     emailPlaceholder: "Địa chỉ email của bạn",
     submit: "Đăng ký",
     thankYou: "Cảm ơn bạn đã đăng ký!",
     newsletter: "Nhận thông tin mới nhất",
-    newsletterDesc: "Mẹo bảo hiểm & tiết kiệm thuế gửi thẳng đến hộp thư của bạn.",
+    newsletterDesc: "Mẹo bảo hiểm sức khoẻ gửi thẳng đến hộp thư của bạn.",
     copyright: "© 2026 VietPoint Insurance & Tax LLC. Bảo lưu mọi quyền.",
     terms: "Điều khoản",
     privacy: "Bảo mật",
@@ -93,8 +93,44 @@ export default function Footer({
 }: FooterProps) {
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const t = T[lang];
   const telHref = phoneTel || `tel:+1${phone.replace(/\D/g, "").slice(-10)}`;
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || submitting) return;
+    setSubmitting(true);
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, lang }),
+      });
+      if (res.ok) {
+        setEmailSent(true);
+        setEmail("");
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setErrorMsg(
+          data.error ||
+            (lang === "vi"
+              ? "Có lỗi xảy ra, vui lòng thử lại."
+              : "An error occurred.")
+        );
+      }
+    } catch {
+      setErrorMsg(
+        lang === "vi"
+          ? "Có lỗi xảy ra, vui lòng thử lại."
+          : "An error occurred."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -109,8 +145,8 @@ export default function Footer({
               <img src="/logo-vietpoint.png" alt="VietPoint Insurance &amp; Tax" className="h-12 w-auto brightness-0 invert mb-4" />
               <p className="text-slate-400 text-sm leading-relaxed">
                 {lang === "vi"
-                  ? "Chuyên gia bảo hiểm nhân thọ & tư vấn thuế cho cộng đồng người Việt tại Hoa Kỳ."
-                  : "Life insurance & tax planning experts serving the Vietnamese-American community."}
+                  ? "Chuyên gia bảo hiểm sức khoẻ cho cộng đồng người Việt tại Hoa Kỳ."
+                  : "Health insurance experts serving the Vietnamese-American community."}
               </p>
               {/* Social icons */}
               <div className="flex gap-2 mt-6">
@@ -141,24 +177,31 @@ export default function Footer({
                 <p className="text-sm text-emerald-400 font-medium mt-4">✓ {t.thankYou}</p>
               ) : (
                 <form
-                  onSubmit={(e) => { e.preventDefault(); setEmailSent(true); }}
-                  className="flex gap-2 mt-4"
+                  onSubmit={handleNewsletterSubmit}
+                  className="flex flex-col gap-2 mt-4"
                 >
-                  <input
-                    type="email"
-                    placeholder={t.emailPlaceholder}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="flex-1 px-4 py-2.5 text-sm bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-[#4a9eff] focus:bg-white/15 transition"
-                  />
-                  <button
-                    type="submit"
-                    className="px-5 py-2.5 text-sm font-semibold rounded-xl text-white transition-opacity hover:opacity-90"
-                    style={{ background: "#2F5E9E" }}
-                  >
-                    {t.submit}
-                  </button>
+                  <div className="flex gap-2">
+                    <input
+                      type="email"
+                      placeholder={t.emailPlaceholder}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      disabled={submitting}
+                      className="flex-1 px-4 py-2.5 text-sm bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-[#4a9eff] focus:bg-white/15 transition disabled:opacity-60"
+                    />
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="px-5 py-2.5 text-sm font-semibold rounded-xl text-white transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center justify-center min-w-[90px]"
+                      style={{ background: "#2F5E9E" }}
+                    >
+                      {submitting ? "..." : t.submit}
+                    </button>
+                  </div>
+                  {errorMsg && (
+                    <p className="text-xs text-red-400 font-medium">{errorMsg}</p>
+                  )}
                 </form>
               )}
             </div>
@@ -171,9 +214,8 @@ export default function Footer({
               <ul className="space-y-2.5">
                 {[
                   { label: t.aboutLink, href: "/about" },
-                  { label: t.careers, href: "/about/recruitment" },
-                  { label: t.verifyConsultant, href: "/about/verify-consultant" },
                   { label: t.blog, href: "/blog" },
+                  { label: t.customerCare, href: "/customer-care" },
                 ].map((l) => (
                   <li key={l.href}>
                     <a href={l.href} className="text-slate-400 text-sm hover:text-white transition-colors">
@@ -210,7 +252,6 @@ export default function Footer({
                   </svg>
                   <div>
                     <a href={telHref} className="text-slate-300 text-sm hover:text-white transition-colors font-medium">{phone}</a>
-                    {fax !== phone && <p className="text-slate-500 text-xs mt-0.5">{t.fax}: {fax}</p>}
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">

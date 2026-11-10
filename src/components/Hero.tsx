@@ -1,7 +1,5 @@
 "use client";
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Play, X } from "lucide-react";
 
 type HeroProps = {
   tagline?: string;
@@ -20,13 +18,10 @@ export default function Hero({
   title = "Building value for living fully",
   description = "The trusted choice of over 20,000 Vietnamese families across 50 U.S. States",
   image = "https://thinksmartinsurance.com/wp-content/uploads/2025/04/banner-1.webp",
-  videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ",
   stat1 = { value: "20,000+", label: "Families Protected" },
   stat2 = { value: "50", label: "U.S. States" },
   stat3 = { value: "10+", label: "Years Trusted" },
-  lang = "en",
 }: HeroProps) {
-  const [showVideo, setShowVideo] = useState(false);
 
   return (
     <section
@@ -65,13 +60,7 @@ export default function Hero({
             <p className="text-white/80 text-lg md:text-xl mb-12 max-w-lg leading-relaxed">
               {description}
             </p>
-            <button
-              onClick={() => setShowVideo(true)}
-              className="flex items-center gap-3 bg-white text-[#2F5E9E] font-bold px-10 py-4 rounded-full hover:bg-white/90 transition-all duration-300 text-base tracking-wider shadow-lg"
-            >
-              {lang === "vi" ? "XEM VIDEO" : "PLAY VIDEO"}
-              <Play size={18} fill="currentColor" />
-            </button>
+
           </motion.div>
 
           {/* Right: Photo cards */}
@@ -119,32 +108,6 @@ export default function Hero({
           </motion.div>
         </div>
       </div>
-
-      {/* Video Modal */}
-      {showVideo && (
-        <div
-          className="fixed inset-0 z-100 bg-black/80 flex items-center justify-center p-4"
-          onClick={() => setShowVideo(false)}
-        >
-          <div
-            className="relative w-full max-w-3xl aspect-video bg-black rounded-2xl overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setShowVideo(false)}
-              className="absolute top-4 right-4 z-10 bg-white/20 text-white rounded-full p-2 hover:bg-white/40 transition-colors"
-            >
-              <X size={20} />
-            </button>
-            <iframe
-              className="w-full h-full"
-              src={`${videoUrl}?autoplay=1`}
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      )}
     </section>
   );
 }

@@ -43,87 +43,59 @@ const PREFILL: Record<string, { en: string; vi: string }> = {
 const T = {
   en: {
     hero_title: "Contact VietPoint Insurance & Tax",
-    hero_desc:
-      "Please leave your full information in the form below, we will contact you to support you as soon as possible.",
-    have_joined: "Have you joined VietPoint Insurance & Tax yet?",
-    yes: "Yes",
-    no: "No",
+    hero_desc: "Please fill in all details, we will contact you within 24 hours.",
     enter_info: "Enter your information",
     full_name: "Full Name",
-    policy: "Your Insurance Policy Number",
     phone: "Phone Number",
     dob: "Date of Birth",
-    email: "Email",
     gender: "Gender",
     male: "Male",
     female: "Female",
-    green_card: "Green Card / State ID Number",
-    state_label: "State of Residence",
+    state_label: "State",
     select_state: "Select state",
     support_request: "Support Request",
-    select_request: "Select your request",
-    requests: [
-      "Insurance Product Consultation",
-      "Information Support",
-      "Billing Address Update",
-      "Feedback / Complaint",
-    ],
-    question: "Your Question",
-    agree_text:
-      "I confirm that I have read and agree to VietPoint Insurance's Terms of Use, Privacy Commitment, and Personal Data Protection Policy.",
-    submit: "Submit",
-    sent_title: "Message Sent!",
-    sent_desc: "We will contact you as soon as possible.",
-    sidebar_support: "For support and advice",
-    sidebar_hours: "Office Hours (Eastern Time)",
-    sidebar_sun_thu: "Sunday – Thursday",
-    sidebar_fri_sat: "Friday & Saturday",
+    support_request_placeholder: "Please describe what you need assistance with...",
+    submit: "Submit Request",
+    sent_title: "Message Sent Successfully!",
+    sent_desc: "VietPoint will contact you within 24 hours.",
+    sidebar_support: "Direct Contact Information",
+    consulting_hotline: "Consultation Hotline",
+    support_hotline: "Customer Care Hotline",
+    sidebar_hours: "Office Hours (EST Time)",
+    sidebar_mon_fri: "Monday – Friday",
+    sidebar_mon_fri_val: "9 AM – 6 PM",
+    sidebar_sat_sun: "Saturday & Sunday",
     sidebar_closed: "Closed",
-    sidebar_dst: "Follow the U.S. daylight saving time (DST) rules.",
-    sidebar_ready: "Ready to answer all customer questions and concerns.",
-    call_now: "📞 Call Now",
+    sidebar_ready: "Our specialists are ready to listen, explain, and support you.",
+    call_now: "📞 Call Now (+1) (407)-421-1531",
   },
   vi: {
     hero_title: "Liên Hệ VietPoint Insurance & Tax",
-    hero_desc:
-      "Vui lòng điền đầy đủ thông tin vào biểu mẫu bên dưới, chúng tôi sẽ liên hệ hỗ trợ bạn sớm nhất có thể.",
-    have_joined: "Bạn đã tham gia VietPoint Insurance & Tax chưa?",
-    yes: "Rồi",
-    no: "Chưa",
+    hero_desc: "Vui lòng điền đầy đủ thông tin, chúng tôi sẽ liên hệ bạn trong vòng 24h",
     enter_info: "Nhập thông tin của bạn",
     full_name: "Họ và tên",
-    policy: "Số hợp đồng bảo hiểm của bạn",
     phone: "Số điện thoại",
     dob: "Ngày sinh",
-    email: "Email",
     gender: "Giới tính",
     male: "Nam",
     female: "Nữ",
-    green_card: "Số Green Card / State ID",
-    state_label: "Tiểu bang cư trú",
+    state_label: "Tiểu bang",
     select_state: "Chọn tiểu bang",
     support_request: "Yêu cầu hỗ trợ",
-    select_request: "Chọn yêu cầu của bạn",
-    requests: [
-      "Tư vấn sản phẩm bảo hiểm",
-      "Hỗ trợ thông tin",
-      "Cập nhật địa chỉ thanh toán",
-      "Phản hồi / Khiếu nại",
-    ],
-    question: "Câu hỏi của bạn",
-    agree_text:
-      "Tôi xác nhận đã đọc và đồng ý với Điều khoản sử dụng, Cam kết bảo mật và Chính sách bảo vệ dữ liệu cá nhân của VietPoint Insurance.",
-    submit: "Gửi",
+    support_request_placeholder: "Vui lòng cho biết vấn đề bạn cần tư vấn hoặc hỗ trợ...",
+    submit: "Gửi thông tin",
     sent_title: "Đã gửi thành công!",
-    sent_desc: "Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.",
-    sidebar_support: "Để được hỗ trợ và tư vấn",
-    sidebar_hours: "Giờ làm việc (Giờ Đông Mỹ)",
-    sidebar_sun_thu: "Chủ nhật – Thứ năm",
-    sidebar_fri_sat: "Thứ sáu & Thứ bảy",
+    sent_desc: "VietPoint sẽ liên hệ lại với bạn trong vòng 24 giờ.",
+    sidebar_support: "Thông tin liên hệ trực tiếp",
+    consulting_hotline: "Hotline tư vấn",
+    support_hotline: "Hotline CSKH",
+    sidebar_hours: "Giờ làm việc (EST Time)",
+    sidebar_mon_fri: "Thứ Hai – Thứ Sáu",
+    sidebar_mon_fri_val: "9 SA – 6 CH",
+    sidebar_sat_sun: "Thứ Bảy & Chủ Nhật",
     sidebar_closed: "Đóng cửa",
-    sidebar_dst: "Theo quy định giờ mùa hè của Hoa Kỳ (DST).",
-    sidebar_ready: "Sẵn sàng giải đáp mọi thắc mắc và câu hỏi của khách hàng.",
-    call_now: "📞 Gọi ngay",
+    sidebar_ready: "Đội ngũ chuyên viên VietPoint luôn sẵn sàng lắng nghe và đồng hành cùng bạn.",
+    call_now: "📞 Gọi ngay (+1) (407)-421-1531",
   },
 };
 
@@ -193,68 +165,48 @@ function ContactPageInner({ initialLang }: { initialLang: "en" | "vi" }) {
   }, []);
   const t = T[lang];
 
-  const [settings, setSettings] = useState<SiteSettings>(DEFAULT_SETTINGS);
-  useEffect(() => {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
-    fetch(`${url}/rest/v1/site_settings?select=key,value`, {
-      headers: { apikey: key, Authorization: `Bearer ${key}` },
-    })
-      .then((r) => r.json())
-      .then((data: { key: string; value: string }[]) => {
-        if (!Array.isArray(data)) return;
-        // phone/email/address come from page_content (see effect below)
-        const skip = ["phone", "phone_e164", "email", "address"];
-        const map = Object.fromEntries(
-          data.filter((r) => !skip.includes(r.key)).map((r) => [r.key, r.value]),
-        );
-        setSettings((prev) => ({ ...prev, ...map }));
-      })
-      .catch(() => {});
-  }, []);
-
-  // Phone / email / address: single source of truth = admin "Liên hệ & Footer"
-  // (page_content: global/contact) — same data the footer uses.
+  const [weekdayHours, setWeekdayHours] = useState("");
   useEffect(() => {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
     const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
     fetch(
-      `${url}/rest/v1/page_content?select=field,value_en,value_vi&page=eq.global&section=eq.contact&field=in.(phone,email,address)`,
+      `${url}/rest/v1/page_content?select=field,value_en,value_vi&page=eq.global&section=eq.hours&field=eq.weekdays`,
       { headers: { apikey: key, Authorization: `Bearer ${key}` } },
     )
       .then((r) => r.json())
-      .then((rows: { field: string; value_en: string; value_vi: string }[]) => {
-        if (!Array.isArray(rows)) return;
-        const next: Partial<SiteSettings> = {};
-        for (const r of rows) {
-          const v = ((lang === "vi" ? r.value_vi || r.value_en : r.value_en) ?? "")
-            .replace(/\s*\n\s*/g, ", ")
-            .trim();
-          if (!v) continue;
-          if (r.field === "phone") {
-            next.phone = v;
-            const digits = v.replace(/\D/g, "");
-            if (digits.length >= 10) next.phone_e164 = `+1${digits.slice(-10)}`;
-          } else if (r.field === "email") next.email = v;
-          else if (r.field === "address") next.address = v;
+      .then((rows) => {
+        if (!Array.isArray(rows) || !rows[0]) return;
+        const r = rows[0];
+        const rawVi = (r.value_vi || "").trim();
+        const rawEn = (r.value_en || "").trim();
+        const val = (lang === "vi" ? (rawVi && !rawVi.includes("Chủ Nhật") ? rawVi : rawEn) : rawEn) || "";
+        const m = val.match(/(\d+\s*(?:AM|SA)?\s*[-–]\s*\d+\s*(?:PM|CH)?)/i);
+        if (m) {
+          let formatted = m[1].trim();
+          if (lang === "vi") {
+            formatted = formatted
+              .replace(/(\d+)\s*AM/gi, "$1 SA")
+              .replace(/(\d+)\s*PM/gi, "$1 CH")
+              .replace(/[-–]/, "–");
+          } else {
+            formatted = formatted
+              .replace(/(\d+)\s*SA/gi, "$1 AM")
+              .replace(/(\d+)\s*CH/gi, "$1 PM")
+              .replace(/[-–]/, "–");
+          }
+          setWeekdayHours(formatted);
         }
-        setSettings((prev) => ({ ...prev, ...next }));
       })
       .catch(() => {});
   }, [lang]);
-  const [joined, setJoined] = useState<"yes" | "no" | null>(null);
+
   const [form, setForm] = useState({
     name: "",
-    policy: "",
     phone: "",
     dob: "",
-    email: "",
     gender: "",
-    greenCard: "",
     state: "",
-    request: "",
-    question: "",
-    agree: false,
+    supportRequest: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -268,79 +220,80 @@ function ContactPageInner({ initialLang }: { initialLang: "en" | "vi" }) {
     const stateParam = searchParams.get("state");
     const questionParam = searchParams.get("question");
 
-    // Capitalize gender: "male" → "Male"
     const genderVal = genderParam
       ? genderParam.charAt(0).toUpperCase() + genderParam.slice(1)
       : "";
 
-    setJoined("no");
     setForm((f) => ({
       ...f,
       gender: genderVal || f.gender,
       state: stateParam || f.state,
-      request: t.requests[0],
-      question: questionParam
+      supportRequest: questionParam
         ? questionParam
         : msg
           ? lang === "vi"
             ? msg.vi
             : msg.en
-          : f.question,
+          : f.supportRequest,
     }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [product, lang]);
+  }, [product, lang, searchParams]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.agree) return;
+    if (!form.name.trim() || !form.phone.trim()) {
+      setSubmitError(
+        lang === "vi"
+          ? "Vui lòng nhập họ tên và số điện thoại."
+          : "Please enter your name and phone number.",
+      );
+      return;
+    }
     setSubmitting(true);
     setSubmitError("");
 
-    // Build a rich message string from all form fields
     const parts: string[] = [];
     if (product)
       parts.push(`${lang === "vi" ? "Sản phẩm" : "Product"}: ${product}`);
-    if (joined)
-      parts.push(
-        `${lang === "vi" ? "Đã tham gia" : "Joined"}: ${joined === "yes" ? (lang === "vi" ? "Rồi" : "Yes") : lang === "vi" ? "Chưa" : "No"}`,
-      );
-    if (form.request)
-      parts.push(`${lang === "vi" ? "Yêu cầu" : "Request"}: ${form.request}`);
-    if (form.question)
-      parts.push(`${lang === "vi" ? "Câu hỏi" : "Question"}: ${form.question}`);
     if (form.dob)
       parts.push(`${lang === "vi" ? "Ngày sinh" : "DOB"}: ${form.dob}`);
     if (form.gender)
       parts.push(`${lang === "vi" ? "Giới tính" : "Gender"}: ${form.gender}`);
     if (form.state)
       parts.push(`${lang === "vi" ? "Tiểu bang" : "State"}: ${form.state}`);
-    if (form.policy)
-      parts.push(`${lang === "vi" ? "Hợp đồng" : "Policy"}: ${form.policy}`);
-    if (form.greenCard) parts.push(`Green Card: ${form.greenCard}`);
+    if (form.supportRequest)
+      parts.push(`${lang === "vi" ? "Yêu cầu hỗ trợ" : "Support Request"}: ${form.supportRequest}`);
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: form.name,
-        phone: form.phone,
-        email: form.email,
-        message: parts.join(" | "),
-        source: "contact_form",
-      }),
-    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          phone: form.phone.trim(),
+          message: parts.join(" | "),
+          source: "contact_form",
+        }),
+      });
 
-    if (!res.ok) {
+      if (!res.ok) {
+        setSubmitError(
+          lang === "vi"
+            ? "Có lỗi xảy ra, vui lòng thử lại."
+            : "Something went wrong. Please try again.",
+        );
+        setSubmitting(false);
+        return;
+      }
+      setSubmitting(false);
+      setSubmitted(true);
+    } catch {
       setSubmitError(
         lang === "vi"
-          ? "Có lỗi xảy ra, vui lòng thử lại."
-          : "Something went wrong. Please try again.",
+          ? "Lỗi kết nối. Vui lòng thử lại sau."
+          : "Network error. Please try again later.",
       );
       setSubmitting(false);
-      return;
     }
-    setSubmitting(false);
-    setSubmitted(true);
   }
 
   return (
@@ -355,12 +308,12 @@ function ContactPageInner({ initialLang }: { initialLang: "en" | "vi" }) {
         <h1 className="text-3xl md:text-4xl font-extrabold mb-3">
           {t.hero_title}
         </h1>
-        <p className="text-white/85 text-lg max-w-xl mx-auto">{t.hero_desc}</p>
+        <p className="text-white/85 text-base md:text-lg max-w-xl mx-auto">{t.hero_desc}</p>
       </section>
 
       <div className="max-w-6xl mx-auto px-6 py-16 grid lg:grid-cols-3 gap-10">
         {/* Form */}
-        <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <div className="lg:col-span-2 bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
           {submitted ? (
             <div className="text-center py-16">
               <div
@@ -387,103 +340,71 @@ function ContactPageInner({ initialLang }: { initialLang: "en" | "vi" }) {
               <p className="text-gray-500">{t.sent_desc}</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Join status */}
-              <div>
-                <p className="font-semibold text-gray-800 mb-3">
-                  {t.have_joined}
-                </p>
-                <div className="flex gap-3">
-                  {(["yes", "no"] as const).map((val) => (
-                    <button
-                      key={val}
-                      type="button"
-                      onClick={() => setJoined(val)}
-                      className={`px-6 py-2.5 rounded-lg border font-medium text-sm transition-all ${joined === val ? "border-[#2F5E9E] text-[#2F5E9E] bg-red-50" : "border-gray-200 text-gray-600 hover:border-gray-300"}`}
-                    >
-                      {val === "yes" ? t.yes : t.no}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <h3 className="font-semibold text-gray-800 text-lg border-t pt-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <h3 className="font-bold text-gray-900 text-lg">
                 {t.enter_info}
               </h3>
 
               <div className="grid md:grid-cols-2 gap-4">
+                {/* 1. Họ và tên */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                     {t.full_name} <span className="text-red-500">*</span>
                   </label>
                   <input
                     required
                     type="text"
+                    placeholder={t.full_name}
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2F5E9E]"
                   />
                 </div>
+
+                {/* 2. Số điện thoại */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t.policy}
-                  </label>
-                  <input
-                    type="text"
-                    value={form.policy}
-                    onChange={(e) =>
-                      setForm({ ...form, policy: e.target.value })
-                    }
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                     {t.phone} <span className="text-red-500">*</span>
                   </label>
                   <input
                     required
                     type="tel"
+                    placeholder={t.phone}
                     value={form.phone}
                     onChange={(e) =>
                       setForm({ ...form, phone: e.target.value })
                     }
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2F5E9E]"
                   />
                 </div>
+
+                {/* 3. Ngày sinh */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                     {t.dob}
                   </label>
                   <input
                     type="date"
                     value={form.dob}
                     onChange={(e) => setForm({ ...form, dob: e.target.value })}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2F5E9E]"
                   />
                 </div>
+
+                {/* 4. Giới tính */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t.email}
-                  </label>
-                  <input
-                    type="email"
-                    value={form.email}
-                    onChange={(e) =>
-                      setForm({ ...form, email: e.target.value })
-                    }
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                     {t.gender}
                   </label>
-                  <div className="flex gap-3 mt-1">
+                  <div className="flex gap-3">
                     {(["Male", "Female"] as const).map((g) => (
                       <label
                         key={g}
-                        className={`flex-1 flex items-center justify-center gap-2 border rounded-lg py-2.5 cursor-pointer text-sm transition-all ${form.gender === g ? "border-[#2F5E9E] text-[#2F5E9E] bg-red-50" : "border-gray-200 text-gray-600"}`}
+                        className={`flex-1 flex items-center justify-center gap-2 border rounded-xl py-3 cursor-pointer text-sm font-medium transition-all ${
+                          form.gender === g
+                            ? "border-[#2F5E9E] text-[#2F5E9E] bg-blue-50/60 font-semibold"
+                            : "border-gray-200 text-gray-600 hover:border-gray-300"
+                        }`}
                       >
                         <input
                           type="radio"
@@ -497,21 +418,10 @@ function ContactPageInner({ initialLang }: { initialLang: "en" | "vi" }) {
                     ))}
                   </div>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t.green_card}
-                  </label>
-                  <input
-                    type="text"
-                    value={form.greenCard}
-                    onChange={(e) =>
-                      setForm({ ...form, greenCard: e.target.value })
-                    }
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+
+                {/* 5. Tiểu bang */}
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                     {t.state_label} <span className="text-red-500">*</span>
                   </label>
                   <select
@@ -520,7 +430,7 @@ function ContactPageInner({ initialLang }: { initialLang: "en" | "vi" }) {
                     onChange={(e) =>
                       setForm({ ...form, state: e.target.value })
                     }
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2F5E9E]"
                   >
                     <option value="">{t.select_state}</option>
                     {states.map((s) => (
@@ -532,53 +442,22 @@ function ContactPageInner({ initialLang }: { initialLang: "en" | "vi" }) {
                 </div>
               </div>
 
+              {/* 6. Yêu cầu hỗ trợ */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                   {t.support_request} <span className="text-red-500">*</span>
                 </label>
-                <select
-                  required
-                  value={form.request}
-                  onChange={(e) =>
-                    setForm({ ...form, request: e.target.value })
-                  }
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E]"
-                >
-                  <option value="">{t.select_request}</option>
-                  {t.requests.map((r) => (
-                    <option key={r} value={r}>
-                      {r}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {t.question}
-                </label>
                 <textarea
+                  required
                   rows={4}
-                  value={form.question}
+                  placeholder={t.support_request_placeholder}
+                  value={form.supportRequest}
                   onChange={(e) =>
-                    setForm({ ...form, question: e.target.value })
+                    setForm({ ...form, supportRequest: e.target.value })
                   }
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2F5E9E] resize-none"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2F5E9E] resize-none"
                 />
               </div>
-
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={form.agree}
-                  onChange={(e) =>
-                    setForm({ ...form, agree: e.target.checked })
-                  }
-                  className="mt-1 accent-[#2F5E9E]"
-                  required
-                />
-                <span className="text-sm text-gray-600">{t.agree_text}</span>
-              </label>
 
               {submitError && (
                 <p className="text-red-500 text-sm text-center">
@@ -589,7 +468,7 @@ function ContactPageInner({ initialLang }: { initialLang: "en" | "vi" }) {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3.5 text-white font-bold rounded-xl text-sm hover:opacity-90 transition-opacity disabled:opacity-60"
+                className="w-full py-4 text-white font-bold rounded-xl text-sm hover:opacity-90 transition-opacity disabled:opacity-60 cursor-pointer shadow-md"
                 style={{ background: "#2F5E9E" }}
               >
                 {submitting
@@ -604,67 +483,90 @@ function ContactPageInner({ initialLang }: { initialLang: "en" | "vi" }) {
 
         {/* Sidebar */}
         <div className="space-y-6">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-            <h3 className="font-bold text-gray-900 mb-4">
+          {/* Direct Contact Info */}
+          <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 space-y-4">
+            <h3 className="font-bold text-gray-900 text-base mb-2">
               {t.sidebar_support}
             </h3>
-            <div className="space-y-4">
-              <a
-                href={`tel:${settings.phone_e164}`}
-                className="flex items-center gap-3 text-gray-700 hover:text-[#2F5E9E] transition-colors"
-              >
-                <span className="text-xl">📞</span>
-                <div>
-                  <p className="text-xs text-gray-400">Phone</p>
-                  <p className="font-semibold">{settings.phone}</p>
+
+            {/* Consultation Hotline */}
+            <div className="flex items-start gap-3 text-gray-700 pb-3 border-b border-gray-100">
+              <span className="text-xl shrink-0 mt-0.5">📞</span>
+              <div>
+                <p className="text-xs font-semibold text-[#2F5E9E] uppercase tracking-wider">{t.consulting_hotline}</p>
+                <a
+                  href="tel:14074211531"
+                  className="font-bold text-gray-900 text-base hover:text-[#2F5E9E] transition-colors"
+                >
+                  (+1) (407)-421-1531
+                </a>
+              </div>
+            </div>
+
+            {/* Customer Care Hotline */}
+            <div className="flex items-start gap-3 text-gray-700 pb-3 border-b border-gray-100">
+              <span className="text-xl shrink-0 mt-0.5">🎧</span>
+              <div>
+                <p className="text-xs font-semibold text-[#2F5E9E] uppercase tracking-wider">{t.support_hotline}</p>
+                <div className="space-y-1 text-sm font-semibold text-gray-800 mt-1">
+                  <a href="tel:14075766689" className="hover:text-[#2F5E9E] block">(+1) (407)-576-6689</a>
+                  <a href="tel:14077144691" className="hover:text-[#2F5E9E] block">(+1) (407)-714-4691</a>
+                  <a href="tel:16893077129" className="hover:text-[#2F5E9E] block">(+1) (689)-307-7129</a>
                 </div>
-              </a>
-              <a
-                href={`mailto:${settings.email}`}
-                className="flex items-center gap-3 text-gray-700 hover:text-[#2F5E9E] transition-colors"
-              >
-                <span className="text-xl">✉️</span>
-                <div>
-                  <p className="text-xs text-gray-400">Email</p>
-                  <p className="font-semibold text-sm">{settings.email}</p>
-                </div>
-              </a>
-              <div className="flex items-start gap-3 text-gray-700">
-                <span className="text-xl">📍</span>
-                <div>
-                  <p className="text-xs text-gray-400">Address</p>
-                  <p className="font-semibold text-sm">{settings.address}</p>
-                </div>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-start gap-3 text-gray-700 pb-3 border-b border-gray-100">
+              <span className="text-xl shrink-0 mt-0.5">✉️</span>
+              <div>
+                <p className="text-xs text-gray-400">Email</p>
+                <a
+                  href="mailto:servicing@vietpointservices.com"
+                  className="font-semibold text-sm hover:text-[#2F5E9E] break-all"
+                >
+                  servicing@vietpointservices.com
+                </a>
+              </div>
+            </div>
+
+            {/* Address */}
+            <div className="flex items-start gap-3 text-gray-700">
+              <span className="text-xl shrink-0 mt-0.5">📍</span>
+              <div>
+                <p className="text-xs text-gray-400">Address</p>
+                <p className="font-semibold text-sm leading-relaxed">
+                  1805 W Colonial Dr Suite B2 Orlando, FL 32804
+                </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          {/* Office Hours */}
+          <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
             <h3 className="font-bold text-gray-900 mb-3">{t.sidebar_hours}</h3>
             <div className="space-y-2 text-sm text-gray-600">
-              <div className="flex justify-between">
-                <span>{t.sidebar_sun_thu}</span>
-                <span className="font-semibold">{settings.hours_weekday}</span>
+              <div className="flex justify-between items-center py-1 border-b border-gray-50">
+                <span>{t.sidebar_mon_fri}</span>
+                <span className="font-semibold text-gray-900">{weekdayHours || t.sidebar_mon_fri_val}</span>
               </div>
-              <div className="flex justify-between">
-                <span>{t.sidebar_fri_sat}</span>
+              <div className="flex justify-between items-center py-1">
+                <span>{t.sidebar_sat_sun}</span>
                 <span className="font-semibold text-red-500">
-                  {settings.hours_closed === "Closed"
-                    ? t.sidebar_closed
-                    : settings.hours_closed}
+                  {t.sidebar_closed}
                 </span>
               </div>
             </div>
-            <p className="text-xs text-gray-400 mt-3">{t.sidebar_dst}</p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-            <p className="text-sm text-gray-600 font-medium">
+          {/* Ready & Call Now */}
+          <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
+            <p className="text-sm text-gray-600 font-medium leading-relaxed">
               {t.sidebar_ready}
             </p>
             <a
-              href={`tel:${settings.phone_e164}`}
-              className="mt-4 flex items-center justify-center gap-2 w-full py-3 text-white font-bold rounded-xl text-sm hover:opacity-90 transition-opacity"
+              href="tel:14074211531"
+              className="mt-4 flex items-center justify-center gap-2 w-full py-3.5 text-white font-bold rounded-xl text-sm hover:opacity-90 transition-opacity shadow-md"
               style={{ background: "#2F5E9E" }}
             >
               {t.call_now}
