@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   title: "VietPoint Insurance & Tax | Life, IUL & Retirement Planning",
   description:
     "The trusted choice of over 20,000 Vietnamese families across 50 U.S. States. Specializing in IUL, Term Life, and Retirement Planning.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export default async function RootLayout({
