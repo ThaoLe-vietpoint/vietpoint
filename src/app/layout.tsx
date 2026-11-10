@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactFloat from "@/components/ContactFloat";
 import ChatWidget from "@/components/ChatWidget";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getLang } from "@/utils/getLang";
 import { getGlobalContact } from "@/utils/getGlobalContact";
 
@@ -43,6 +45,8 @@ export default async function RootLayout({
           address={contact.address}
         />
         <ChatWidget lang={lang} />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
